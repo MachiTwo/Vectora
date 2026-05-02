@@ -1,0 +1,54 @@
+default_language_version:
+  python: python3
+
+default_stages: [pre-commit]
+minimum_pre_commit_version: 3.0.0
+
+exclude: |
+  (?x)^(
+    \.git/.*|
+    \.env.*|
+  )$
+
+repos:
+  # ==========================================
+  # Basic File Validation
+  # ==========================================
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+        name: Trim Trailing Whitespace
+        args: [--markdown-linebreak-ext=md]
+        stages: [pre-commit]
+      - id: end-of-file-fixer
+        name: Fix End of File
+        stages: [pre-commit]
+      - id: check-yaml
+        name: Validate YAML
+        args: ["--allow-multiple-documents", "--unsafe"]
+        exclude: ^(charts/|integrations/).*\.yaml$
+        stages: [pre-commit]
+      - id: check-json
+        name: Validate JSON
+        stages: [pre-commit]
+      - id: check-toml
+        name: Validate TOML
+        stages: [pre-commit]
+      - id: check-merge-conflict
+        name: Check for Merge Conflicts
+        stages: [pre-commit]
+      - id: check-added-large-files
+        name: Check for Large Files
+        args: ["--maxkb=5000"]
+        stages: [pre-commit]
+      - id: detect-private-key
+        name: Detect Private Keys
+        stages: [pre-commit]
+
+ci:
+  autofix_commit_msg: "chore: auto fixes from pre-commit hooks"
+  autofix_prs: false
+  autoupdate_branch: ""
+  skip: []
+  submodules: false

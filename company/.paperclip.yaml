@@ -1,0 +1,213 @@
+schema: "paperclip/v1"
+agents:
+  ai-backend:
+    adapter:
+      type: "claude_local"
+    inputs:
+      env:
+        GH_TOKEN:
+          description: "Optional default for GH_TOKEN on agent ai-backend"
+          kind: "secret"
+          default: ""
+          requirement: "optional"
+  ai-ml:
+    adapter:
+      type: "claude_local"
+    inputs:
+      env:
+        GH_TOKEN:
+          description: "Optional default for GH_TOKEN on agent ai-ml"
+          kind: "secret"
+          default: ""
+          requirement: "optional"
+  cdo:
+    adapter:
+      type: "claude_local"
+    inputs:
+      env:
+        GH_TOKEN:
+          description: "Optional default for GH_TOKEN on agent cdo"
+          kind: "secret"
+          default: ""
+          requirement: "optional"
+  ceo:
+    role: "ceo"
+    adapter:
+      type: "claude_local"
+    runtime:
+      heartbeat:
+        intervalSec: 300
+    permissions:
+      canCreateAgents: true
+    inputs:
+      env:
+        GH_TOKEN:
+          description: "Optional default for GH_TOKEN on agent ceo"
+          kind: "secret"
+          default: ""
+          requirement: "optional"
+  cloud:
+    adapter:
+      type: "claude_local"
+    inputs:
+      env:
+        GH_TOKEN:
+          description: "Optional default for GH_TOKEN on agent cloud"
+          kind: "secret"
+          default: ""
+          requirement: "optional"
+  cmo:
+    role: "cmo"
+    icon: "target"
+    capabilities: "Owns go-to-market, brand, developer relations, and product marketing execution."
+    adapter:
+      type: "claude_local"
+    runtime:
+      heartbeat:
+        intervalSec: 300
+    inputs:
+      env:
+        GH_TOKEN:
+          description: "Optional default for GH_TOKEN on agent cmo"
+          kind: "secret"
+          default: ""
+          requirement: "optional"
+  cto:
+    role: "cto"
+    icon: "crown"
+    capabilities: "Owns technical strategy, engineering execution, technical hiring, and roadmap decomposition into shippable tasks."
+    adapter:
+      type: "claude_local"
+    runtime:
+      heartbeat:
+        intervalSec: 300
+    inputs:
+      env:
+        GH_TOKEN:
+          description: "Optional default for GH_TOKEN on agent cto"
+          kind: "secret"
+          default: ""
+          requirement: "optional"
+  desktop:
+    adapter:
+      type: "claude_local"
+    inputs:
+      env:
+        GH_TOKEN:
+          description: "Optional default for GH_TOKEN on agent desktop"
+          kind: "secret"
+          default: ""
+          requirement: "optional"
+  devops:
+    adapter:
+      type: "claude_local"
+    inputs:
+      env:
+        GH_TOKEN:
+          description: "Optional default for GH_TOKEN on agent devops"
+          kind: "secret"
+          default: ""
+          requirement: "optional"
+  devrel:
+    adapter:
+      type: "claude_local"
+    inputs:
+      env:
+        GH_TOKEN:
+          description: "Optional default for GH_TOKEN on agent devrel"
+          kind: "secret"
+          default: ""
+          requirement: "optional"
+  frontend-engineer:
+    adapter:
+      type: "claude_local"
+    inputs:
+      env:
+        GH_TOKEN:
+          description: "Optional default for GH_TOKEN on agent frontend-engineer"
+          kind: "secret"
+          default: ""
+          requirement: "optional"
+  integrations:
+    adapter:
+      type: "claude_local"
+    inputs:
+      env:
+        GH_TOKEN:
+          description: "Optional default for GH_TOKEN on agent integrations"
+          kind: "secret"
+          default: ""
+          requirement: "optional"
+  librarian:
+    adapter:
+      type: "claude_local"
+    inputs:
+      env:
+        GH_TOKEN:
+          description: "Optional default for GH_TOKEN on agent librarian"
+          kind: "secret"
+          default: ""
+          requirement: "optional"
+  pmm:
+    adapter:
+      type: "claude_local"
+    inputs:
+      env:
+        GH_TOKEN:
+          description: "Optional default for GH_TOKEN on agent pmm"
+          kind: "secret"
+          default: ""
+          requirement: "optional"
+  qa-engineer:
+    adapter:
+      type: "claude_local"
+    inputs:
+      env:
+        GH_TOKEN:
+          description: "Optional default for GH_TOKEN on agent qa-engineer"
+          kind: "secret"
+          default: ""
+          requirement: "optional"
+  security:
+    adapter:
+      type: "claude_local"
+    inputs:
+      env:
+        GH_TOKEN:
+          description: "Optional default for GH_TOKEN on agent security"
+          kind: "secret"
+          default: ""
+          requirement: "optional"
+projects:
+  vectora:
+    color: "#eab308"
+    status: "in_progress"
+    workspaces:
+      vectora:
+        name: "Vectora"
+        defaultRef: "master"
+        isPrimary: true
+        repoRef: "master"
+        repoUrl: "https://github.com/Kaffyn/Vectora"
+        sourceType: "git_repo"
+        visibility: "default"
+sidebar:
+  agents:
+    - "ceo"
+    - "cmo"
+    - "cto"
+    - "cdo"
+    - "desktop"
+    - "librarian"
+    - "pmm"
+    - "ai-backend"
+    - "ai-ml"
+    - "cloud"
+    - "devops"
+    - "devrel"
+    - "frontend-engineer"
+    - "integrations"
+    - "qa-engineer"
+    - "security"
+  projects:
+    - "vectora"

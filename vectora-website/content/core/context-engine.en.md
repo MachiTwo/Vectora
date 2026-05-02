@@ -1,0 +1,186 @@
+---
+title: Context Engine
+slug: context-engine
+date: "2026-04-19T09:00:00-03:00"
+type: docs
+sidebar:
+  open: true
+tags:
+  - adk
+  - agentic-framework
+  - agents
+  - ai
+  - ast-parsing
+  - auth
+  - claude
+  - concepts
+  - config
+  - context-engine
+  - embeddings
+  - go
+  - guardian
+  - jwt
+  - mongodb-atlas
+  - rag
+  - reranker
+  - search
+  - semantic
+  - tree-sitter
+  - vector-db
+  - vector-search
+  - vectora
+  - voyage
+  - yaml
+---
+
+{{< lang-toggle >}}
+
+The Context Engine is the heart of Vectora's orchestration. It decides **what, how, and when** to fetch context in your codebase, avoiding noise and overfetch.
+
+> [!IMPORTANT] Context Engine is not just search. It is an intelligent pipeline: **Embed → Search → Rerank → Compose → Validate**.
+
+## The Problem
+
+Generic agents return 50 irrelevant files for a simple query. The Context Engine filters by relevance, reducing this to 5-10 highly useful chunks.
+
+## Search Strategies
+
+The Context Engine offers three search strategies, either independent or combined, depending on the query type and desired precision.
+
+## Semantic
+
+Uses embeddings to find functional similarity. Ideal for "How to validate tokens?"
+
+## Structural
+
+Uses AST parsing for code relationships. Ideal for "Which functions call X?"
+
+## Hybrid
+
+Combines semantic + structural search. Ideal for module refactoring.
+
+## Vectora Cognitive Runtime-Orchestrated Pipeline
+
+The **[Vectora Cognitive Runtime (Decision Engine)](/models/vectora-decision-engine/)** orchestrates each step of the Context Engine pipeline, deciding dynamic routing and validating output quality.
+
+1. **Embedding**: Query → 1024D vector (Voyage 4).
+2. **Search**: MongoDB Atlas with filters by namespace.
+3. **Tactical Validation (Vectora Cognitive Runtime)**: Vectora Cognitive Runtime analyzes whether initial candidates justify a heavy rerank.
+4. **Reranking**: Voyage Rerank 2.5 refines top-50 to top-10.
+5. **Compaction**: head/tail reduction without losing context.
+6. **Faithfulness Observation (Vectora Cognitive Runtime)**: Vectora Cognitive Runtime validates whether the final context is faithful and sufficient for the Agentic Framework.
+
+## Configuration
+
+```yaml
+context_engine:
+  strategy: "auto"
+  max_depth: 3
+  compaction: true
+  include_ast: true
+  include_dependencies: true
+```
+
+## Practical Examples
+
+Below are two detailed examples showing how the Context Engine processes queries and returns structured context.
+
+## Example 1: Semantic Search
+
+**Query**: "How to validate tokens?"
+
+```text
+Input:
+  - Query: "How to validate tokens?"
+  - Strategy: semantic
+  - Namespace: your-project
+  - Top-k: 10
+
+Processing:
+  1. Embed: Query → 1536D vector via Voyage 4
+  2. Search: HNSW searches for 100 closest candidates
+  3. Rerank: Voyage Rerank 2.5 refines to top-10
+  4. Compaction: Reduces size from 15KB → 4KB while maintaining context
+  5. Validate: Agentic Framework validates output, captures metrics
+
+Output:
+  chunks: [
+    {file: "src/auth/jwt.ts", precision: 0.89, content: "...validateToken..."},
+    {file: "src/auth/guards.ts", precision: 0.78, content: "...middleware..."},
+    ...
+  ]
+  metadata: {
+    retrieval_precision: 0.87,
+    latency_ms: 234,
+    total_searched: 3159,
+    compaction_ratio: 0.27
+  }
+```
+
+## Example 2: Structural Search
+
+**Query**: "Who calls getUserById?"
+
+```text
+Input:
+  - Symbol: getUserById
+  - Strategy: structural
+  - Include indirect: true
+
+Processing:
+  1. AST Parse: Analyzes file where getUserById is defined
+  2. Call Graph: Finds all references (direct + indirect)
+  3. Context: Extracts context lines for each call
+
+Output:
+  direct_calls: 47
+  indirect_calls: 12
+  callers: [
+    {file: "src/middleware/auth.ts", line: 34, type: "direct"},
+    {file: "src/routes/profile.ts", line: 12, type: "indirect via getUserData"},
+    ...
+  ]
+```
+
+## External Linking
+
+| Concept               | Resource                            | Link                                                                                                       |
+| --------------------- | ----------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| **MongoDB Atlas**     | Atlas Vector Search Documentation   | [www.mongodb.com/docs/atlas/atlas-vector-search/](https://www.mongodb.com/docs/atlas/atlas-vector-search/) |
+| **Anthropic Claude**  | Claude Documentation                | [docs.anthropic.com/](https://docs.anthropic.com/)                                                         |
+| **AST Parsing**       | Tree-sitter Official Documentation  | [tree-sitter.github.io/tree-sitter/](https://tree-sitter.github.io/tree-sitter/)                           |
+| **Voyage AI**         | High-performance embeddings for RAG | [www.voyageai.com/](https://www.voyageai.com/)                                                             |
+| **Voyage Embeddings** | Voyage Embeddings Documentation     | [docs.voyageai.com/docs/embeddings](https://docs.voyageai.com/docs/embeddings)                             |
+| **Voyage Reranker**   | Voyage Reranker API                 | [docs.voyageai.com/docs/reranker](https://docs.voyageai.com/docs/reranker)                                 |
+
+---
+
+> **Next**: [Agentic Framework](./agentic-framework.md)
+
+---
+
+**Vectora v0.1.0** · [GitHub](https://github.com/Kaffyn/Vectora) · [License (MIT)](https://github.com/Kaffyn/Vectora/blob/master/LICENSE) · [Contributors](https://github.com/Kaffyn/Vectora/graphs/contributors)
+
+_Part of the Vectora AI Agent ecosystem. Built with [ADK](https://adk.dev/), [Claude](https://claude.ai/) and [Go](https://golang.org/)._
+
+© 2026 Vectora Contributors. All rights reserved.
+
+---
+
+**Vectora v0.1.0** · [GitHub](https://github.com/Kaffyn/Vectora) · [License (MIT)](https://github.com/Kaffyn/Vectora/blob/master/LICENSE) · [Contributors](https://github.com/Kaffyn/Vectora/graphs/contributors)
+
+_Part of the Vectora AI Agent ecosystem. Built with [ADK](https://adk.dev/), [Claude](https://claude.ai/) and [Go](https://golang.org/)._
+
+© 2026 Vectora Contributors. All rights reserved.
+
+---
+
+**Vectora v0.1.0** · [GitHub](https://github.com/Kaffyn/Vectora) · [License (MIT)](https://github.com/Kaffyn/Vectora/blob/master/LICENSE) · [Contributors](https://github.com/Kaffyn/Vectora/graphs/contributors)
+
+_Part of the Vectora AI Agent ecosystem. Built with [ADK](https://adk.dev/), [Claude](https://claude.ai/) and [Go](https://golang.org/)._
+
+© 2026 Vectora Contributors. All rights reserved.
+
+---
+
+_Part of the Vectora ecosystem_ · [Open Source (MIT)](https://github.com/Kaffyn/Vectora) · [Contributors](https://github.com/Kaffyn/Vectora/graphs/contributors)

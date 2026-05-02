@@ -1,0 +1,181 @@
+default_language_version:
+  python: python3
+
+default_stages: [pre-commit]
+minimum_pre_commit_version: 3.0.0
+
+exclude: |
+  (?x)^(
+    docs/(public|resources|static|temp)/.*|
+    cloud/pkg/proto/.*\.pb\.go|
+    integrations/.*|
+    \.git/.*|
+    .*\.pdf$|
+    .*\.lock$|
+    package-lock\.json|
+    yarn\.lock|
+    go\.sum|
+    coverage\..*|
+    \.env.*|
+    .*\.json$|
+    .*\.html$
+  )$
+
+repos:
+  # ==========================================
+  # Basic File Validation
+  # ==========================================
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+        name: Trim Trailing Whitespace
+        args: [--markdown-linebreak-ext=md]
+        stages: [pre-commit]
+      - id: end-of-file-fixer
+        name: Fix End of File
+        stages: [pre-commit]
+      - id: check-yaml
+        name: Validate YAML
+        args: ["--allow-multiple-documents", "--unsafe"]
+        exclude: ^(charts/|integrations/).*\.yaml$
+        stages: [pre-commit]
+      - id: check-json
+        name: Validate JSON
+        stages: [pre-commit]
+      - id: check-toml
+        name: Validate TOML
+        stages: [pre-commit]
+      - id: check-merge-conflict
+        name: Check for Merge Conflicts
+        stages: [pre-commit]
+      - id: check-added-large-files
+        name: Check for Large Files
+        args: ["--maxkb=5000"]
+        stages: [pre-commit]
+      - id: detect-private-key
+        name: Detect Private Keys
+        stages: [pre-commit]
+
+  # ==========================================
+  # Go Validation (Lint)
+  # ==========================================
+
+  - repo: https://github.com/golangci/golangci-lint
+    rev: v1.62.2
+    hooks:
+      - id: golangci-lint
+        name: GolangCI-Lint
+
+  # ==========================================
+  # Python Validation (Lint + Format)
+  # ==========================================
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.4.4
+    hooks:
+      - id: ruff
+        name: Ruff Lint (Python)
+        args: [--fix, --line-length=100]
+        types: [python]
+        exclude: ^(Integrations|\.git)/.*
+      - id: ruff-format
+        name: Ruff Format (Python)
+        types: [python]
+        exclude: ^(Integrations|\.git)/.*
+
+  - repo: https://github.com/PyCQA/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+        name: Sort Python Imports
+        args: ["--profile=black", "--line-length=100"]
+        types: [python]
+        exclude: ^(Integrations|docs)/.*
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.14.1
+    hooks:
+      - id: mypy
+        name: Mypy (Python Static Analysis)
+        files: \.py$
+        types_or: [text]
+        additional_dependencies: [types-PyYAML]
+
+  # ==========================================
+  # Markdown & Documentation (Local Scripts)
+  # ==========================================
+  - repo: local
+    hooks:
+      - id: generate-frontmatter
+        name: Generate Frontmatter
+        entry: python scripts/generate_frontmatter.py
+        language: system
+        files: ^docs/.*\.md$
+        pass_filenames: true
+      - id: generate-external-links
+        name: Generate External Links
+        entry: python scripts/generate_links.py
+        language: system
+        files: ^docs/.*\.md$
+        pass_filenames: true
+      - id: generate-footer
+        name: Generate Footer
+        entry: python scripts/generate_footer.py
+        language: system
+        files: ^docs/.*\.md$
+        pass_filenames: true
+      - id: generate-index
+        name: Generate Index
+        entry: python scripts/generate_index.py
+        language: system
+        pass_filenames: false
+      - id: generate-sitemap
+        name: Generate Sitemap
+        entry: python scripts/generate_sitemap.py
+        language: system
+        files: \.md$
+        pass_filenames: false
+      - id: fix-code-blocks
+        name: Fix Markdown Code Blocks
+        entry: python scripts/fix_code_blocks.py
+        language: system
+        files: \.md$
+        pass_filenames: true
+      - id: remove-emojis
+        name: Remove Decorative Emojis
+        entry: python scripts/remove_emojis.py
+        language: system
+        files: \.md$
+        pass_filenames: true
+      - id: check-translations
+        name: Check Language Parity
+        entry: python scripts/check_translations.py
+        language: system
+        pass_filenames: false
+
+  # ==========================================
+  # Markdown Lint & Prettier
+  # ==========================================
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.44.0
+    hooks:
+      - id: markdownlint
+        name: MarkdownLint
+        args: ["--config", "docs/.markdownlint.json", "--fix"]
+        files: ^docs/.*\.md$
+
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v3.1.0
+    hooks:
+      - id: prettier
+        name: Prettier
+        args: ["--write"]
+        files: \.(md|yaml|yml|css)$
+        types_or: [text]
+
+ci:
+  autofix_commit_msg: "chore: auto fixes from pre-commit hooks"
+  autofix_prs: false
+  autoupdate_branch: ""
+  skip: []
+  submodules: false

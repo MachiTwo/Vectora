@@ -1,0 +1,429 @@
+version: 2
+
+project_name: vectora
+
+# Enforce bin/ directory for all outputs
+dist: bin
+
+before:
+  hooks:
+    - go mod download
+    - go mod tidy
+    - go generate ./...
+
+builds:
+  - id: vectora
+    main: ./cmd/vectora
+    binary: vectora
+    env:
+      - CGO_ENABLED=0
+    targets:
+      - linux_amd64
+      - linux_arm64
+      - darwin_amd64
+      - darwin_arm64
+      - windows_amd64
+      - windows_arm64
+    ldflags:
+      - -s -w
+      - -X github.com/Kaffyn/Vectora/internal/config.Version={{.Version}}
+      - -X github.com/Kaffyn/Vectora/internal/config.Commit={{.Commit}}
+      - -X github.com/Kaffyn/Vectora/internal/config.Date={{.Date}}
+    flags:
+      - -v
+      - -trimpath
+
+  - id: vectora-cloud
+    main: ./cloud/cmd/vectora-cloud/main.go
+    binary: vectora-cloud
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+    goarch:
+      - amd64
+      - arm64
+    ldflags:
+      - -s -w
+      - -X github.com/Kaffyn/Vectora/cloud/internal/config.Version={{.Version}}
+      - -X github.com/Kaffyn/Vectora/cloud/internal/config.Commit={{.Commit}}
+      - -X github.com/Kaffyn/Vectora/cloud/internal/config.Date={{.Date}}
+    flags:
+      - -trimpath
+
+archives:
+  - id: vectora
+    builds:
+      - vectora
+    name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    format: tar.gz
+    files:
+      - .env.example
+      - SETUP.md
+      - COMPLETE_SETUP.md
+      - README.md
+      - LICENSE
+      - internal/instructions/**/*
+
+# macOS specific configurations
+osxsign:
+  - enabled: false
+    identity: ""
+
+notarize:
+  - enabled: false
+
+# macOS .dmg installer
+dmg:
+  - id: vectora
+    builds:
+      - vectora
+    name_template: "{{ .ProjectName }}_{{ .Version }}_darwin_{{ .Arch }}"
+    filename_template: "{{ .ProjectName }}_{{ .Version }}_darwin_{{ .Arch }}.dmg"
+
+# Linux packages installer
+nfpm:
+  - id: vectora-linux
+    builds:
+      - vectora
+    package_name: vectora
+    file_name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}.{{ .ConventionalExt }}"
+    maintainer: "Kaffyn <info@kaffyn.com>"
+    homepage: "https://github.com/Kaffyn/Vectora"
+    description: "Semantic search engine with MCP server support"
+    license: "MIT"
+    only:
+      - linux
+    formats:
+      - deb
+      - rpm
+      - apk
+    bindir: /usr/local/bin
+    contents:
+      - src: .env.example
+        dst: /etc/vectora/.env.example
+        type: config
+      - src: SETUP.md
+        dst: /usr/share/doc/vectora/SETUP.md
+        type: doc
+      - src: COMPLETE_SETUP.md
+        dst: /usr/share/doc/vectora/COMPLETE_SETUP.md
+        type: doc
+      - src: README.md
+        dst: /usr/share/doc/vectora/README.md
+        type: doc
+      - src: internal/instructions
+        dst: /usr/share/vectora/instructions
+        type: tree
+    scripts:
+      preinstall: scripts/preinstall.sh
+      postinstall: scripts/postinstall.sh
+      preremove: scripts/preremove.sh
+      postremove: scripts/postremove.sh
+    deb:
+      fields:
+        Vcs-Browser: https://github.com/Kaffyn/Vectora
+        Vcs-Git: https://github.com/Kaffyn/Vectora.git
+      dependencies:
+        - ca-certificates
+    rpm:
+      use_file_permissions: true
+      signature:
+        key_file: ""
+
+# macOS specific package
+macos:
+  - builds:
+      - vectora
+    id: vectora-macos
+    name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    formats:
+      - zip
+      - tar.gz
+    files:
+      - .env.example
+      - SETUP.md
+      - COMPLETE_SETUP.md
+      - README.md
+      - LICENSE
+      - internal/instructions/**/*
+
+# Homebrew tap configuration
+brews:
+  - repository:
+      owner: Kaffyn
+      name: homebrew-vectora
+      branch: main
+      token: "{{ .Env.HOMEBREW_TOKEN }}"
+    name: vectora
+    description: "Semantic search engine with MCP server support"
+    homepage: "https://github.com/Kaffyn/Vectora"
+    license: "MIT"
+    folder: Formula
+    test: |
+      system "#{bin}/vectora --version"
+    install: |
+      bin.install "vectora"
+      (etc/"vectora").install ".env.example" => "config.example"
+      (pkgshare/"instructions").install Dir["internal/instructions/*"]
+      bash_completion.install "completions/vectora.bash" => "vectora"
+      zsh_completion.install "completions/vectora.zsh" => "_vectora"
+    post_install: |
+      (var/"log/vectora").mkpath
+      (var/"run/vectora").mkpath
+    caveats: |
+      To configure vectora, copy the example configuration:
+
+        cp #{etc}/vectora/config.example #{etc}/vectora/.env
+
+      Then edit #{etc}/vectora/.env with your API keys.
+
+      To start the server:
+
+        vectora -port 8080
+
+      To use the CLI:
+
+        vectora status
+        vectora search "your query"
+    dependencies:
+      - name: go
+        type: build
+    service: |
+      run [opt_bin/"vectora-server", "--port", "8080"]
+      keep_alive true
+      working_dir var_root
+
+# Windows specific
+windows:
+  - builds:
+      - vectora
+    id: vectora-windows
+    name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    formats:
+      - zip
+    files:
+      - .env.example
+      - SETUP.md
+      - COMPLETE_SETUP.md
+      - README.md
+      - LICENSE
+
+# Release configuration
+release:
+  ids:
+    - vectora
+  github:
+    owner: Kaffyn
+    name: Vectora
+  draft: false
+  prerelease: auto
+  mode: replace
+  name_template: "Vectora v{{ .Version }}"
+  body_templating: true
+  body: |
+    ## Vectora v{{ .Version }} Release
+
+    ### Highlights
+    - Multi-architecture builds: amd64, arm64
+    - Cloud backend with gRPC support
+    - Enhanced observability and security
+
+    ### Cloud Backend
+    Docker: `ghcr.io/kaffyn/vectora-cloud:{{ .Version }}`
+    Fly.io: Ready for deployment
+
+    ### Desktop Client
+    Available for macOS, Linux, Windows
+    Package managers: Homebrew, apt, rpm, apk
+
+    ### Installation
+  footer: |
+    ## Installation
+
+    ### macOS (Homebrew)
+    ```bash
+    brew install Kaffyn/vectora/vectora
+    ```
+
+    ### Linux (apt)
+    ```bash
+    wget https://github.com/Kaffyn/Vectora/releases/download/{{ .Tag }}/vectora_{{ .Version }}_linux_amd64.deb
+    sudo dpkg -i vectora_{{ .Version }}_linux_amd64.deb
+    ```
+
+    ### Linux (rpm)
+    ```bash
+    wget https://github.com/Kaffyn/Vectora/releases/download/{{ .Tag }}/vectora_{{ .Version }}_linux_amd64.rpm
+    sudo rpm -i vectora_{{ .Version }}_linux_amd64.rpm
+    ```
+
+    ### Linux (apk)
+    ```bash
+    wget https://github.com/Kaffyn/Vectora/releases/download/{{ .Tag }}/vectora_{{ .Version }}_linux_amd64.apk
+    sudo apk add vectora_{{ .Version }}_linux_amd64.apk
+    ```
+
+    ### macOS (Direct)
+    ```bash
+    wget https://github.com/Kaffyn/Vectora/releases/download/{{ .Tag }}/vectora_{{ .Version }}_darwin_amd64.tar.gz
+    tar xzf vectora_{{ .Version }}_darwin_amd64.tar.gz
+    sudo mv vectora /usr/local/bin/
+    ```
+
+    ### Windows
+    ```powershell
+    # Download from GitHub releases
+    # Extract to C:\Program Files\Vectora\
+    # Add to PATH: C:\Program Files\Vectora
+    ```
+
+    ## Configuration
+
+    After installation, configure Vectora:
+
+    ```bash
+    # Copy example configuration
+    cp .env.example .env
+
+    # Edit with your API keys
+    # Requires: GOOGLE_API_KEY, VOYAGE_API_KEY, JWT_SECRET
+
+    # Start server
+    vectora -port 8080
+
+    # Use CLI
+    vectora search "your query"
+    ```
+
+    ## Support
+
+    For issues, documentation, and examples visit:
+    - GitHub: https://github.com/Kaffyn/Vectora
+    - Documentation: https://github.com/Kaffyn/Vectora/blob/main/SETUP.md
+
+# Checksum configuration
+checksum:
+  name_template: "checksums.txt"
+  algorithm: sha256
+
+# Changelog configuration
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+      - "^ci:"
+      - Merge pull request
+      - Merge branch
+      - go mod tidy
+
+# Snapcraft for Linux snap packages
+snapcraft:
+  - name: vectora
+    publish: false
+    summary: Semantic search engine with MCP server support
+    description: |
+      Vectora is a semantic search engine and MCP server that provides
+      intelligent code understanding through hybrid caching and multi-provider support.
+
+      Supports Google Gemini, Voyage AI, and Cohere for embeddings and generation.
+    grade: stable
+    confinement: strict
+    plugs:
+      network: null
+      network-bind: null
+    assumes:
+      - snapd-2.43
+
+# Signs artifacts with cosign (optional)
+signs:
+  - artifacts: checksum
+    args:
+      - sign
+      - --key=cosign.key
+      - "${artifact}"
+    output: true
+    certificate: ""
+
+# Docker image building
+dockers:
+  # Desktop client image
+  - id: vectora-desktop-amd64
+    use: buildx
+    goos: linux
+    goarch: amd64
+    image_templates:
+      - "ghcr.io/kaffyn/vectora:latest"
+      - "ghcr.io/kaffyn/vectora:{{ .Tag }}"
+      - "ghcr.io/kaffyn/vectora:v{{ .Major }}.{{ .Minor }}"
+    dockerfile: Dockerfile
+    build_flag_templates:
+      - "--pull"
+      - "--label=version={{ .Version }}"
+      - "--label=revision={{ .FullCommit }}"
+      - "--label=date={{ .Date }}"
+
+  - id: vectora-desktop-arm64
+    use: buildx
+    goos: linux
+    goarch: arm64
+    image_templates:
+      - "ghcr.io/kaffyn/vectora:latest-arm64"
+      - "ghcr.io/kaffyn/vectora:{{ .Tag }}-arm64"
+    dockerfile: Dockerfile
+    build_flag_templates:
+      - "--pull"
+      - "--label=version={{ .Version }}"
+      - "--label=revision={{ .FullCommit }}"
+      - "--label=date={{ .Date }}"
+
+  # Cloud backend images
+  - id: vectora-cloud-amd64
+    use: buildx
+    goos: linux
+    goarch: amd64
+    builds:
+      - vectora-cloud
+    image_templates:
+      - "ghcr.io/kaffyn/vectora-cloud:{{ .Tag }}"
+      - "ghcr.io/kaffyn/vectora-cloud:{{ .Major }}.{{ .Minor }}"
+      - "ghcr.io/kaffyn/vectora-cloud:latest"
+    dockerfile: cloud/Dockerfile
+    build_flag_templates:
+      - "--pull"
+      - "--build-arg=GO_VERSION=1.25.5"
+      - "--label=version={{ .Version }}"
+      - "--label=revision={{ .FullCommit }}"
+      - "--label=date={{ .Date }}"
+      - "--label=vendor=MachiOnCoffee"
+
+  - id: vectora-cloud-arm64
+    use: buildx
+    goos: linux
+    goarch: arm64
+    builds:
+      - vectora-cloud
+    image_templates:
+      - "ghcr.io/kaffyn/vectora-cloud:{{ .Tag }}-arm64"
+      - "ghcr.io/kaffyn/vectora-cloud:{{ .Major }}.{{ .Minor }}-arm64"
+    dockerfile: cloud/Dockerfile
+    build_flag_templates:
+      - "--pull"
+      - "--build-arg=GO_VERSION=1.25.5"
+      - "--label=version={{ .Version }}"
+      - "--label=revision={{ .FullCommit }}"
+      - "--label=date={{ .Date }}"
+
+# Announce release
+announce:
+  skip: false
+  twitter:
+    enabled: false
+  mastodon:
+    enabled: false
+  slack:
+    enabled: false
+  discord:
+    enabled: false

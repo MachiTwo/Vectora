@@ -1,0 +1,1428 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://vectora.github.io/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/auth/api-keys/</loc>
+    <lastmod>2026-04-23T00:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/auth/api-keys/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/auth/api-keys/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/auth/api-keys/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/auth/auth/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/auth/auth/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/auth/auth/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/auth/sso/</loc>
+    <lastmod>2026-04-23T00:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/auth/sso/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/auth/sso/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/auth/sso/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/backend/backend/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/backend/backend/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/backend/backend/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/backend/mongodb-atlas/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/backend/mongodb-atlas/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/backend/mongodb-atlas/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/backend/mongodb-atlas/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/backend/state-persistence/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/backend/state-persistence/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/backend/state-persistence/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/backend/state-persistence/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/backend/vector-search/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/backend/vector-search/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/backend/vector-search/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/backend/vector-search/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/core/agentic-framework/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/core/agentic-framework/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/core/agentic-framework/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/core/agentic-framework/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/core/context-engine/</loc>
+    <lastmod>2026-04-19T09:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/core/context-engine/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/core/context-engine/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/core/context-engine/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/core/core/</loc>
+    <lastmod>2026-04-25 23:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/core/core/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/core/core/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/deployment/chatgpt/</loc>
+    <lastmod>2026-04-27T10:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/deployment/chatgpt/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/deployment/chatgpt/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/deployment/chatgpt/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/deployment/claude/</loc>
+    <lastmod>2026-04-27T10:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/deployment/claude/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/deployment/claude/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/deployment/claude/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/deployment/codex/</loc>
+    <lastmod>2026-04-27T10:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/deployment/codex/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/deployment/codex/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/deployment/codex/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/deployment/deployment/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/deployment/deployment/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/deployment/deployment/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/deployment/docker/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/deployment/docker/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/deployment/docker/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/deployment/docker/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/deployment/flyio/</loc>
+    <lastmod>2026-04-27T10:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/deployment/flyio/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/deployment/flyio/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/deployment/flyio/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/deployment/gemini/</loc>
+    <lastmod>2026-04-27T10:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/deployment/gemini/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/deployment/gemini/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/deployment/gemini/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/deployment/github-releases/</loc>
+    <lastmod>2026-04-19T10:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/deployment/github-releases/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/deployment/github-releases/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/deployment/github-releases/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/deployment/homebrew/</loc>
+    <lastmod>2026-04-19T10:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/deployment/homebrew/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/deployment/homebrew/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/deployment/homebrew/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/deployment/vscode/</loc>
+    <lastmod>2026-04-27T10:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/deployment/vscode/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/deployment/vscode/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/deployment/vscode/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/auth/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/auth/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/auth/api-keys/</loc>
+    <lastmod>2026-04-23T00:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/auth/api-keys/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/auth/api-keys/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/auth/api-keys/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/auth/sso/</loc>
+    <lastmod>2026-04-23T00:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/auth/sso/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/auth/sso/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/auth/sso/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/backend/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/backend/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/backend/mongodb-atlas/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/backend/mongodb-atlas/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/backend/mongodb-atlas/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/backend/mongodb-atlas/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/backend/state-persistence/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/backend/state-persistence/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/backend/state-persistence/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/backend/state-persistence/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/backend/vector-search/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/backend/vector-search/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/backend/vector-search/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/backend/vector-search/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/core/</loc>
+    <lastmod>2026-04-25 23:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/core/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/core/agentic-framework/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/core/agentic-framework/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/core/agentic-framework/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/core/agentic-framework/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/core/context-engine/</loc>
+    <lastmod>2026-04-19T09:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/core/context-engine/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/core/context-engine/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/core/context-engine/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/deployment/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/deployment/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/deployment/chatgpt/</loc>
+    <lastmod>2026-04-27T10:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/deployment/chatgpt/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/deployment/chatgpt/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/deployment/chatgpt/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/deployment/claude/</loc>
+    <lastmod>2026-04-27T10:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/deployment/claude/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/deployment/claude/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/deployment/claude/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/deployment/codex/</loc>
+    <lastmod>2026-04-27T10:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/deployment/codex/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/deployment/codex/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/deployment/codex/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/deployment/docker/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/deployment/docker/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/deployment/docker/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/deployment/docker/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/deployment/flyio/</loc>
+    <lastmod>2026-04-27T10:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/deployment/flyio/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/deployment/flyio/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/deployment/flyio/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/deployment/gemini/</loc>
+    <lastmod>2026-04-27T10:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/deployment/gemini/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/deployment/gemini/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/deployment/gemini/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/deployment/github-releases/</loc>
+    <lastmod>2026-04-19T10:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/deployment/github-releases/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/deployment/github-releases/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/deployment/github-releases/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/deployment/homebrew/</loc>
+    <lastmod>2026-04-19T10:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/deployment/homebrew/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/deployment/homebrew/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/deployment/homebrew/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/deployment/vscode/</loc>
+    <lastmod>2026-04-27T10:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/deployment/vscode/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/deployment/vscode/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/deployment/vscode/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/infrastructure/</loc>
+    <lastmod>2026-04-25 23:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/infrastructure/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/infrastructure/namespaces/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/infrastructure/namespaces/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/infrastructure/namespaces/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/infrastructure/namespaces/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/infrastructure/state-persistence/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/infrastructure/state-persistence/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/infrastructure/trust-folder/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/infrastructure/trust-folder/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/infrastructure/trust-folder/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/infrastructure/trust-folder/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/integrations/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/integrations/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/integrations/chatgpt-plugin/</loc>
+    <lastmod>2026-04-19T09:50:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/integrations/chatgpt-plugin/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/integrations/chatgpt-plugin/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/integrations/chatgpt-plugin/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/integrations/custom-agents/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/integrations/custom-agents/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/integrations/custom-agents/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/integrations/custom-agents/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/integrations/gemini-api/</loc>
+    <lastmod>2026-04-19T10:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/integrations/gemini-api/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/integrations/gemini-api/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/integrations/gemini-api/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/integrations/gemini-cli/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/integrations/gemini-cli/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/integrations/gemini-cli/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/integrations/gemini-cli/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/integrations/mcp-protocol/</loc>
+    <lastmod>2026-04-19T10:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/integrations/mcp-protocol/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/integrations/mcp-protocol/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/integrations/mcp-protocol/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/integrations/paperclip/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/integrations/paperclip/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/integrations/paperclip/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/integrations/paperclip/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/integrations/vscode-extension/</loc>
+    <lastmod>2026-04-19T09:45:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/integrations/vscode-extension/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/integrations/vscode-extension/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/integrations/vscode-extension/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/models/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/models/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/models/gemini/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/models/gemini/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/models/gemini/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/models/gemini/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/models/vectora-decision-engine/</loc>
+    <lastmod>2026-04-27T10:15:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/models/vectora-decision-engine/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/models/vectora-decision-engine/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/models/vectora-decision-engine/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/models/voyage/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/models/voyage/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/models/voyage/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/models/voyage/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/patterns/</loc>
+    <lastmod>2026-04-25 23:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/patterns/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/patterns/rag/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/patterns/rag/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/patterns/rag/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/patterns/rag/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/patterns/sub-agents/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/patterns/sub-agents/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/patterns/sub-agents/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/patterns/sub-agents/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/patterns/trace/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/patterns/trace/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/patterns/trace/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/patterns/trace/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/plans/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/plans/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/plans/free/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/plans/free/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/plans/free/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/plans/free/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/plans/plus/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/plans/plus/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/plans/plus/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/plans/plus/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/plans/retention/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/plans/retention/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/plans/retention/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/plans/retention/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/plans/team/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/plans/team/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/plans/team/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/plans/team/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/protocols/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/protocols/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/protocols/acp/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/protocols/acp/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/protocols/acp/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/protocols/acp/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/protocols/mcp/</loc>
+    <lastmod>2024-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/protocols/mcp/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/protocols/mcp/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/protocols/mcp/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/search/</loc>
+    <lastmod>2026-04-25 23:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/search/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/search/embeddings/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/search/embeddings/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/search/embeddings/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/search/embeddings/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/search/reranker-local/</loc>
+    <lastmod>2026-04-19T10:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/search/reranker-local/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/search/reranker-local/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/search/reranker-local/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/search/reranker/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/search/reranker/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/search/reranker/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/search/reranker/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/search/vector-search/</loc>
+    <lastmod>2026-04-19T09:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/search/vector-search/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/search/vector-search/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/search/vector-search/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/skills/</loc>
+    <lastmod>2026-04-24T22:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/skills/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/skills/architecture-validation/</loc>
+    <lastmod>2026-04-27T10:15:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/skills/architecture-validation/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/skills/architecture-validation/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/skills/architecture-validation/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/skills/context-enrichment/</loc>
+    <lastmod>2026-04-27T10:15:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/skills/context-enrichment/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/skills/context-enrichment/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/skills/context-enrichment/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/skills/dependency-analysis/</loc>
+    <lastmod>2026-04-27T10:15:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/skills/dependency-analysis/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/skills/dependency-analysis/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/skills/dependency-analysis/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/skills/documentation-generation/</loc>
+    <lastmod>2026-04-27T10:15:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/skills/documentation-generation/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/skills/documentation-generation/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/skills/documentation-generation/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/skills/pair-programming/</loc>
+    <lastmod>2026-04-24T22:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/skills/pair-programming/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/skills/pair-programming/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/skills/pair-programming/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/skills/performance-analysis/</loc>
+    <lastmod>2026-04-27T10:15:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/skills/performance-analysis/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/skills/performance-analysis/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/skills/performance-analysis/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/skills/refactoring-suggestions/</loc>
+    <lastmod>2026-04-27T10:15:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/skills/refactoring-suggestions/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/skills/refactoring-suggestions/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/skills/refactoring-suggestions/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/skills/risk-assessment/</loc>
+    <lastmod>2026-04-27T10:15:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/skills/risk-assessment/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/skills/risk-assessment/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/skills/risk-assessment/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/skills/security-audit/</loc>
+    <lastmod>2026-04-24T22:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/skills/security-audit/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/skills/security-audit/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/skills/security-audit/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/skills/test-coverage/</loc>
+    <lastmod>2026-04-27T10:15:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/skills/test-coverage/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/skills/test-coverage/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/skills/test-coverage/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/skills/web-search/</loc>
+    <lastmod>2026-04-24T22:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/skills/web-search/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/skills/web-search/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/skills/web-search/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/tests/</loc>
+    <lastmod>2026-04-23T22:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/tests/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/tests/caching-hybrid-search/</loc>
+    <lastmod>2026-04-23T22:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/tests/caching-hybrid-search/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/tests/caching-hybrid-search/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/tests/caching-hybrid-search/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/tests/code-quality/</loc>
+    <lastmod>2026-04-23T22:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/tests/code-quality/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/tests/code-quality/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/tests/code-quality/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/tests/database-persistence-tests/</loc>
+    <lastmod>2026-04-23T22:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/tests/database-persistence-tests/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/tests/database-persistence-tests/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/tests/database-persistence-tests/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/tests/documentation/</loc>
+    <lastmod>2026-04-23T22:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/tests/documentation/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/tests/documentation/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/tests/documentation/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/tests/e2e-workflows/</loc>
+    <lastmod>2026-04-23T22:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/tests/e2e-workflows/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/tests/e2e-workflows/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/tests/e2e-workflows/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/tests/error-handling/</loc>
+    <lastmod>2026-04-23T22:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/tests/error-handling/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/tests/error-handling/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/tests/error-handling/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/tests/gemini-cli-integration-tests/</loc>
+    <lastmod>2026-04-23T22:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/tests/gemini-cli-integration-tests/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/tests/gemini-cli-integration-tests/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/tests/gemini-cli-integration-tests/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/tests/gemini-self-aware-tests/</loc>
+    <lastmod>2026-04-23T22:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/tests/gemini-self-aware-tests/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/tests/gemini-self-aware-tests/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/tests/gemini-self-aware-tests/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/tests/mcp-server-tests/</loc>
+    <lastmod>2026-04-23T22:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/tests/mcp-server-tests/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/tests/mcp-server-tests/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/tests/mcp-server-tests/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/tests/performance/</loc>
+    <lastmod>2026-04-23T22:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/tests/performance/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/tests/performance/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/tests/performance/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/tests/queries-tools-tests/</loc>
+    <lastmod>2026-04-23T22:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/tests/queries-tools-tests/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/tests/queries-tools-tests/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/tests/queries-tools-tests/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/tests/regression-testing/</loc>
+    <lastmod>2026-04-23T22:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/tests/regression-testing/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/tests/regression-testing/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/tests/regression-testing/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/tests/security-auth/</loc>
+    <lastmod>2026-04-23T22:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/tests/security-auth/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/tests/security-auth/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/tests/security-auth/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/en/tests/vscode-integration-tests/</loc>
+    <lastmod>2026-04-23T22:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/tests/vscode-integration-tests/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/tests/vscode-integration-tests/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/tests/vscode-integration-tests/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/infrastructure/infrastructure/</loc>
+    <lastmod>2026-04-25 23:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/infrastructure/infrastructure/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/infrastructure/infrastructure/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/infrastructure/namespaces/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/infrastructure/namespaces/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/infrastructure/namespaces/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/infrastructure/namespaces/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/infrastructure/state-persistence.pt/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/infrastructure/state-persistence.pt/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/infrastructure/state-persistence.pt/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/infrastructure/trust-folder/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/infrastructure/trust-folder/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/infrastructure/trust-folder/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/infrastructure/trust-folder/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/integrations/chatgpt-plugin/</loc>
+    <lastmod>2026-04-19T09:50:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/integrations/chatgpt-plugin/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/integrations/chatgpt-plugin/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/integrations/chatgpt-plugin/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/integrations/custom-agents/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/integrations/custom-agents/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/integrations/custom-agents/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/integrations/custom-agents/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/integrations/gemini-api/</loc>
+    <lastmod>2026-04-19T10:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/integrations/gemini-api/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/integrations/gemini-api/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/integrations/gemini-api/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/integrations/gemini-cli/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/integrations/gemini-cli/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/integrations/gemini-cli/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/integrations/gemini-cli/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/integrations/integrations/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/integrations/integrations/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/integrations/integrations/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/integrations/mcp-protocol/</loc>
+    <lastmod>2026-04-19T10:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/integrations/mcp-protocol/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/integrations/mcp-protocol/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/integrations/mcp-protocol/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/integrations/paperclip/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/integrations/paperclip/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/integrations/paperclip/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/integrations/paperclip/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/integrations/vscode-extension/</loc>
+    <lastmod>2026-04-19T09:45:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/integrations/vscode-extension/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/integrations/vscode-extension/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/integrations/vscode-extension/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/models/gemini/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/models/gemini/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/models/gemini/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/models/gemini/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/models/models/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/models/models/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/models/models/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/models/vectora-decision-engine/</loc>
+    <lastmod>2026-04-27T10:15:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/models/vectora-decision-engine/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/models/vectora-decision-engine/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/models/vectora-decision-engine/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/models/voyage/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/models/voyage/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/models/voyage/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/models/voyage/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/patterns/patterns/</loc>
+    <lastmod>2026-04-25 23:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/patterns/patterns/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/patterns/patterns/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/patterns/rag/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/patterns/rag/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/patterns/rag/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/patterns/rag/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/patterns/sub-agents/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/patterns/sub-agents/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/patterns/sub-agents/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/patterns/sub-agents/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/patterns/trace/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/patterns/trace/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/patterns/trace/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/patterns/trace/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/plans/free/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/plans/free/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/plans/free/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/plans/free/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/plans/plans/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/plans/plans/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/plans/plans/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/plans/plus/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/plans/plus/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/plans/plus/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/plans/plus/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/plans/retention/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/plans/retention/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/plans/retention/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/plans/retention/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/plans/team/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/plans/team/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/plans/team/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/plans/team/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/protocols/acp/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/protocols/acp/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/protocols/acp/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/protocols/acp/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/protocols/mcp/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/protocols/mcp/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/protocols/mcp/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/protocols/mcp/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/protocols/protocols/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/protocols/protocols/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/protocols/protocols/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/search/embeddings/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/search/embeddings/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/search/embeddings/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/search/embeddings/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/search/reranker-local/</loc>
+    <lastmod>2026-04-19T10:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/search/reranker-local/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/search/reranker-local/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/search/reranker-local/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/search/reranker/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/search/reranker/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/search/reranker/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/search/reranker/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/search/search/</loc>
+    <lastmod>2026-04-25 23:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/search/search/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/search/search/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/search/vector-search/</loc>
+    <lastmod>2026-04-19T09:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/search/vector-search/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/search/vector-search/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/search/vector-search/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/skills/architecture-validation/</loc>
+    <lastmod>2026-04-27T10:15:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/skills/architecture-validation/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/skills/architecture-validation/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/skills/architecture-validation/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/skills/context-enrichment/</loc>
+    <lastmod>2026-04-27T10:15:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/skills/context-enrichment/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/skills/context-enrichment/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/skills/context-enrichment/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/skills/dependency-analysis/</loc>
+    <lastmod>2026-04-27T10:15:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/skills/dependency-analysis/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/skills/dependency-analysis/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/skills/dependency-analysis/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/skills/documentation-generation/</loc>
+    <lastmod>2026-04-27T10:15:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/skills/documentation-generation/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/skills/documentation-generation/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/skills/documentation-generation/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/skills/pair-programming/</loc>
+    <lastmod>2026-04-24T22:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/skills/pair-programming/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/skills/pair-programming/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/skills/pair-programming/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/skills/performance-analysis/</loc>
+    <lastmod>2026-04-27T10:15:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/skills/performance-analysis/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/skills/performance-analysis/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/skills/performance-analysis/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/skills/refactoring-suggestions/</loc>
+    <lastmod>2026-04-27T10:15:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/skills/refactoring-suggestions/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/skills/refactoring-suggestions/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/skills/refactoring-suggestions/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/skills/risk-assessment/</loc>
+    <lastmod>2026-04-27T10:15:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/skills/risk-assessment/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/skills/risk-assessment/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/skills/risk-assessment/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/skills/security-audit/</loc>
+    <lastmod>2026-04-24T22:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/skills/security-audit/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/skills/security-audit/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/skills/security-audit/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/skills/skills/</loc>
+    <lastmod>2026-04-24T22:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/skills/skills/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/skills/skills/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/skills/test-coverage/</loc>
+    <lastmod>2026-04-27T10:15:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/skills/test-coverage/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/skills/test-coverage/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/skills/test-coverage/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/skills/web-search/</loc>
+    <lastmod>2026-04-24T22:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/skills/web-search/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/skills/web-search/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/skills/web-search/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/tests/caching-hybrid-search/</loc>
+    <lastmod>2026-04-23T22:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/tests/caching-hybrid-search/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/tests/caching-hybrid-search/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/tests/caching-hybrid-search/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/tests/code-quality/</loc>
+    <lastmod>2026-04-23T22:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/tests/code-quality/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/tests/code-quality/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/tests/code-quality/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/tests/database-persistence-tests/</loc>
+    <lastmod>2026-04-23T22:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/tests/database-persistence-tests/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/tests/database-persistence-tests/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/tests/database-persistence-tests/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/tests/documentation/</loc>
+    <lastmod>2026-04-23T22:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/tests/documentation/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/tests/documentation/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/tests/documentation/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/tests/e2e-workflows/</loc>
+    <lastmod>2026-04-23T22:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/tests/e2e-workflows/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/tests/e2e-workflows/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/tests/e2e-workflows/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/tests/error-handling/</loc>
+    <lastmod>2026-04-23T22:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/tests/error-handling/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/tests/error-handling/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/tests/error-handling/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/tests/gemini-cli-integration-tests/</loc>
+    <lastmod>2026-04-23T22:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/tests/gemini-cli-integration-tests/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/tests/gemini-cli-integration-tests/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/tests/gemini-cli-integration-tests/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/tests/gemini-self-aware-tests/</loc>
+    <lastmod>2026-04-23T22:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/tests/gemini-self-aware-tests/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/tests/gemini-self-aware-tests/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/tests/gemini-self-aware-tests/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/tests/mcp-server-tests/</loc>
+    <lastmod>2026-04-23T22:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/tests/mcp-server-tests/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/tests/mcp-server-tests/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/tests/mcp-server-tests/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/tests/performance/</loc>
+    <lastmod>2026-04-23T22:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/tests/performance/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/tests/performance/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/tests/performance/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/tests/queries-tools-tests/</loc>
+    <lastmod>2026-04-23T22:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/tests/queries-tools-tests/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/tests/queries-tools-tests/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/tests/queries-tools-tests/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/tests/regression-testing/</loc>
+    <lastmod>2026-04-23T22:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/tests/regression-testing/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/tests/regression-testing/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/tests/regression-testing/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/tests/security-auth/</loc>
+    <lastmod>2026-04-23T22:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/tests/security-auth/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/tests/security-auth/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/tests/security-auth/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/tests/tests/</loc>
+    <lastmod>2026-04-23T22:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/tests/tests/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/tests/tests/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/tests/vscode-integration-tests/</loc>
+    <lastmod>2026-04-23T22:00:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/tests/vscode-integration-tests/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vectora.github.io/en/tests/vscode-integration-tests/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/tests/vscode-integration-tests/"/>
+  </url>
+  <url>
+    <loc>https://vectora.github.io/vectora/</loc>
+    <lastmod>2026-04-18T22:30:00-03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vectora.github.io/vectora/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://vectora.github.io/vectora/"/>
+  </url>
+</urlset>

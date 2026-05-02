@@ -1,0 +1,459 @@
+---
+title: MCP
+slug: mcp
+date: "2024-04-18T22:30:00-03:00"
+type: docs
+sidebar:
+  open: true
+tags:
+  - agentic-framework
+  - ai
+  - architecture
+  - auth
+  - caching
+  - claude
+  - concepts
+  - config
+  - context-engine
+  - embeddings
+  - errors
+  - git
+  - go
+  - guardian
+  - integration
+  - json
+  - jwt
+  - logging
+  - mcp
+  - mcp-protocol
+  - mongodb-atlas
+  - protocol
+  - rag
+  - reference
+  - reranker
+  - security
+  - state
+  - system
+  - tools
+  - vector-search
+  - vectora
+  - voyage
+  - yaml
+---
+
+{{< lang-toggle >}}
+
+**Vectora works exclusively via MCP (Model Context Protocol).** This document describes how Vectora implements MCP, its architecture, and how IDEs (Claude Code, Cursor, Zed) integrate.
+
+## What is MCP?
+
+**MCP** is an open protocol that allows LLMs (Large Language Models) to call "tools" on a computer. Unlike generic REST APIs, MCP is optimized for:
+
+- **Tool Discovery**: IDE discovers which tools are available
+- **Structured I/O**: JSON schemas to ensure validation
+- **Error Handling**: Structured responses with automatic retry
+- **Capability Negotiation**: Client/server agree on features
+
+```text
+┌─────────────┐
+│     IDE     │ (Claude Code, Cursor, etc)
+│ (MCP Client)│
+└──────┬──────┘
+       │ {"jsonrpc": "2.0", "method": "resources/list"}
+       ▼
+┌──────────────────────────┐
+│   Vectora MCP Server     │
+│ (mcp service running)    │
+│                          │
+│ • Tool: search_context   │
+│ • Tool: analyze_file     │
+│ • Tool: find_references  │
+└──────────────────────────┘
+       ▲
+       │ {"result": [...], "tools": [...]}
+       │
+```
+
+## Why Does Vectora Use MCP?
+
+| Alternative               | Problem                                | How MCP Resolves                    |
+| ------------------------- | -------------------------------------- | ----------------------------------- |
+| **REST API**              | SDK in each IDE, complex configuration | MCP is native in Claude Code/Cursor |
+| **CLI Tool**              | No shared context between IDE and tool | MCP maintains state between calls   |
+| **Subprocess**            | Slow, no structured output             | MCP is efficient + native JSON      |
+| **LSP (Language Server)** | Designed for autocomplete, not AI      | MCP is generic for any tool         |
+
+**Result**: One IDE (Claude Code) ↔ Multiple MCPs (Vectora, pytest, git, file-system).
+
+## Vectora MCP Architecture
+
+Vectora implements MCP with a clear stack: the MCP client in the IDE connects to the Vectora server via STDIO, which orchestrates the Agentic Framework, Context Engine, and Tool Executor.
+
+## Components
+
+```text
+IDE (Claude Code)
+    │
+    └─→ MCP Client (built-in)
+         │
+         ├─→ STDIO Transport (pipe)
+         │
+         └─→ Vectora MCP Server
+              │
+              ├─→ Agentic Framework (validation)
+              │ ├─→ Guardian (security)
+              │ └─→ Preconditions (verification)
+              │
+              ├─→ Context Engine (search)
+              │ ├─→ Embeddings (Voyage 4)
+              │ ├─→ Search (HNSW + MongoDB Atlas)
+              │ └─→ Reranking (Voyage 2.5)
+              │
+              └─→ Tool Executor
+                   ├─→ search_context
+                   ├─→ analyze_file
+                   ├─→ find_references
+                   └─→ ... (12 tools total)
+```
+
+## Transport
+
+Vectora MCP uses **STDIO** (stdin/stdout pipes):
+
+```bash
+"mcp": {
+  "vectora": {
+    "command": "vectora",
+    "args": ["mcp", "--stdio"]
+  }
+}
+
+# Vectora starts with:
+# STDIN ← JSON messages from the IDE
+# STDOUT → JSON responses from Vectora
+```
+
+## Protocol Flow
+
+The MCP flow in Vectora goes through three phases: initialization where IDE and server negotiate capabilities, discovery of available tools, and tool execution with error handling.
+
+## 1. Initialization
+
+```json
+// IDE sends
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "initialize",
+  "params": {
+    "protocolVersion": "2024-11-05",
+    "capabilities": {},
+    "clientInfo": {
+      "name": "claude-code",
+      "version": "1.0.0"
+    }
+  }
+}
+
+// Vectora responds
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "protocolVersion": "2024-11-05",
+    "capabilities": {
+      "tools": {} // Available tools
+    },
+    "serverInfo": {
+      "name": "vectora",
+      "version": "0.8.0"
+    }
+  }
+}
+```
+
+## 2. Tool Discovery
+
+```json
+// IDE requests tools list
+{
+  "jsonrpc": "2.0",
+  "id": 2,
+  "method": "tools/list"
+}
+
+// Vectora lists (simplified example)
+{
+  "jsonrpc": "2.0",
+  "id": 2,
+  "result": {
+    "tools": [
+      {
+        "name": "search_context",
+        "description": "Semantic search across codebase",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "query": {"type": "string"},
+            "top_k": {"type": "integer", "default": 10}
+          }
+        }
+      },
+      // ... more tools
+    ]
+  }
+}
+```
+
+## 3. Tool Execution
+
+```json
+// IDE calls tool
+{
+  "jsonrpc": "2.0",
+  "id": 3,
+  "method": "tools/call",
+  "params": {
+    "name": "search_context",
+    "arguments": {
+      "query": "How to validate JWT tokens?",
+      "top_k": 5
+    }
+  }
+}
+
+// Vectora executes (passes through Agentic Framework + Guardian)
+// Returns result
+{
+  "jsonrpc": "2.0",
+  "id": 3,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Found 5 relevant chunks..."
+      },
+      {
+        "type": "text",
+        "text": "[JSON with chunks, metadata, precision]"
+      }
+    ]
+  }
+}
+```
+
+## Vectora MCP Tools (12 Total)
+
+| Tool               | Input              | Output                      | Latency SLA |
+| ------------------ | ------------------ | --------------------------- | ----------- |
+| `search_context`   | query, top_k       | chunks, precision           | <300ms      |
+| `analyze_file`     | file_path          | structure, imports, exports | <200ms      |
+| `find_references`  | symbol_name        | call sites, types           | <250ms      |
+| `file_summary`     | file_path          | summary, key functions      | <150ms      |
+| `list_workspace`   | filter (opt)       | files, structure            | <100ms      |
+| `get_dependencies` | file_path          | direct, indirect deps       | <200ms      |
+| `analyze_changes`  | file_paths[]       | impact analysis             | <400ms      |
+| `validate_imports` | file_paths[]       | validation results          | <300ms      |
+| `search_by_type`   | type_name          | usages of type              | <250ms      |
+| `get_config`       | key (opt)          | config value                | <50ms       |
+| `index_status`     | none               | status, size, chunks        | <100ms      |
+| `execute_query`    | query_type, params | generic query               | <500ms      |
+
+See [MCP Tools Reference](../reference/mcp-tools.md) for full details.
+
+## IDE Configuration
+
+Each IDE has a different process for configuring MCP servers. Below are examples for the most used platforms.
+
+## Claude Code (Recommended)
+
+```json
+// ~/.claude/claude_desktop_config.json
+{
+  "mcpServers": {
+    "vectora": {
+      "command": "vectora",
+      "args": ["mcp", "--stdio"]
+    }
+  }
+}
+```
+
+## Cursor
+
+```json
+// .cursor/settings.json
+{
+  "mcp": {
+    "vectora": {
+      "command": "vectora",
+      "args": ["mcp", "--stdio"],
+      "env": {
+        "VECTORA_NAMESPACE": "my-project"
+      }
+    }
+  }
+}
+```
+
+## Zed
+
+```json
+// .zed/settings.json
+{
+  "language_servers": {
+    "vectora": {
+      "binary": {
+        "path": "vectora"
+      },
+      "initialization_options": {
+        "namespace": "my-project"
+      }
+    }
+  }
+}
+```
+
+## Error Handling
+
+MCP defines structured errors:
+
+```json
+// Tool fails with error
+{
+  "jsonrpc": "2.0",
+  "id": 3,
+  "error": {
+    "code": -32602,
+    "message": "Invalid params",
+    "data": {
+      "error_code": "NAMESPACE_NOT_FOUND",
+      "detail": "Namespace 'invalid' does not exist"
+    }
+  }
+}
+```
+
+Vectora error codes:
+
+- `NAMESPACE_NOT_FOUND` (404)
+- `AUTHENTICATION_FAILED` (401)
+- `RATE_LIMIT_EXCEEDED` (429)
+- `INVALID_SCHEMA` (400)
+- `TIMEOUT` (504)
+- `INTERNAL_ERROR` (500)
+
+## Performance & Optimizations
+
+Vectora implements various techniques to maintain low latency and high scalability: streaming for large responses, caching frequent results, and batch processing.
+
+## Streaming (For large responses)
+
+MCP supports streaming of tool results:
+
+```json
+// Chunked response
+{
+  "jsonrpc": "2.0",
+  "id": 3,
+  "result": {
+    "content": [
+      { "type": "text", "text": "Chunk 1...", "partial": true },
+      { "type": "text", "text": "Chunk 2...", "partial": true },
+      { "type": "text", "text": "Chunk 3...", "partial": false } // end
+    ]
+  }
+}
+```
+
+## Caching
+
+Vectora caches search results:
+
+```text
+Client: search_context("How to validate tokens?")
+  ↓ (first time)
+Server: Processes + Returns + **Caches with 5min TTL**
+  ↓ (second time, same query within 5min)
+Server: Returns from cache (0ms vs 230ms)
+```
+
+## Batch Calls
+
+IDEs can make multiple parallel calls:
+
+```json
+[
+  {"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": "search_context", "arguments": {...}}},
+  {"jsonrpc": "2.0", "id": 2, "method": "tools/call", "params": {"name": "analyze_file", "arguments": {...}}},
+  {"jsonrpc": "2.0", "id": 3, "method": "tools/call", "params": {"name": "find_references", "arguments": {...}}}
+]
+```
+
+## Debug & Logging
+
+To understand what is happening between the IDE and Vectora, use the MCP Inspector or activate structured logging. Both help diagnose integration issues.
+
+## MCP Inspector
+
+```bash
+# View MCP messages in real-time
+# (IDE + Vectora)
+vectora mcp --debug
+
+# Output:
+# [MCP] Client → Server: {"jsonrpc": "2.0", "method": "initialize", ...}
+# [MCP] Server → Client: {"jsonrpc": "2.0", "result": {...}, ...}
+# [MCP] Tool call: search_context | Query: "..." | Time: 234ms
+```
+
+## Logging Structure
+
+```yaml
+# logs/mcp.log (JSON)
+{
+  "timestamp": "2026-04-19T10:30:45Z",
+  "level": "INFO",
+  "event": "tool_executed",
+  "tool_name": "search_context",
+  "tool_duration_ms": 234,
+  "error_code": null,
+  "precision": 0.87,
+  "chunks_returned": 5,
+}
+```
+
+## Comparison: MCP vs Alternatives
+
+| Aspect          | MCP                      | REST API             | LSP           |
+| --------------- | ------------------------ | -------------------- | ------------- |
+| **Setup**       | Automatic in IDE         | Manual config        | Manual config |
+| **Discovery**   | Dynamic (tools/list)     | Static documentation | Static        |
+| **State**       | Persistent (session)     | Stateless            | Stateless     |
+| **Latency**     | <10ms IPC                | >100ms network       | <50ms IPC     |
+| **IDE Support** | Claude Code, Cursor, Zed | All                  | Some          |
+
+**Conclusion**: MCP is ideal for tools that need persistent context + discovery.
+
+## External Linking
+
+| Concept               | Resource                             | Link                                                                                                       |
+| --------------------- | ------------------------------------ | ---------------------------------------------------------------------------------------------------------- |
+| **MCP**               | Model Context Protocol Specification | [modelcontextprotocol.io/specification](https://modelcontextprotocol.io/specification)                     |
+| **MCP Go SDK**        | Go SDK for MCP (mark3labs)           | [github.com/mark3labs/mcp-go](https://github.com/mark3labs/mcp-go)                                         |
+| **Anthropic Claude**  | Claude Documentation                 | [docs.anthropic.com/](https://docs.anthropic.com/)                                                         |
+| **MongoDB Atlas**     | Atlas Vector Search Documentation    | [www.mongodb.com/docs/atlas/atlas-vector-search/](https://www.mongodb.com/docs/atlas/atlas-vector-search/) |
+| **Voyage AI**         | High-performance embeddings for RAG  | [www.voyageai.com/](https://www.voyageai.com/)                                                             |
+| **Voyage Embeddings** | Voyage Embeddings Documentation      | [docs.voyageai.com/docs/embeddings](https://docs.voyageai.com/docs/embeddings)                             |
+
+---
+
+**Vectora v0.1.0** · [GitHub](https://github.com/Kaffyn/Vectora) · [License (MIT)](https://github.com/Kaffyn/Vectora/blob/master/LICENSE) · [Contributors](https://github.com/Kaffyn/Vectora/graphs/contributors)
+
+_Part of the Vectora AI Agent ecosystem. Built with [ADK](https://adk.dev/), [Claude](https://claude.ai/) and [Go](https://golang.org/)._
+
+© 2026 Vectora Contributors. All rights reserved.
+
+---
+
+_Part of the Vectora ecosystem_ · [Open Source (MIT)](https://github.com/Kaffyn/Vectora) · [Contributors](https://github.com/Kaffyn/Vectora/graphs/contributors)
