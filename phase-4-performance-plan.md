@@ -1,151 +1,161 @@
-# VECTORA Phase 4 — Performance, Polish & Enterprise
+# VECTORA Phase 4 — Performance, Polish & Deployment
 
-## 6-Week Plan: Optimization, System Tray, Package Distribution
+## 6-Week Plan: Optimization, LoRA Fine-Tuning, CLI Polish, Package Distribution
 
 ---
 
 ## Executive Summary
 
-**Objetivo:** Otimizar performance, adicionar System Tray (Windows), distribuir via package managers
+**Objetivo:** Otimizar VCR com LoRA, polish CLI/UX, distribuir via package managers
 
-**Período:** 6 semanas após Phase 3 (Week 22-27)
+**Período:** 6 semanas após Phase 3 (Week 21-26)
 **Timeline:** 2026-09-19 → 2026-10-31
-**Estrutura do monorepo:** `vectora/`, `vectora-asset-library/`, `vectora-cognitive-runtime/`, `vectora-integrations/`, `vectora-website/`
 
 **Entregáveis:**
 
-1. ✅ Caching optimization (response cache, vector cache)
-2. ✅ Database query optimization (composite indexes)
-3. ✅ LanceDB vector index optimization (HNSW tuning)
-4. ✅ System Tray (Windows tray icon, quick actions)
-5. ✅ Package manager distribution (brew, apt, winget)
-6. ✅ Advanced RBAC (multi-user management)
-7. ✅ Enterprise monitoring (Grafana dashboards)
-8. ✅ Auto-updates (binary + CLI updates)
+1. ✅ VCR LoRA optimization (task-specific fine-tuning)
+2. ✅ Caching strategy (tool results, embeddings, agent decisions)
+3. ✅ Database query optimization (indexes, query plans)
+4. ✅ LanceDB vector index optimization (HNSW tuning)
+5. ✅ CLI polish (better help, shell completion, daemon status)
+6. ✅ Package distribution (pip, pipx, Docker Hub)
+7. ✅ RBAC + multi-user support
+8. ✅ Auto-updates mechanism
 
 ---
 
-## Week 1-2: Caching & Database Optimization (Weeks 22-23)
+## Week 1-2: VCR Optimization & Caching (Weeks 21-22)
 
-### Frente 1: Advanced Caching
+### Frente 1: VCR LoRA Task-Specific Fine-Tuning
 
-| Task                                                                 | Owner   | Duration | Success Criteria            |
-| -------------------------------------------------------------------- | ------- | -------- | --------------------------- |
-| **1.1** Multi-layer cache strategy (response + vector + query cache) | Backend | 1.5d     | Hit rates > 80%             |
-| **1.2** Cache invalidation (Pub/Sub Redis)                           | Backend | 1d       | Stale data never served     |
-| **1.3** Cache busting on dataset updates                             | Backend | 0.5d     | Updates immediately visible |
-| **1.4** Cache metrics (hit rate, eviction rate)                      | DevOps  | 0.5d     | Metrics exposed             |
+| Task                                                             | Owner | Duration | Success Criteria                    |
+| ---------------------------------------------------------------- | ----- | -------- | ----------------------------------- |
+| **1.1** Collect task-specific data (user queries + feedback)     | ML    | 1d       | 2000+ task-specific examples        |
+| **1.2** LoRA adaptation per task (code, writing, analysis, chat) | ML    | 1.5d     | Multiple LoRA adapters trained      |
+| **1.3** Model selection logic (route to best adapter)            | ML    | 1d       | Routing accuracy >= 85%             |
+| **1.4** Inference optimization (quantization, batching)          | ML    | 0.75d    | Latency stays 4-8ms even with multi |
 
-**Output:** Smart caching with 80%+ hit rate
-**Person-weeks:** 0.7
+**Output:** Task-specific VCR models, optimized inference
+**Person-weeks:** 0.95
 
 ---
 
-### Frente 2: Database Query Optimization
+### Frente 2: Advanced Caching
 
-| Task                                                      | Owner   | Duration | Success Criteria            |
-| --------------------------------------------------------- | ------- | -------- | --------------------------- |
-| **2.1** Add composite indexes (user_id + created_at, etc) | Backend | 1d       | Queries < 50ms p95          |
-| **2.2** Query plan analysis (EXPLAIN for slow queries)    | Backend | 1d       | All queries optimized       |
-| **2.3** Connection pooling tuning (max connections)       | Backend | 0.5d     | No connection exhaustion    |
-| **2.4** Batch operations (bulk inserts/updates)           | Backend | 1d       | Batch operations 10x faster |
+| Task                                                        | Owner   | Duration | Success Criteria             |
+| ----------------------------------------------------------- | ------- | -------- | ---------------------------- |
+| **2.1** Multi-layer caching (agent decisions, tool results) | Backend | 1.5d     | Hit rates > 75%              |
+| **2.2** Cache invalidation (event-driven via Pub/Sub)       | Backend | 1d       | Stale data never served      |
+| **2.3** Tool result caching (persistent across sessions)    | Backend | 0.75d    | Reused results improve speed |
+| **2.4** Metrics (hit rate, TTL effectiveness)               | Backend | 0.5d     | Caching performance tracked  |
+
+**Output:** Multi-layer caching with 75%+ hit rate
+**Person-weeks:** 0.8
+
+---
+
+### Frente 3: Database Query Optimization
+
+| Task                                                     | Owner   | Duration | Success Criteria         |
+| -------------------------------------------------------- | ------- | -------- | ------------------------ |
+| **3.1** Add composite indexes (user_id, created_at, etc) | Backend | 1d       | Queries < 50ms p95       |
+| **3.2** Query plan analysis (EXPLAIN, slow query logs)   | Backend | 1d       | All queries optimized    |
+| **3.3** Connection pooling tuning (pg8000 config)        | Backend | 0.5d     | No connection exhaustion |
+| **3.4** Batch operations (bulk memory stores)            | Backend | 0.75d    | Bulk ops 5x faster       |
 
 **Output:** Database queries < 50ms p95
-**Person-weeks:** 0.75
+**Person-weeks:** 0.8
 
 ---
 
-### Frente 3: Vector Index Optimization
+### Frente 4: Vector Index Optimization
 
-| Task                                                       | Owner   | Duration | Success Criteria       |
-| ---------------------------------------------------------- | ------- | -------- | ---------------------- |
-| **3.1** HNSW index parameter tuning (m, ef_construct, ef)  | Backend | 1d       | Search < 100ms p95     |
-| **3.2** Vector quantization (if needed for size reduction) | Backend | 0.5d     | Trade-off acceptable   |
-| **3.3** Index rebuild process (zero-downtime)              | Backend | 1d       | Rebuild without outage |
-| **3.4** Vector search benchmarking (1M+ vectors)           | QA      | 0.5d     | Latency confirmed      |
+| Task                                                 | Owner   | Duration | Success Criteria       |
+| ---------------------------------------------------- | ------- | -------- | ---------------------- |
+| **4.1** HNSW tuning (m, ef_construct, ef parameters) | Backend | 1d       | Search < 100ms p95     |
+| **4.2** Index rebuild (background, zero-downtime)    | Backend | 1d       | Rebuild without outage |
+| **4.3** Vector quantization (if needed for memory)   | Backend | 0.5d     | Trade-off acceptable   |
+| **4.4** Search benchmarking (1M+ vectors)            | QA      | 0.5d     | Performance validated  |
 
 **Output:** Vector search < 100ms p95 at scale
 **Person-weeks:** 0.7
 
 ---
 
-## Week 3-4: System Tray & CLI UX (Weeks 24-25)
+## Week 3-4: CLI Polish & UX (Weeks 23-24)
 
-### Frente 4: Windows System Tray Integration
+### Frente 5: CLI Enhancement (Click/Typer)
 
-| Task                                                   | Owner    | Duration | Success Criteria             |
-| ------------------------------------------------------ | -------- | -------- | ---------------------------- |
-| **4.1** System Tray setup (Go fyne or systray library) | DevOps   | 1d       | Tray icon appears in taskbar |
-| **4.2** Tray menu (start/stop, settings, quit)         | DevOps   | 1d       | All menu items work          |
-| **4.3** Auto-start on Windows login                    | DevOps   | 0.5d     | App starts automatically     |
-| **4.4** Status indicator (running/stopped)             | DevOps   | 0.5d     | Users see status clearly     |
-| **4.5** Quick access (click tray → dashboard)          | Frontend | 0.5d     | Deep links work              |
+| Task                                                   | Owner | Duration | Success Criteria                |
+| ------------------------------------------------------ | ----- | -------- | ------------------------------- |
+| **5.1** `vectora status` (daemon status, health check) | CLI   | 0.75d    | Shows daemon state + metrics    |
+| **5.2** `vectora logs` (tail daemon + backend logs)    | CLI   | 0.75d    | Real-time log streaming         |
+| **5.3** `vectora update` (check + install updates)     | CLI   | 1d       | Self-update functional          |
+| **5.4** Shell completion (bash, zsh, fish, powershell) | CLI   | 0.75d    | Tab completion works everywhere |
+| **5.5** Better help text + examples + man page         | CLI   | 0.75d    | `vectora help` is comprehensive |
 
-**Output:** System Tray fully functional on Windows
-**Person-weeks:** 0.8
-
----
-
-### Frente 5: CLI Polish & Advanced Commands
-
-| Task                                            | Owner | Duration | Success Criteria                |
-| ----------------------------------------------- | ----- | -------- | ------------------------------- |
-| **5.1** Add `vectora status` (check if running) | CLI   | 0.5d     | Status command works            |
-| **5.2** Add `vectora logs` (tail backend logs)  | CLI   | 1d       | Logs stream in real-time        |
-| **5.3** Add `vectora update` (self-update)      | CLI   | 1d       | CLI updates itself              |
-| **5.4** Shell completion (bash, zsh, fish)      | CLI   | 0.5d     | Tab completion works            |
-| **5.5** Help text improvements + examples       | CLI   | 0.5d     | `vectora help [command]` useful |
-
-**Output:** Polished CLI with 10+ commands
-**Person-weeks:** 0.8
+**Output:** Professional CLI experience
+**Person-weeks:** 1.0
 
 ---
 
-## Week 5: Package Manager Distribution (Week 26)
+### Frente 6: Daemon & Auto-Start
 
-### Frente 6: Package Manager Support
+| Task                                                | Owner   | Duration | Success Criteria             |
+| --------------------------------------------------- | ------- | -------- | ---------------------------- |
+| **6.1** Daemon process management (systemd/launchd) | CLI     | 1d       | Auto-start on login          |
+| **6.2** Daemon restart on crash (supervisor)        | CLI     | 0.75d    | Resilient background process |
+| **6.3** Daemon communication (IPC, health checks)   | Backend | 0.75d    | Robust daemon lifecycle      |
 
-| Task                                         | Owner  | Duration | Success Criteria                |
-| -------------------------------------------- | ------ | -------- | ------------------------------- |
-| **6.1** Homebrew package (macOS)             | DevOps | 1.5d     | `brew install vectora` works    |
-| **6.2** APT package (Ubuntu/Debian)          | DevOps | 1.5d     | `apt install vectora` works     |
-| **6.3** Winget package (Windows)             | DevOps | 1.5d     | `winget install vectora` works  |
-| **6.4** GitHub Releases (pre-built binaries) | DevOps | 0.5d     | Binaries available for download |
-| **6.5** Documentation (installation methods) | Docs   | 0.5d     | All install methods documented  |
-
-**Output:** Available via 3+ package managers
-**Person-weeks:** 0.85
+**Output:** Robust daemon with auto-start
+**Person-weeks:** 0.75
 
 ---
 
-## Week 6: Enterprise & Auto-Updates (Week 27)
+## Week 5: Package Distribution (Week 25)
 
-### Frente 7: Enterprise Features
+### Frente 7: Package Distribution
 
-| Task                                                    | Owner   | Duration | Success Criteria            |
-| ------------------------------------------------------- | ------- | -------- | --------------------------- |
-| **7.1** RBAC improvements (admin, editor, viewer roles) | Backend | 1.5d     | Roles enforced at API level |
-| **7.2** Multi-user workspace management                 | Backend | 1d       | Multiple users per instance |
-| **7.3** Audit logging (who did what, when)              | Backend | 1d       | All actions logged          |
-| **7.4** SSO skeleton (for Phase 5)                      | Backend | 0.5d     | OAuth2 flow framework ready |
+| Task                                                | Owner  | Duration | Success Criteria                    |
+| --------------------------------------------------- | ------ | -------- | ----------------------------------- |
+| **7.1** PyPI package (pip install vectora)          | DevOps | 1.5d     | pip install works + dependencies OK |
+| **7.2** pipx package (pipx install vectora)         | DevOps | 0.75d    | Isolated Python environment         |
+| **7.3** Docker Hub image (official Docker image)    | DevOps | 1.5d     | docker run vectora works            |
+| **7.4** GitHub Releases (pre-built wheels/archives) | DevOps | 0.75d    | Binary downloads available          |
+| **7.5** Installation docs (all methods)             | Docs   | 0.75d    | Clear instructions per OS           |
 
-**Output:** Enterprise features skeleton
-**Person-weeks:** 0.8
+**Output:** Available via pip, pipx, Docker, GitHub
+**Person-weeks:** 1.1
 
 ---
 
-### Frente 8: Auto-Updates & Monitoring
+## Week 6: RBAC & Auto-Updates (Week 26)
 
-| Task                                                    | Owner  | Duration | Success Criteria                    |
-| ------------------------------------------------------- | ------ | -------- | ----------------------------------- |
-| **8.1** Auto-update mechanism (check for updates)       | CLI    | 1.5d     | CLI notifies of updates             |
-| **8.2** Binary auto-update (download + install)         | CLI    | 1d       | Updates install without manual work |
-| **8.3** Grafana dashboards (performance metrics)        | DevOps | 1d       | Pre-built dashboards available      |
-| **8.4** Alert rules (latency spike, errors > threshold) | DevOps | 0.5d     | Alerting configured                 |
-| **8.5** Documentation (monitoring setup)                | Docs   | 0.5d     | Users can deploy monitoring         |
+### Frente 8: Multi-User & RBAC
 
-**Output:** Auto-updates working, monitoring dashboards ready
-**Person-weeks:** 0.85
+| Task                                                  | Owner    | Duration | Success Criteria            |
+| ----------------------------------------------------- | -------- | -------- | --------------------------- |
+| **8.1** RBAC v1 (admin, user, guest roles)            | Backend  | 1.5d     | Roles enforced at API level |
+| **8.2** Multi-user workspaces (share datasets/memory) | Backend  | 1.5d     | Users can collaborate       |
+| **8.3** Audit logging (action trail for compliance)   | Backend  | 1d       | All user actions logged     |
+| **8.4** Permission management UI                      | Frontend | 0.75d    | Users manage permissions    |
+
+**Output:** RBAC + multi-user ready for enterprise
+**Person-weeks:** 1.0
+
+---
+
+### Frente 9: Auto-Updates & Monitoring
+
+| Task                                                     | Owner  | Duration | Success Criteria               |
+| -------------------------------------------------------- | ------ | -------- | ------------------------------ |
+| **9.1** Update check mechanism (version comparison)      | CLI    | 1d       | Notifies of available updates  |
+| **9.2** Auto-update download + install                   | CLI    | 1d       | Updates without manual work    |
+| **9.3** Grafana dashboards (performance + agent metrics) | DevOps | 1d       | Pre-built dashboards available |
+| **9.4** Alert rules (latency, errors, resource usage)    | DevOps | 0.75d    | Alerting system configured     |
+
+**Output:** Auto-updates working, monitoring ready
+**Person-weeks:** 0.9
 
 ---
 
@@ -185,63 +195,71 @@
 
 - [ ] API response < 150ms p95
 - [ ] Vector search < 100ms p95
-- [ ] Full RAG < 600ms p95
-- [ ] Cache hit rate > 80%
+- [ ] Agent execution < 1.5s p95
+- [ ] VCR inference 4-8ms
+- [ ] Cache hit rate > 75%
 - [ ] Memory stable < 1.5GB on KVM1
-- [ ] Stress test: 1000 users OK
+- [ ] Stress test: 1000 concurrent users
 
-### Features
+### VCR Optimization
 
-- [ ] System Tray on Windows
-- [ ] 10+ CLI commands
-- [ ] Auto-update working
-- [ ] RBAC implemented
-- [ ] Audit logging
+- [ ] Task-specific LoRA adapters trained
+- [ ] Routing accuracy >= 85%
+- [ ] Multi-adapter inference working
+- [ ] Quantization trade-offs acceptable
+
+### CLI & UX
+
+- [ ] 10+ CLI commands (status, logs, update, etc)
+- [ ] Shell completion everywhere
+- [ ] Auto-start on login (systemd/launchd)
+- [ ] Professional help text
 
 ### Distribution
 
-- [ ] Available via Homebrew
-- [ ] Available via APT
-- [ ] Available via Winget
-- [ ] GitHub Releases active
+- [ ] pip install vectora
+- [ ] pipx install vectora
+- [ ] docker run vectora works
+- [ ] GitHub Releases binaries available
 - [ ] Installation docs complete
+
+### Features
+
+- [ ] Auto-updates working
+- [ ] RBAC v1 (3 roles)
+- [ ] Audit logging
+- [ ] Multi-user workspaces
 
 ### Monitoring
 
-- [ ] Prometheus metrics exported
-- [ ] Grafana dashboards ready
-- [ ] Alert rules configured
-- [ ] SLO monitoring live
-
-### UX
-
-- [ ] Dark mode working
-- [ ] Keyboard navigation complete
-- [ ] Responsive design
-- [ ] WCAG AA compliance
+- [ ] Prometheus metrics
+- [ ] Grafana dashboards
+- [ ] Alert rules
+- [ ] SLO monitoring
 
 ---
 
 ## Team
 
-- 1x Backend Engineer (Go) — Query optimization, RBAC, auto-updates
-- 1x Frontend Engineer (React) — UI polish, dark mode, mobile responsive
-- 1x DevOps Engineer — System Tray, package managers, monitoring
-- 1x QA Engineer — Stress testing, performance profiling
-- 1x Release Manager — Distribution, documentation
+- 1x Backend Engineer (Python/FastAPI) — Query optimization, RBAC, caching
+- 1x ML Engineer (Python) — VCR LoRA adaptation, task-specific tuning
+- 1x DevOps Engineer — Package distribution, monitoring, daemon management
+- 1x QA Engineer — Performance testing, load testing, benchmarking
+- 1x Release/DevOps — CLI Polish, auto-updates, installation
 
-**Or:** 2-3 Full-Stack + 1 DevOps
+**Or:** 2 Senior Python + 1 DevOps + 1 QA
 
 ---
 
 ## Risks & Mitigation
 
-| Risk                             | Probability | Mitigation                              |
-| -------------------------------- | ----------- | --------------------------------------- |
-| Package manager approval delays  | Low         | Submit early, follow guidelines         |
-| System Tray platform differences | Medium      | Test on Windows 10/11, fallback to CLI  |
-| Performance regression           | Medium      | CI performance tests prevent            |
-| RBAC complexity                  | Medium      | Start simple, iterate based on feedback |
+| Risk                            | Probability | Mitigation                      |
+| ------------------------------- | ----------- | ------------------------------- |
+| VCR multi-adapter overhead      | Medium      | Profile early, optimize routing |
+| Package manager approval delays | Low         | Submit early, follow guidelines |
+| Performance regression          | Medium      | CI load tests prevent           |
+| Auto-update distribution issues | Low         | Test on multiple versions       |
+| RBAC complexity                 | Low         | Start simple, iterate           |
 
 ---
 
@@ -249,15 +267,16 @@
 
 Phase 5 starts when:
 
-- [ ] All performance targets met (< 500ms p95)
-- [ ] System Tray working on Windows
-- [ ] Available via 3+ package managers
-- [ ] Auto-updates functional
+- [ ] All performance targets met (< 150ms API, < 1.5s agent)
+- [ ] VCR multi-adapter working optimally
+- [ ] Available via pip, pipx, Docker
+- [ ] Auto-updates and auto-start working
 - [ ] Monitoring dashboards live
-- [ ] Enterprise features v1 complete
+- [ ] RBAC + audit logging complete
+- [ ] Professional CLI experience
 
 ---
 
 **Status:** Ready after Phase 3 completion
 **Duration:** 6 weeks (2026-09-19 → 2026-10-31)
-**Person-Weeks:** 8.0 pw
+**Person-Weeks:** 8.5 pw

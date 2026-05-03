@@ -10,90 +10,85 @@
 
 **Entregáveis principais:**
 
-1. Backend Go rodando em KVM1 (1 vCPU, 4GB RAM)
-2. Frontend React com login + dashboard
-3. CLI funcional (init, start, auth, dataset)
-4. Vectora Cognitive Runtime decision engine (35MB ONNX, 4-8ms latência)
-5. Docker Compose para local dev + VPS deployment
-6. API REST funcional (Agent Mode + Tool Mode)
-7. Documentação básica (setup guide, API ref)
+1. Backend FastAPI (Python) rodando em qualquer máquina (1 vCPU, 2GB RAM mínimo)
+2. CLI Python (Click/Typer) — comando padrão `vectora` inicia daemon (sem TUI, sem chat)
+3. Vectora Cognitive Runtime (VCR) — XLM-RoBERTa-small + LoRA, pre-thinking layer
+4. MCP Server — Claude Code chama Vectora via MCP (stdio JSON-RPC)
+5. Agent Completo via LangChain — tools, memory, thinking integrado
+6. Integração com databases embedded (PostgreSQL via pg8000-embedded, Redis, LanceDB)
+7. Docker Compose para local dev + deployment
+8. Documentação básica (setup guide, API ref, integration examples)
 
 **Stack Principal:**
 
 ```text
-Backend:   Go 1.21+ | Echo/Chi | GORM | embedded-postgres
+Backend:   Python 3.11+ | FastAPI | SQLAlchemy | pg8000-embedded
 Frontend:  React 18 | Vite | TypeScript | TailwindCSS
-CLI:       Go + Cobra + Viper
-Vectora Cognitive Runtime:       Python 3.10 | PyTorch | XLM-RoBERTa-small + LoRA
+CLI:       Python | Click/Typer (comando: vectora)
+VCR:       PyTorch | XLM-RoBERTa-small + LoRA | pre-thinking layer
+LLM:       LangChain + Anthropic/OpenAI/Google APIs
+Tools:     File system, terminal, Redis, PostgreSQL, LanceDB, MCPs
 DevOps:    Docker Compose | GitHub Actions | pre-commit
-Database:  embedded-postgres (local file) + LanceDB + Redis
+Database:  PostgreSQL embedded (pg8000-embedded) + LanceDB + Redis embedded
+Embeddings: VoyageAI
 ```
 
 ---
 
-## Phase 1: 8-Week Timeline (Optimized MVP)
+## Phase 1: 8-Week Timeline (Optimized MVP — Subagent Only)
 
-**Reductions from 10-week plan:**
+**Scope & Removals:**
 
+- ✂️ No Frontend (React/Vite) — Phase 1 é subagent only, chamado via Claude Code
+- ✂️ No TUI/Chat — Vectora não tem interface própria (Phase 6+)
+- ✂️ No Dashboard — Configuração via .env e CLI
 - ✂️ Task compression: 1.5-2 day tasks → 1 day (focus on essentials)
 - ✂️ Parallel testing: Unit tests embedded in final week (not separate)
-- ✂️ Doc scope: Minimal (setup guide + API ref only, not architecture)
-- ✂️ Vectora Cognitive Runtime scope: Core model training only, no advanced evaluation
-- ✂️ Total person-weeks: 12.5 → 9.5 pw (1 dev = 8 weeks with 18% buffer)
+- ✂️ Total person-weeks: ~10 pw (1 full-stack Python dev + 1 ML engineer, ~8 weeks)
 
 ### Week 1-2: Foundation & Architecture (Weeks 1-2)
 
-**Frente 1.1: Backend Setup (Go Tier-Based)**
+**Frente 1.1: Backend Setup (Python FastAPI Tier-Based)**
 
-| Task                                                                   | Owner   | Duration | Dependencies | Success Criteria                       |
-| ---------------------------------------------------------------------- | ------- | -------- | ------------ | -------------------------------------- |
-| **1.1.1** Init `vectora/backend` go.mod, setup Echo + config + logging | Backend | 0.5d     | -            | Backend starts, slog JSON output works |
-| **1.1.2** Platform tier (bcrypt, crypto, JWT skeleton)                 | Backend | 1d       | 1.1.1        | Auth functions callable                |
-| **1.1.3** Storage tier (embedded-postgres + GORM models)               | Backend | 1.5d     | 1.1.2        | DB starts, User/Dataset models compile |
+| Task                                                                              | Owner   | Duration | Dependencies | Success Criteria                        |
+| --------------------------------------------------------------------------------- | ------- | -------- | ------------ | --------------------------------------- |
+| **1.1.1** Init `vectora/backend` pyproject.toml, setup FastAPI + logging + config | Backend | 0.5d     | -            | Backend starts, uvicorn runs, logs JSON |
+| **1.1.2** Platform tier (bcrypt, JWT, crypto utils)                               | Backend | 0.75d    | 1.1.1        | Auth functions callable, tests pass     |
+| **1.1.3** Storage tier (pg8000-embedded + SQLAlchemy models)                      | Backend | 1.5d     | 1.1.2        | DB embedded, User/Dataset models work   |
+| **1.1.4** LLM tier skeleton (LangChain + VoyageAI stubs)                          | Backend | 0.75d    | 1.1.3        | LangChain imports, stubs callable       |
 
-**Output:** Backend skeleton com 4 tiers essenciais (config → platform → storage → [llm/core/api])
-**Person-weeks:** 0.67
+**Output:** Backend skeleton com tiers essenciais (config → platform → storage → llm → core → api)
+**Person-weeks:** 0.70
 
 ---
 
-**Frente 1.2: Frontend Setup (React + Vite)**
+**Frente 1.3: CLI Skeleton (Python Click/Typer)**
 
-| Task                                             | Owner    | Duration | Dependencies | Success Criteria                              |
-| ------------------------------------------------ | -------- | -------- | ------------ | --------------------------------------------- |
-| **1.2.1** Init Vite + React + Zustand + Tailwind | Frontend | 0.5d     | -            | Dev server starts, styling works              |
-| **1.2.2** Login page + API client (SWR)          | Frontend | 1d       | 1.2.1        | Login form renders + can POST /api/auth/login |
+| Task                                                                           | Owner | Duration | Dependencies | Success Criteria                          |
+| ------------------------------------------------------------------------------ | ----- | -------- | ------------ | ----------------------------------------- |
+| **1.3.1** Init CLI package, `vectora` command (no args = start daemon)         | CLI   | 0.75d    | -            | `vectora` starts daemon, CLI parser works |
+| **1.3.2** Add `vectora init`, `vectora config`, `vectora logs`, `vectora stop` | CLI   | 0.75d    | 1.3.1        | All subcommands callable, config via .env |
 
-**Output:** Frontend with login page, ready for API integration
+**Output:** Minimal CLI (init + config + logs + daemon mgmt), NO chat/TUI
 **Person-weeks:** 0.38
-
----
-
-**Frente 1.3: CLI Skeleton (Go + Cobra)**
-
-| Task                                                          | Owner | Duration | Dependencies | Success Criteria               |
-| ------------------------------------------------------------- | ----- | -------- | ------------ | ------------------------------ |
-| **1.3.1** Init CLI + `vectora init`, `vectora start` commands | CLI   | 1d       | -            | CLI can init and start backend |
-
-**Output:** Minimal CLI (init + start), config via .env
-**Person-weeks:** 0.25
 
 ---
 
 ### Week 3-4: Auth & API (Weeks 3-4)
 
-**Frente 2.1: Auth & API Endpoints**
+**Frente 2.1: Auth & API Endpoints (FastAPI)**
 
-| Task                                                          | Owner    | Duration | Dependencies | Success Criteria                  |
-| ------------------------------------------------------------- | -------- | -------- | ------------ | --------------------------------- |
-| **2.1.1** JWT + login endpoint (POST /api/v1/auth/login)      | Backend  | 1d       | 1.1.3        | Can login, JWT issued             |
-| **2.1.2** Auth middleware + protected endpoints               | Backend  | 0.5d     | 2.1.1        | 401 without token                 |
-| **2.1.3** Database migrations (users, datasets, chat_history) | Backend  | 1d       | 1.1.3        | Tables created, user_id isolation |
-| **2.1.4** Settings + dataset endpoints (GET/POST)             | Backend  | 1d       | 2.1.3        | Settings update, list datasets    |
-| **2.1.5** Error handling + standardized responses             | Backend  | 0.5d     | 2.1.4        | All errors {code, message}        |
-| **2.1.6** Frontend login integration                          | Frontend | 0.5d     | 1.2.2        | Login→JWT stored→redirect         |
+| Task                                                                 | Owner    | Duration | Dependencies | Success Criteria                   |
+| -------------------------------------------------------------------- | -------- | -------- | ------------ | ---------------------------------- |
+| **2.1.1** JWT endpoints (POST /api/v1/auth/login, /refresh, /logout) | Backend  | 1d       | 1.1.3        | Can login, JWT issued + refresh    |
+| **2.1.2** Auth middleware (Depends injection) + protected endpoints  | Backend  | 0.75d    | 2.1.1        | 401 without token, scope enforced  |
+| **2.1.3** Alembic migrations (users, datasets, chats, memories)      | Backend  | 1d       | 1.1.3        | Tables created, user_id isolation  |
+| **2.1.4** Settings + dataset endpoints (GET/POST/DELETE)             | Backend  | 1d       | 2.1.3        | CRUD works, filtering by user_id   |
+| **2.1.5** Exception handlers + structured error responses            | Backend  | 0.5d     | 2.1.4        | {status, detail, timestamp, trace} |
+| **2.1.6** Frontend login integration + JWT storage                   | Frontend | 0.5d     | 1.2.2        | Login→JWT stored→redirect          |
 
-**Output:** Complete auth flow, core API, database
-**Person-weeks:** 0.58
+**Output:** Complete auth flow, FastAPI core API, database schemas
+**Person-weeks:** 0.625
 
 ---
 
@@ -111,37 +106,37 @@ Database:  embedded-postgres (local file) + LanceDB + Redis
 
 ### Week 5-6: RAG & LLM (Weeks 5-6)
 
-**Frente 3.1: RAG + LLM Integration**
+**Frente 3.1: Agent + LLM Integration (LangChain)**
 
-| Task                                                          | Owner   | Duration | Dependencies | Success Criteria                         |
-| ------------------------------------------------------------- | ------- | -------- | ------------ | ---------------------------------------- |
-| **3.1.1** Vector search + reranking (LanceDB + Voyage stub)   | Backend | 1.5d     | 2.2.1        | Search returns top-K, reranking callable |
-| **3.1.2** RAG orchestrator (search→rerank→LLM)                | Backend | 1d       | 3.1.1        | Full pipeline works end-to-end           |
-| **3.1.3** Claude API integration                              | Backend | 0.5d     | 3.1.2        | Can call Claude with context             |
-| **3.1.4** OpenAI API integration                              | Backend | 0.5d     | 3.1.3        | Can call OpenAI API                      |
-| **3.1.5** Tool Mode endpoints (knowledge.store, memory.query) | Backend | 0.5d     | 3.1.2        | Can store/query knowledge                |
-| **3.1.6** LLM response caching (Redis)                        | Backend | 0.5d     | 2.2.2        | Same query returns cached response       |
+| Task                                                                 | Owner   | Duration | Dependencies | Success Criteria                                |
+| -------------------------------------------------------------------- | ------- | -------- | ------------ | ----------------------------------------------- |
+| **3.1.1** VoyageAI embeddings integration + LanceDB vector store     | Backend | 1d       | 2.2.1        | Can embed, store, and search vectors            |
+| **3.1.2** LangChain agent setup (tools, memory, LLM routing)         | Backend | 1.5d     | 3.1.1        | Agent planning works, tool selection functional |
+| **3.1.3** Anthropic Claude integration (via LangChain)               | Backend | 0.75d    | 3.1.2        | Can call Claude with agent tools                |
+| **3.1.4** OpenAI integration (via LangChain)                         | Backend | 0.5d     | 3.1.3        | Can route to OpenAI if preferred                |
+| **3.1.5** Tool endpoints (tools.search, tools.store, tools.retrieve) | Backend | 1d       | 3.1.2        | External agents can call via /api/v1/tools/\*   |
+| **3.1.6** Query response caching (Redis) + prompt optimization       | Backend | 0.75d    | 2.2.2        | Cache hit rate > 60%, reuse of contexts         |
 
-**Output:** Complete RAG pipeline, Agent Mode + Tool Mode, multi-LLM
-**Person-weeks:** 0.65
+**Output:** Full LangChain Agent integration, multi-LLM routing, tool system
+**Person-weeks:** 0.80
 
 ---
 
-### Week 7-8: Vectora Cognitive Runtime & Dashboard (Weeks 7-8)
+### Week 7-8: VCR Pre-Thinking & Dashboard (Weeks 7-8)
 
-**Frente 4.1: Vectora Cognitive Runtime Decision Engine (Python)**
+**Frente 4.1: Vectora Cognitive Runtime (VCR) — Pre-Thinking Layer**
 
-XLM-RoBERTa-small (24M params, multilíngue) + LoRA fine-tuning (r=8, alpha=16) para classificação de decisões (Agent Mode vs Tool Mode vs Web Search vs Recovery).
+XLM-RoBERTa-small (24M params, multilingual) + LoRA fine-tuning (r=8, alpha=16) para enriquecimento contextual ANTES do LangChain processar. VCR decide quando fazer deep thinking, query rewriting, tool selection.
 
-| Task                                                                               | Owner                     | Duration | Dependencies | Success Criteria                                      |
-| ---------------------------------------------------------------------------------- | ------------------------- | -------- | ------------ | ----------------------------------------------------- |
-| **4.1.1** XLM-RoBERTa-small setup + synthetic dataset + LoRA fine-tuning (PyTorch) | Vectora Cognitive Runtime | 1.5d     | -            | Model trains on synthetic data, inference works       |
-| **4.1.2** Evaluation on test set (accuracy >= 85%)                                 | Vectora Cognitive Runtime | 0.5d     | 4.1.1        | Accuracy metrics validated, confidence calibration OK |
-| **4.1.3** Vectora Cognitive Runtime inference.py (subprocess interface)            | Vectora Cognitive Runtime | 0.5d     | 4.1.2        | Backend can call via subprocess, get JSON decisions   |
-| **4.1.4** ONNX export script (optional, for Phase 4+)                              | Vectora Cognitive Runtime | 0.5d     | 4.1.2        | Script ready, not required for Phase 1                |
+| Task                                                                           | Owner | Duration | Dependencies | Success Criteria                               |
+| ------------------------------------------------------------------------------ | ----- | -------- | ------------ | ---------------------------------------------- |
+| **4.1.1** XLM-RoBERTa-small + LoRA setup (PyTorch native, não ONNX em Phase 1) | ML    | 1.25d    | -            | Model trains, inference 4-8ms, accuracy >= 85% |
+| **4.1.2** Synthetic data generation (context enrichment scenarios)             | ML    | 0.75d    | -            | 5K+ synthetic examples for fine-tuning         |
+| **4.1.3** Pre-thinking layer (query→VCR→enriched context→LangChain)            | ML    | 1d       | 4.1.1        | VCR enriches context, passes to LangChain      |
+| **4.1.4** VCR service (FastAPI endpoint, subprocess call, response caching)    | ML    | 0.75d    | 4.1.3        | Backend calls `/vcr/enrich`, caches results    |
 
-**Output:** Trained XLM-RoBERTa-small + LoRA (58MB total), subprocess integration done
-**Person-weeks:** 0.67
+**Output:** Trained VCR model, pre-thinking layer integrated, inference API ready
+**Person-weeks:** 0.80
 
 ---
 
@@ -159,18 +154,18 @@ XLM-RoBERTa-small (24M params, multilíngue) + LoRA fine-tuning (r=8, alpha=16) 
 
 ### Week 9: Integration, Testing, DevOps (Week 9)
 
-**Frente 5.1: Docker & Basic Testing**
+**Frente 5.1: Docker & Testing**
 
-| Task                                                                           | Owner  | Duration | Dependencies | Success Criteria                         |
-| ------------------------------------------------------------------------------ | ------ | -------- | ------------ | ---------------------------------------- |
-| **5.1.1** Dockerfile + docker-compose.yml (backend, frontend, postgres, redis) | DevOps | 1.5d     | All prior    | `docker-compose up` starts all services  |
-| **5.1.2** GitHub Actions (lint, test, build)                                   | DevOps | 1d       | 5.1.1        | CI runs on push, builds pass             |
-| **5.1.3** Unit tests (backend core only)                                       | QA     | 0.5d     | 2.1.5        | Auth + storage tests pass                |
-| **5.1.4** E2E test (login → query)                                             | QA     | 0.5d     | 5.1.1        | Basic flow works                         |
-| **5.1.5** Pre-commit hooks + .env.example                                      | DevOps | 0.5d     | 5.1.1        | Hooks active, users have config template |
+| Task                                                                               | Owner  | Duration | Dependencies | Success Criteria                        |
+| ---------------------------------------------------------------------------------- | ------ | -------- | ------------ | --------------------------------------- |
+| **5.1.1** Dockerfile (FastAPI) + docker-compose.yml (backend, frontend, db, redis) | DevOps | 1d       | All prior    | `docker-compose up` starts all services |
+| **5.1.2** GitHub Actions (lint, test, build)                                       | DevOps | 1d       | 5.1.1        | CI runs: black, isort, pytest, npm lint |
+| **5.1.3** Unit tests (backend: auth, storage, llm, vcr)                            | QA     | 1d       | 2.1.5        | Coverage > 60%, key paths tested        |
+| **5.1.4** E2E test (CLI init → login → query → response)                           | QA     | 0.75d    | 5.1.1        | Full user flow works end-to-end         |
+| **5.1.5** Pre-commit hooks + .env.example setup                                    | DevOps | 0.5d     | 5.1.1        | black, isort, mypy checks active        |
 
-**Output:** Docker Compose working, CI/CD active, basic tests
-**Person-weeks:** 0.65
+**Output:** Docker Compose working, CI/CD active, test coverage baseline
+**Person-weeks:** 0.75
 
 ---
 
@@ -190,26 +185,26 @@ XLM-RoBERTa-small (24M params, multilíngue) + LoRA fine-tuning (r=8, alpha=16) 
 
 ```
 Week 1-2: Foundation (Parallel)
-  ├─ 1.1 Backend Setup (0.67pw) ─→ 2.1 Auth (0.58pw)
-  ├─ 1.2 Frontend Setup (0.38pw) ─→ 2.1 Login (0.58pw)
-  └─ 1.3 CLI Skeleton (0.25pw)
+  ├─ 1.1 Backend Setup (0.70pw) ─→ 2.1 Auth (0.625pw)
+  ├─ 1.2 Frontend Setup (0.38pw) ─→ 2.1 Login (0.625pw)
+  └─ 1.3 CLI Skeleton (0.38pw)
 
 Week 3-4: Auth & API (Sequential)
-  └─ 2.1 Auth + API (0.58pw) ─→ 2.2 Storage (0.25pw) ─→ 3.1 RAG (0.65pw)
+  └─ 2.1 Auth + API (0.625pw) ─→ 2.2 Storage (0.25pw) ─→ 3.1 LangChain (0.80pw)
 
-Week 5-6: RAG & LLM
-  └─ 3.1 RAG (0.65pw) ─→ 4.2 Dashboard (0.38pw)
+Week 5-6: LangChain Agent + Tools
+  └─ 3.1 Agent (0.80pw) ─→ 4.2 Dashboard (0.38pw)
 
-Week 7-8: Vectora Cognitive Runtime & Integration
-  ├─ 4.1 Vectora Cognitive Runtime (0.67pw) ─────────┐
-  └─ 4.2 Dashboard (0.38pw) ───┴→ 5.1 Docker (0.65pw)
+Week 7-8: VCR Pre-Thinking & Integration
+  ├─ 4.1 VCR (0.80pw) ─────────┐
+  └─ 4.2 Dashboard (0.38pw) ───┴→ 5.1 Docker (0.75pw)
 
 Week 9: Final Testing & Docs
-  └─ 5.1 Docker (0.65pw) ─→ 5.2 Docs (0.38pw)
+  └─ 5.1 Docker (0.75pw) ─→ 5.2 Docs (0.38pw)
 ```
 
 **Critical Path:** 1.1 → 2.1 → 3.1 → 4.2 → 5.1 → 5.2
-**Total Person-Weeks:** 9.5 pw (1 senior dev = 8 weeks with 18% buffer)
+**Total Person-Weeks:** 10.0 pw (1 senior full-stack + 1 ML = 8 weeks with 25% buffer)
 
 ---
 
@@ -217,12 +212,12 @@ Week 9: Final Testing & Docs
 
 **Minimal Team (Phase 1):**
 
-- 1x Backend Engineer (Go) — 1.1, 2.1, 2.2, 2.3, 3.1, 3.2, 5.1.5
-- 1x Frontend Engineer (React) — 1.2, 2.1.6, 4.2, 5.2.2
-- 1x ML Engineer (Python) — 4.1, evaluation
-- 1x DevOps / QA — 5.1.1-5.1.4, 5.2, 5.3, pre-commit
+- 1x Backend Engineer (Python/FastAPI) — 1.1, 2.1, 2.2, 3.1, 5.1.1-2, 5.1.5
+- 1x Frontend Engineer (React) — 1.2, 2.1.6, 4.2, 5.2
+- 1x ML Engineer (Python/PyTorch) — 1.3 (CLI), 4.1 (VCR), integration
+- 1x DevOps / QA — 5.1.1-5.1.4, Docker setup, CI/CD
 
-**Or:** 1-2 Senior Full-Stack + 1 ML Engineer
+**Or:** 2 Senior Full-Stack (Python/React) + 1 ML Engineer (VCR specialist)
 
 ---
 
@@ -249,14 +244,15 @@ Week 9: Final Testing & Docs
 - [ ] LLM integration works (at least Claude)
 - [ ] Tool Mode endpoints functional
 
-### End of Week 8 (Vectora Cognitive Runtime + Dashboard ✓)
+### End of Week 8 (VCR Pre-Thinking + Dashboard ✓)
 
-- [ ] Vectora Cognitive Runtime (XLM-RoBERTa-small + LoRA) trains successfully
-- [ ] Decision accuracy >= 85% on test set
-- [ ] Subprocess interface working (backend can call VCR)
+- [ ] VCR (XLM-RoBERTa-small + LoRA) trains successfully
+- [ ] Pre-thinking accuracy >= 85% on test set
+- [ ] Pre-thinking latency 4-8ms (inference)
+- [ ] VCR enriches context before LangChain processing
 - [ ] Dashboard renders all pages
 - [ ] Real-time updates work via WebSocket
-- [ ] Chat history persists
+- [ ] Chat history + memory persists
 
 ### End of Week 10 (Final MVP ✓)
 
@@ -344,39 +340,49 @@ Week 9: Final Testing & Docs
 
 ```
 backend/
-├── cmd/
-│   ├── vectora/
-│   │   ├── main.go
-│   │   └── config.go
-│   └── server/
-│       └── main.go
-├── internal/
-│   ├── config/
-│   │   ├── config.go
-│   │   └── validation.go
+├── app/
+│   ├── main.py
+│   ├── config.py
 │   ├── platform/
-│   │   ├── logger/
-│   │   ├── auth/
-│   │   └── crypto/
+│   │   ├── logger.py
+│   │   ├── auth.py
+│   │   ├── crypto.py
+│   │   └── exceptions.py
 │   ├── storage/
-│   │   ├── db.go
+│   │   ├── db.py
+│   │   ├── models/
+│   │   │   ├── user.py
+│   │   │   ├── dataset.py
+│   │   │   └── chat.py
 │   │   ├── vector/
-│   │   └── models/
+│   │   │   └── lancedb_client.py
+│   │   └── migrations/
 │   ├── llm/
+│   │   ├── langchain_agent.py
+│   │   ├── voyage_embeddings.py
+│   │   └── tool_registry.py
 │   ├── core/
-│   │   └── rag/
+│   │   ├── agent_executor.py
+│   │   └── memory_manager.py
 │   ├── api/
-│   │   ├── router.go
-│   │   ├── middleware/
-│   │   └── handlers/
-│   ├── mcp/
-│   └── shared/
-├── migrations/
-├── go.mod
-├── go.sum
+│   │   ├── router.py
+│   │   ├── middleware.py
+│   │   ├── deps.py
+│   │   └── endpoints/
+│   │       ├── auth.py
+│   │       ├── chat.py
+│   │       └── tools.py
+│   ├── vcr/
+│   │   ├── service.py
+│   │   └── inference.py
+│   └── mcp/
+│       └── server.py
+├── pyproject.toml
+├── requirements.txt
 ├── Dockerfile
 ├── docker-compose.yml
-└── .env.example
+├── .env.example
+└── alembic/
 ```
 
 ### Frontend (`vectora/frontend/`)
@@ -387,6 +393,7 @@ frontend/
 │   ├── components/
 │   │   ├── Login.tsx
 │   │   ├── Dashboard.tsx
+│   │   ├── Chat.tsx
 │   │   ├── Settings.tsx
 │   │   ├── Memory.tsx
 │   │   └── Datasets.tsx
@@ -395,6 +402,8 @@ frontend/
 │   │   └── store.ts (Zustand)
 │   ├── api/
 │   │   └── client.ts
+│   ├── hooks/
+│   ├── types/
 │   ├── App.tsx
 │   └── main.tsx
 ├── index.html
@@ -408,29 +417,32 @@ frontend/
 ### CLI (`vectora/cli/`)
 
 ```
-cmd/vectora/
-├── main.go
-├── config.go
-└── commands/
-    ├── init.go
-    ├── start.go
-    ├── auth.go
-    └── dataset.go
+cli/
+├── main.py
+├── commands/
+│   ├── init.py
+│   ├── auth.py
+│   ├── start.py
+│   └── dataset.py
+├── utils/
+│   └── config.py
+├── pyproject.toml
+└── requirements.txt
 ```
 
-### Vectora Cognitive Runtime (`vectora-cognitive-runtime/`)
+### VCR (`vectora-cognitive-runtime/`)
 
 ```
-vectora-cognitive-runtime/
+vcr/
 ├── src/
 │   ├── train.py
 │   ├── inference.py
-│   ├── export_onnx.py
-│   └── models/
+│   ├── data_loader.py
+│   └── models.py
 ├── data/
+│   └── synthetic_examples.json
 ├── models/
-│   ├── smollm2_135m.onnx (final, 35MB)
-│   └── training_artifacts/
+│   └── xlm_roberta_lora.pth
 ├── pyproject.toml
 ├── requirements.txt
 └── README.md
@@ -446,10 +458,8 @@ vectora/
 │       ├── frontend-ci.yml
 │       └── docker-publish.yml
 ├── .pre-commit-config.yaml
-└── infra/
-    ├── docker-compose.yml
-    ├── Dockerfile
-    └── scripts/
+├── docker-compose.yml
+└── Dockerfile
 ```
 
 ---
@@ -460,29 +470,36 @@ vectora/
 
 ```bash
 # Backend
-cd vectora
-mkdir -p backend/{cmd/vectora,cmd/server,internal/{config,platform,storage,llm,core,api,mcp,shared}}
-go mod init github.com/vectora/vectora
-# Create main.go skeleton
+cd vectora/backend
+python -m venv venv
+source venv/bin/activate
+pip install fastapi uvicorn sqlalchemy pg8000 pydantic python-dotenv
+# Create pyproject.toml, app/main.py skeleton
 
 # Frontend
-cd frontend
+cd ../frontend
 npm create vite@latest . -- --template react-ts
-npm install tailwindcss zustand swr
+npm install tailwindcss zustand axios
 
 # CLI
-cd ../cmd/vectora
-touch main.go config.go
-# Add Cobra skeleton
+cd ../cli
+pip install click typer
+# Create main.py skeleton
 
-# Commit: "chore: init project structure"
+# VCR
+cd ../vcr
+pip install torch transformers peft
+# Create train.py skeleton
+
+# Commit: "chore: init project structure with Python FastAPI stack"
 ```
 
 **Week 1, Day 1 Afternoon:**
 
-- Backend: Config tier (fail-fast validation)
-- Frontend: Vite + TailwindCSS working
-- CLI: Cobra command structure
+- Backend: FastAPI app boots, uvicorn serves on :8000
+- Frontend: Vite dev server on :5173, TailwindCSS works
+- CLI: `vectora --help` shows subcommands
+- VCR: PyTorch imports, model stubs load
 
 ---
 
@@ -573,12 +590,11 @@ GET /api/v1/memory/query
 
 **Status:** Ready for implementation
 **Start Date:** 2026-05-01
-**End Date:** 2026-06-25 (8 weeks)
-**Team:** 1 Backend (Go) + 1 Frontend (React) + 1 ML (Python) + 1 DevOps/QA
+**End Date:** 2026-06-25 (8 weeks + buffer)
+**Team:** 1 Full-Stack (Python/React) + 1 ML Engineer (VCR) + 1 DevOps/QA
 **Repository Structure:**
 
-- `vectora/` (backend Go + frontend React + CLI)
+- `vectora/` (backend FastAPI + frontend React + CLI + VCR)
 - `vectora-asset-library/` (registry de assets e datasets)
-- `vectora-cognitive-runtime/` (VCR Python model)
-- `vectora-integrations/` (Turborepo for SDKs - Phase 3+)
-- `vectora-website/` (Hugo/Hextra docs - source of truth for documentation)
+- `vectora-integrations/` (SDKs - Phase 3+)
+- `vectora-website/` (Hugo/Hextra docs)

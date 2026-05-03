@@ -1,24 +1,23 @@
-# VECTORA Phase 5 — Ecosystem & Community (Ongoing)
+# VECTORA Phase 5 — Ecosystem & Long-Term Vision (Ongoing)
 
-## Long-Term Vision: Community Growth, Advanced Features, Enterprise Adoption
+## Community Growth, Advanced Features, Enterprise Adoption
 
 ---
 
 ## Executive Summary
 
-**Objetivo:** Estabelecer Vectora como plataforma open-source, crescimento comunitário, advanced features, enterprise support
+**Objetivo:** Estabelecer Vectora como padrão open-source para agentes inteligentes, crescimento comunitário, enterprise support
 
-**Período:** Ongoing após Phase 4 (Week 28+)
+**Período:** Ongoing após Phase 4 (Week 27+)
 **Timeline:** 2026-11-01 → Indefinido
-**Estrutura do monorepo:** `vectora/`, `vectora-asset-library/`, `vectora-cognitive-runtime/`, `vectora-integrations/`, `vectora-website/`
 
 **Pilares:**
 
-1. ✅ Community Growth (PRs, issues, discussions)
-2. ✅ Advanced Features (knowledge graphs, multi-agent, fine-tuning)
-3. ✅ Enterprise Support (SSO, SAML, audit, SLA)
-4. ✅ Ecosystem Expansion (more integrations, plugins)
-5. ✅ Monetization (optional cloud, support packages)
+1. ✅ Community Growth (PRs, issues, discussions, 500+ stars)
+2. ✅ Advanced Features (knowledge graphs, reasoning, multi-LLM routing, fine-tuning)
+3. ✅ Enterprise Support (SSO/SAML, RBAC v2, compliance auditing, SLA)
+4. ✅ Ecosystem Expansion (10+ integrations, 50+ datasets in VAL)
+5. ✅ Optional Monetization (cloud hosting, premium support, hosted models)
 
 ---
 
@@ -55,44 +54,44 @@
 
 ## Phase 5.2: Advanced Features (Months 2-6+)
 
-### Frente 3: Knowledge Graphs
+### Frente 3: Knowledge Graphs & Reasoning
 
-| Task                                                     | Owner    | Duration | Success Criteria         |
-| -------------------------------------------------------- | -------- | -------- | ------------------------ |
-| **3.1** Knowledge graph schema (entities, relationships) | Backend  | 2d       | Schema defined           |
-| **3.2** Entity extraction (from documents)               | ML       | 3d       | Extracting relationships |
-| **3.3** Graph visualization (frontend)                   | Frontend | 2d       | Visual knowledge graph   |
-| **3.4** Graph-based queries (find related entities)      | Backend  | 2d       | Can query relationships  |
+| Task                                                      | Owner    | Duration | Success Criteria         |
+| --------------------------------------------------------- | -------- | -------- | ------------------------ |
+| **3.1** Knowledge graph schema (nodes, edges, properties) | Backend  | 2d       | Schema and indexing OK   |
+| **3.2** Entity extraction + linking (from documents)      | ML       | 3d       | Extracting relationships |
+| **3.3** Graph visualization (frontend, D3.js)             | Frontend | 2d       | Visual exploration UI    |
+| **3.4** Graph-based reasoning (path finding, inference)   | Backend  | 2d       | Can reason over graphs   |
 
-**Output:** Knowledge graph functionality
+**Output:** Knowledge graph with reasoning
 **Person-weeks:** 1.75
 
 ---
 
-### Frente 4: Multi-Agent Orchestration
+### Frente 4: Multi-LLM Routing & Reasoning
 
-| Task                                                | Owner       | Duration | Success Criteria                 |
-| --------------------------------------------------- | ----------- | -------- | -------------------------------- |
-| **4.1** Agent orchestrator (manage multiple agents) | Backend     | 2d       | Can coordinate agents            |
-| **4.2** Agent consensus (multiple agents vote)      | Backend     | 2d       | Consensus mechanism works        |
-| **4.3** Agent memory sharing (shared context)       | Backend     | 1.5d     | Agents can share state           |
-| **4.4** Integration (Claude Code + Gemini + others) | Integration | 2d       | Multiple agents working together |
+| Task                                                   | Owner   | Duration | Success Criteria           |
+| ------------------------------------------------------ | ------- | -------- | -------------------------- |
+| **4.1** Multi-LLM abstraction (unified interface)      | Backend | 2d       | Claude, GPT-4, Gemini, etc |
+| **4.2** Cost-aware routing (choose cheapest per query) | Backend | 2d       | Routing logic working      |
+| **4.3** Reasoning/planning module (chain-of-thought)   | Backend | 2d       | Agent can reason & plan    |
+| **4.4** Ensemble strategies (multiple LLMs voting)     | Backend | 1.5d     | Consensus mechanism        |
 
-**Output:** Multi-agent coordination
+**Output:** Intelligent multi-LLM orchestration
 **Person-weeks:** 2.1
 
 ---
 
-### Frente 5: Fine-Tuning Marketplace
+### Frente 5: LoRA Fine-Tuning Marketplace
 
-| Task                                                  | Owner     | Duration | Success Criteria          |
-| ----------------------------------------------------- | --------- | -------- | ------------------------- |
-| **5.1** Fine-tuning request API                       | Backend   | 2d       | Can submit training jobs  |
-| **5.2** Model versioning (track fine-tuned models)    | Backend   | 1d       | Models tracked            |
-| **5.3** Model evaluation metrics                      | ML        | 2d       | Quality measured          |
-| **5.4** Model sharing (users share fine-tuned models) | Community | 1.5d     | Models shared in registry |
+| Task                                                   | Owner     | Duration | Success Criteria              |
+| ------------------------------------------------------ | --------- | -------- | ----------------------------- |
+| **5.1** Fine-tuning request API (submit training jobs) | Backend   | 2d       | Job submission working        |
+| **5.2** Model versioning (track LoRA adapters)         | Backend   | 1d       | Versions tracked in DB        |
+| **5.3** Fine-tuned model evaluation                    | ML        | 2d       | Quality metrics computed      |
+| **5.4** Model sharing (community uploads)              | Community | 1.5d     | Models shared in VAL Registry |
 
-**Output:** Community fine-tuned models
+**Output:** Community-driven model fine-tuning
 **Person-weeks:** 1.9
 
 ---
@@ -146,28 +145,28 @@
 
 ### Frente 9: Additional Agent Integrations
 
-| Task                                             | Owner       | Duration  | Success Criteria           |
-| ------------------------------------------------ | ----------- | --------- | -------------------------- |
-| **9.1** LangChain integration (LangChain agents) | Integration | 2d        | LangChain compatible       |
-| **9.2** AutoGPT integration (autonomous agents)  | Integration | 2d        | AutoGPT can use Vectora    |
-| **9.3** Continue Dev integration (editor plugin) | Integration | 2d        | Editor extension available |
-| **9.4** Community integrations (user-built)      | Community   | Recurring | 10+ community adapters     |
+| Task                                             | Owner       | Duration  | Success Criteria            |
+| ------------------------------------------------ | ----------- | --------- | --------------------------- |
+| **9.1** LangChain integration (LangChain agents) | Integration | 2d        | LangChain agents compatible |
+| **9.2** Continue.dev integration (editor)        | Integration | 2d        | IDE extension available     |
+| **9.3** Cursor integration (AI IDE)              | Integration | 2d        | Cursor plugin working       |
+| **9.4** Community integrations (user-built)      | Community   | Recurring | 10+ community adapters      |
 
 **Output:** 10+ agent integrations
 **Person-weeks:** 1.0/quarter
 
 ---
 
-### Frente 10: Plugin Ecosystem
+### Frente 10: Tool & Plugin Marketplace
 
-| Task                                            | Owner     | Duration  | Success Criteria         |
-| ----------------------------------------------- | --------- | --------- | ------------------------ |
-| **10.1** Plugin API specification               | Backend   | 2d        | Plugin spec defined      |
-| **10.2** Plugin examples (template + tutorials) | Docs      | 2d        | Easy for users to build  |
-| **10.3** Plugin marketplace (discover plugins)  | Frontend  | 3d        | Browse + install plugins |
-| **10.4** Community plugins (first 10)           | Community | Recurring | Active plugin ecosystem  |
+| Task                                            | Owner     | Duration  | Success Criteria          |
+| ----------------------------------------------- | --------- | --------- | ------------------------- |
+| **10.1** Tool extension API (user-built tools)  | Backend   | 2d        | Tool extension spec       |
+| **10.2** Tool examples + marketplace (discover) | Docs      | 2d        | Users can build & share   |
+| **10.3** Tool validation + testing framework    | DevOps    | 2d        | Community tools validated |
+| **10.4** Community tool ecosystem (first 20)    | Community | Recurring | Active tool ecosystem     |
 
-**Output:** Plugin ecosystem established
+**Output:** Extensible tool ecosystem
 **Person-weeks:** 1.75/quarter
 
 ---
@@ -244,30 +243,34 @@
 
 ### Potential Directions
 
-1. **Multi-LLM Optimization**
-   - Model routing (choose best model per query)
-   - Cost optimization (cheapest model that works)
-   - Multi-model ensembles
+1. **Advanced Reasoning**
 
-2. **Reasoning & Planning**
-   - Chain-of-thought integration
-   - Planning modules (break down complex queries)
-   - Tool planning (decide which tools to use)
+   - Retrieval-augmented reasoning (hybrid)
+   - Self-critique loops (agent improves own responses)
+   - Meta-learning (learn from agent experience)
 
-3. **Privacy & Federated Learning**
-   - Local-first processing (no data leaves device)
-   - Federated model updates
-   - Differential privacy (data anonymization)
+2. **Privacy & Federated Learning**
 
-4. **Real-Time Collaboration**
+   - Local-first execution (data stays on-device)
+   - Federated model updates (community training)
+   - Differential privacy (output anonymization)
+
+3. **Real-Time Collaboration**
+
    - Multi-user concurrent sessions
-   - Shared knowledge spaces
-   - Real-time chat integration
+   - Shared memory spaces (collaborative contexts)
+   - Real-time agent communication
 
-5. **Mobile & Edge**
-   - Mobile app (iOS/Android)
-   - Edge deployment (Raspberry Pi, embedded)
+4. **Mobile & Edge Deployment**
+
+   - Mobile app (iOS/Android with limited models)
+   - Edge deployment (Raspberry Pi, embedded systems)
    - Offline-first architecture
+
+5. **Enterprise Scale**
+   - Kubernetes operator (managed deployments)
+   - High-availability multi-replica setup
+   - Custom model serving (bring-your-own LLM)
 
 ---
 
