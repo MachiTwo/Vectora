@@ -32,7 +32,7 @@ Conjunto de plugins e conectores nativos para IDEs e ferramentas de linha de com
 
 Console administrativo centralizado para gestao de planos, metricas operacionais e auditoria de chamadas.
 
-### Vectora Cognitive Runtime (Vectora Decision Engine)
+### Vectora Cognitive Runtime
 
 O cerebro tactico do sistema. Consiste em um modelo de linguagem pequeno (SmolLM2) que executa localmente via ONNX Runtime para realizar roteamento tactico, validacao de fidelidade e aplicacao de regras de governanca local.
 

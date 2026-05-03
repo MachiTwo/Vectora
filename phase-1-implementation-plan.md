@@ -10,13 +10,13 @@
 
 **Entregáveis principais:**
 
-1. ✅ Backend Go rodando em KVM1 (2 vCPU, 4GB RAM)
-2. ✅ Frontend React com login + dashboard
-3. ✅ CLI funcional (init, start, auth, dataset)
-4. ✅ Vectora Cognitive Runtime decision engine (35MB ONNX, 4-8ms latência)
-5. ✅ Docker Compose para local dev + VPS deployment
-6. ✅ API REST funcional (Agent Mode + Tool Mode)
-7. ✅ Documentação básica (setup guide, API ref)
+1. Backend Go rodando em KVM1 (1 vCPU, 4GB RAM)
+2. Frontend React com login + dashboard
+3. CLI funcional (init, start, auth, dataset)
+4. Vectora Cognitive Runtime decision engine (35MB ONNX, 4-8ms latência)
+5. Docker Compose para local dev + VPS deployment
+6. API REST funcional (Agent Mode + Tool Mode)
+7. Documentação básica (setup guide, API ref)
 
 **Stack Principal:**
 
@@ -24,7 +24,7 @@
 Backend:   Go 1.21+ | Echo/Chi | GORM | embedded-postgres
 Frontend:  React 18 | Vite | TypeScript | TailwindCSS
 CLI:       Go + Cobra + Viper
-Vectora Cognitive Runtime:       Python 3.10 | PyTorch | ONNX INT4 (35MB)
+Vectora Cognitive Runtime:       Python 3.10 | PyTorch | XLM-RoBERTa-small + LoRA
 DevOps:    Docker Compose | GitHub Actions | pre-commit
 Database:  embedded-postgres (local file) + LanceDB + Redis
 ```
@@ -45,11 +45,11 @@ Database:  embedded-postgres (local file) + LanceDB + Redis
 
 **Frente 1.1: Backend Setup (Go Tier-Based)**
 
-| Task                                                                   | Owner   | Duration | Dependencies | Success Criteria                         |
-| ---------------------------------------------------------------------- | ------- | -------- | ------------ | ---------------------------------------- |
-| **1.1.1** Init `vectora/backend` go.mod, setup Echo + config + logging | Backend | 0.5d     | -            | ✅ Backend starts, slog JSON output works |
-| **1.1.2** Platform tier (bcrypt, crypto, JWT skeleton)                 | Backend | 1d       | 1.1.1        | ✅ Auth functions callable                |
-| **1.1.3** Storage tier (embedded-postgres + GORM models)               | Backend | 1.5d     | 1.1.2        | ✅ DB starts, User/Dataset models compile |
+| Task                                                                   | Owner   | Duration | Dependencies | Success Criteria                       |
+| ---------------------------------------------------------------------- | ------- | -------- | ------------ | -------------------------------------- |
+| **1.1.1** Init `vectora/backend` go.mod, setup Echo + config + logging | Backend | 0.5d     | -            | Backend starts, slog JSON output works |
+| **1.1.2** Platform tier (bcrypt, crypto, JWT skeleton)                 | Backend | 1d       | 1.1.1        | Auth functions callable                |
+| **1.1.3** Storage tier (embedded-postgres + GORM models)               | Backend | 1.5d     | 1.1.2        | DB starts, User/Dataset models compile |
 
 **Output:** Backend skeleton com 4 tiers essenciais (config → platform → storage → [llm/core/api])
 **Person-weeks:** 0.67
@@ -58,10 +58,10 @@ Database:  embedded-postgres (local file) + LanceDB + Redis
 
 **Frente 1.2: Frontend Setup (React + Vite)**
 
-| Task                                             | Owner    | Duration | Dependencies | Success Criteria                                |
-| ------------------------------------------------ | -------- | -------- | ------------ | ----------------------------------------------- |
-| **1.2.1** Init Vite + React + Zustand + Tailwind | Frontend | 0.5d     | -            | ✅ Dev server starts, styling works              |
-| **1.2.2** Login page + API client (SWR)          | Frontend | 1d       | 1.2.1        | ✅ Login form renders + can POST /api/auth/login |
+| Task                                             | Owner    | Duration | Dependencies | Success Criteria                              |
+| ------------------------------------------------ | -------- | -------- | ------------ | --------------------------------------------- |
+| **1.2.1** Init Vite + React + Zustand + Tailwind | Frontend | 0.5d     | -            | Dev server starts, styling works              |
+| **1.2.2** Login page + API client (SWR)          | Frontend | 1d       | 1.2.1        | Login form renders + can POST /api/auth/login |
 
 **Output:** Frontend with login page, ready for API integration
 **Person-weeks:** 0.38
@@ -70,9 +70,9 @@ Database:  embedded-postgres (local file) + LanceDB + Redis
 
 **Frente 1.3: CLI Skeleton (Go + Cobra)**
 
-| Task                                                          | Owner | Duration | Dependencies | Success Criteria                 |
-| ------------------------------------------------------------- | ----- | -------- | ------------ | -------------------------------- |
-| **1.3.1** Init CLI + `vectora init`, `vectora start` commands | CLI   | 1d       | -            | ✅ CLI can init and start backend |
+| Task                                                          | Owner | Duration | Dependencies | Success Criteria               |
+| ------------------------------------------------------------- | ----- | -------- | ------------ | ------------------------------ |
+| **1.3.1** Init CLI + `vectora init`, `vectora start` commands | CLI   | 1d       | -            | CLI can init and start backend |
 
 **Output:** Minimal CLI (init + start), config via .env
 **Person-weeks:** 0.25
@@ -83,14 +83,14 @@ Database:  embedded-postgres (local file) + LanceDB + Redis
 
 **Frente 2.1: Auth & API Endpoints**
 
-| Task                                                          | Owner    | Duration | Dependencies | Success Criteria                    |
-| ------------------------------------------------------------- | -------- | -------- | ------------ | ----------------------------------- |
-| **2.1.1** JWT + login endpoint (POST /api/v1/auth/login)      | Backend  | 1d       | 1.1.3        | ✅ Can login, JWT issued             |
-| **2.1.2** Auth middleware + protected endpoints               | Backend  | 0.5d     | 2.1.1        | ✅ 401 without token                 |
-| **2.1.3** Database migrations (users, datasets, chat_history) | Backend  | 1d       | 1.1.3        | ✅ Tables created, user_id isolation |
-| **2.1.4** Settings + dataset endpoints (GET/POST)             | Backend  | 1d       | 2.1.3        | ✅ Settings update, list datasets    |
-| **2.1.5** Error handling + standardized responses             | Backend  | 0.5d     | 2.1.4        | ✅ All errors {code, message}        |
-| **2.1.6** Frontend login integration                          | Frontend | 0.5d     | 1.2.2        | ✅ Login→JWT stored→redirect         |
+| Task                                                          | Owner    | Duration | Dependencies | Success Criteria                  |
+| ------------------------------------------------------------- | -------- | -------- | ------------ | --------------------------------- |
+| **2.1.1** JWT + login endpoint (POST /api/v1/auth/login)      | Backend  | 1d       | 1.1.3        | Can login, JWT issued             |
+| **2.1.2** Auth middleware + protected endpoints               | Backend  | 0.5d     | 2.1.1        | 401 without token                 |
+| **2.1.3** Database migrations (users, datasets, chat_history) | Backend  | 1d       | 1.1.3        | Tables created, user_id isolation |
+| **2.1.4** Settings + dataset endpoints (GET/POST)             | Backend  | 1d       | 2.1.3        | Settings update, list datasets    |
+| **2.1.5** Error handling + standardized responses             | Backend  | 0.5d     | 2.1.4        | All errors {code, message}        |
+| **2.1.6** Frontend login integration                          | Frontend | 0.5d     | 1.2.2        | Login→JWT stored→redirect         |
 
 **Output:** Complete auth flow, core API, database
 **Person-weeks:** 0.58
@@ -99,10 +99,10 @@ Database:  embedded-postgres (local file) + LanceDB + Redis
 
 **Frente 2.2: Storage Layers (Vector + Cache)**
 
-| Task                                        | Owner   | Duration | Dependencies | Success Criteria                    |
-| ------------------------------------------- | ------- | -------- | ------------ | ----------------------------------- |
-| **2.2.1** LanceDB init + vector schema      | Backend | 0.5d     | 1.1.3        | ✅ LanceDB starts, can create tables |
-| **2.2.2** Redis connection + cache TTL 5min | Backend | 0.5d     | 2.2.1        | ✅ Redis SET/GET works               |
+| Task                                        | Owner   | Duration | Dependencies | Success Criteria                  |
+| ------------------------------------------- | ------- | -------- | ------------ | --------------------------------- |
+| **2.2.1** LanceDB init + vector schema      | Backend | 0.5d     | 1.1.3        | LanceDB starts, can create tables |
+| **2.2.2** Redis connection + cache TTL 5min | Backend | 0.5d     | 2.2.1        | Redis SET/GET works               |
 
 **Output:** Vector store + cache layer ready
 **Person-weeks:** 0.25
@@ -113,14 +113,14 @@ Database:  embedded-postgres (local file) + LanceDB + Redis
 
 **Frente 3.1: RAG + LLM Integration**
 
-| Task                                                          | Owner   | Duration | Dependencies | Success Criteria                           |
-| ------------------------------------------------------------- | ------- | -------- | ------------ | ------------------------------------------ |
-| **3.1.1** Vector search + reranking (LanceDB + Voyage stub)   | Backend | 1.5d     | 2.2.1        | ✅ Search returns top-K, reranking callable |
-| **3.1.2** RAG orchestrator (search→rerank→LLM)                | Backend | 1d       | 3.1.1        | ✅ Full pipeline works end-to-end           |
-| **3.1.3** Claude API integration                              | Backend | 0.5d     | 3.1.2        | ✅ Can call Claude with context             |
-| **3.1.4** OpenAI API integration                              | Backend | 0.5d     | 3.1.3        | ✅ Can call OpenAI API                      |
-| **3.1.5** Tool Mode endpoints (knowledge.store, memory.query) | Backend | 0.5d     | 3.1.2        | ✅ Can store/query knowledge                |
-| **3.1.6** LLM response caching (Redis)                        | Backend | 0.5d     | 2.2.2        | ✅ Same query returns cached response       |
+| Task                                                          | Owner   | Duration | Dependencies | Success Criteria                         |
+| ------------------------------------------------------------- | ------- | -------- | ------------ | ---------------------------------------- |
+| **3.1.1** Vector search + reranking (LanceDB + Voyage stub)   | Backend | 1.5d     | 2.2.1        | Search returns top-K, reranking callable |
+| **3.1.2** RAG orchestrator (search→rerank→LLM)                | Backend | 1d       | 3.1.1        | Full pipeline works end-to-end           |
+| **3.1.3** Claude API integration                              | Backend | 0.5d     | 3.1.2        | Can call Claude with context             |
+| **3.1.4** OpenAI API integration                              | Backend | 0.5d     | 3.1.3        | Can call OpenAI API                      |
+| **3.1.5** Tool Mode endpoints (knowledge.store, memory.query) | Backend | 0.5d     | 3.1.2        | Can store/query knowledge                |
+| **3.1.6** LLM response caching (Redis)                        | Backend | 0.5d     | 2.2.2        | Same query returns cached response       |
 
 **Output:** Complete RAG pipeline, Agent Mode + Tool Mode, multi-LLM
 **Person-weeks:** 0.65
@@ -131,24 +131,26 @@ Database:  embedded-postgres (local file) + LanceDB + Redis
 
 **Frente 4.1: Vectora Cognitive Runtime Decision Engine (Python)**
 
-| Task                                                                                          | Owner                     | Duration | Dependencies | Success Criteria                                            |
-| --------------------------------------------------------------------------------------------- | ------------------------- | -------- | ------------ | ----------------------------------------------------------- |
-| **4.1.1** SmolLM2-135M setup + fine-tuning (PyTorch)                                          | Vectora Cognitive Runtime | 2d       | -            | ✅ Model trains, inference works                             |
-| **4.1.2** ONNX export (INT4, < 35MB)                                                          | Vectora Cognitive Runtime | 1d       | 4.1.1        | ✅ ONNX model exports, size verified                         |
-| **4.1.3** ONNX Runtime wrapper (Python)                                                       | Vectora Cognitive Runtime | 0.5d     | 4.1.2        | ✅ 4-8ms inference latency confirmed                         |
-| **4.1.4** Vectora Cognitive Runtime service endpoint (REST /vectora-cognitive-runtime/decide) | Vectora Cognitive Runtime | 0.5d     | 4.1.3        | ✅ Backend can call Vectora Cognitive Runtime, get decisions |
+XLM-RoBERTa-small (24M params, multilíngue) + LoRA fine-tuning (r=8, alpha=16) para classificação de decisões (Agent Mode vs Tool Mode vs Web Search vs Recovery).
 
-**Output:** Trained Vectora Cognitive Runtime (35MB), integrated with backend
+| Task                                                                               | Owner                     | Duration | Dependencies | Success Criteria                                      |
+| ---------------------------------------------------------------------------------- | ------------------------- | -------- | ------------ | ----------------------------------------------------- |
+| **4.1.1** XLM-RoBERTa-small setup + synthetic dataset + LoRA fine-tuning (PyTorch) | Vectora Cognitive Runtime | 1.5d     | -            | Model trains on synthetic data, inference works       |
+| **4.1.2** Evaluation on test set (accuracy >= 85%)                                 | Vectora Cognitive Runtime | 0.5d     | 4.1.1        | Accuracy metrics validated, confidence calibration OK |
+| **4.1.3** Vectora Cognitive Runtime inference.py (subprocess interface)            | Vectora Cognitive Runtime | 0.5d     | 4.1.2        | Backend can call via subprocess, get JSON decisions   |
+| **4.1.4** ONNX export script (optional, for Phase 4+)                              | Vectora Cognitive Runtime | 0.5d     | 4.1.2        | Script ready, not required for Phase 1                |
+
+**Output:** Trained XLM-RoBERTa-small + LoRA (58MB total), subprocess integration done
 **Person-weeks:** 0.67
 
 ---
 
 **Frente 4.2: Frontend Dashboard**
 
-| Task                                                      | Owner    | Duration | Dependencies | Success Criteria                          |
-| --------------------------------------------------------- | -------- | -------- | ------------ | ----------------------------------------- |
-| **4.2.1** Dashboard + Settings + Memory Viewer (combined) | Frontend | 1d       | 1.2.2        | ✅ All pages render, settings update works |
-| **4.2.2** Dataset Manager (list/install stubs)            | Frontend | 0.5d     | 4.2.1        | ✅ UI renders, API calls ready             |
+| Task                                                      | Owner    | Duration | Dependencies | Success Criteria                        |
+| --------------------------------------------------------- | -------- | -------- | ------------ | --------------------------------------- |
+| **4.2.1** Dashboard + Settings + Memory Viewer (combined) | Frontend | 1d       | 1.2.2        | All pages render, settings update works |
+| **4.2.2** Dataset Manager (list/install stubs)            | Frontend | 0.5d     | 4.2.1        | UI renders, API calls ready             |
 
 **Output:** Complete dashboard UI, API integration ready
 **Person-weeks:** 0.38
@@ -159,13 +161,13 @@ Database:  embedded-postgres (local file) + LanceDB + Redis
 
 **Frente 5.1: Docker & Basic Testing**
 
-| Task                                                                           | Owner  | Duration | Dependencies | Success Criteria                           |
-| ------------------------------------------------------------------------------ | ------ | -------- | ------------ | ------------------------------------------ |
-| **5.1.1** Dockerfile + docker-compose.yml (backend, frontend, postgres, redis) | DevOps | 1.5d     | All prior    | ✅ `docker-compose up` starts all services  |
-| **5.1.2** GitHub Actions (lint, test, build)                                   | DevOps | 1d       | 5.1.1        | ✅ CI runs on push, builds pass             |
-| **5.1.3** Unit tests (backend core only)                                       | QA     | 0.5d     | 2.1.5        | ✅ Auth + storage tests pass                |
-| **5.1.4** E2E test (login → query)                                             | QA     | 0.5d     | 5.1.1        | ✅ Basic flow works                         |
-| **5.1.5** Pre-commit hooks + .env.example                                      | DevOps | 0.5d     | 5.1.1        | ✅ Hooks active, users have config template |
+| Task                                                                           | Owner  | Duration | Dependencies | Success Criteria                         |
+| ------------------------------------------------------------------------------ | ------ | -------- | ------------ | ---------------------------------------- |
+| **5.1.1** Dockerfile + docker-compose.yml (backend, frontend, postgres, redis) | DevOps | 1.5d     | All prior    | `docker-compose up` starts all services  |
+| **5.1.2** GitHub Actions (lint, test, build)                                   | DevOps | 1d       | 5.1.1        | CI runs on push, builds pass             |
+| **5.1.3** Unit tests (backend core only)                                       | QA     | 0.5d     | 2.1.5        | Auth + storage tests pass                |
+| **5.1.4** E2E test (login → query)                                             | QA     | 0.5d     | 5.1.1        | Basic flow works                         |
+| **5.1.5** Pre-commit hooks + .env.example                                      | DevOps | 0.5d     | 5.1.1        | Hooks active, users have config template |
 
 **Output:** Docker Compose working, CI/CD active, basic tests
 **Person-weeks:** 0.65
@@ -174,10 +176,10 @@ Database:  embedded-postgres (local file) + LanceDB + Redis
 
 **Frente 5.2: Documentation**
 
-| Task                                                           | Owner | Duration | Dependencies | Success Criteria               |
-| -------------------------------------------------------------- | ----- | -------- | ------------ | ------------------------------ |
-| **5.2.1** Setup guide (local, Docker) + API reference skeleton | Docs  | 1d       | 5.1.1        | ✅ Users can follow setup steps |
-| **5.2.2** Architecture overview + README updates               | Docs  | 0.5d     | -            | ✅ Tier-based design documented |
+| Task                                                           | Owner | Duration | Dependencies | Success Criteria             |
+| -------------------------------------------------------------- | ----- | -------- | ------------ | ---------------------------- |
+| **5.2.1** Setup guide (local, Docker) + API reference skeleton | Docs  | 1d       | 5.1.1        | Users can follow setup steps |
+| **5.2.2** Architecture overview + README updates               | Docs  | 0.5d     | -            | Tier-based design documented |
 
 **Output:** Minimal docs (setup + architecture only)
 **Person-weeks:** 0.38
@@ -249,7 +251,9 @@ Week 9: Final Testing & Docs
 
 ### End of Week 8 (Vectora Cognitive Runtime + Dashboard ✓)
 
-- [ ] Vectora Cognitive Runtime model exports to 35MB ONNX
+- [ ] Vectora Cognitive Runtime (XLM-RoBERTa-small + LoRA) trains successfully
+- [ ] Decision accuracy >= 85% on test set
+- [ ] Subprocess interface working (backend can call VCR)
 - [ ] Dashboard renders all pages
 - [ ] Real-time updates work via WebSocket
 - [ ] Chat history persists
@@ -283,11 +287,11 @@ Week 9: Final Testing & Docs
 
 **Success Metrics:**
 
-- ✅ MVP roda em KVM1 sem swap
-- ✅ Test coverage backend > 60%
-- ✅ E2E tests pass consistently
-- ✅ Docs cobrindo setup, API, architecture
-- ✅ Zero critical security issues
+- MVP roda em KVM1 sem swap
+- Test coverage backend > 60%
+- E2E tests pass consistently
+- Docs cobrindo setup, API, architecture
+- Zero critical security issues
 
 ---
 
@@ -553,11 +557,11 @@ GET /api/v1/memory/query
 - [ ] Auth flow (register → login → JWT) end-to-end
 - [ ] Vector search + reranking working
 - [ ] LLM integration (at least Claude)
-- [ ] Vectora Cognitive Runtime model < 35MB, inference 4-8ms
+- [ ] Vectora Cognitive Runtime (XLM-RoBERTa-small + LoRA) accuracy >= 85%
+- [ ] VCR subprocess interface working (backend → Python → decision)
 - [ ] Test coverage backend > 60%, frontend > 50%
 - [ ] Setup guide works for fresh user
 - [ ] API docs auto-generated
-- [ ] Memory footprint < 1.5GB on KVM1
 - [ ] E2E test (login → query → result) passes
 - [ ] All commits follow conventional commits
 - [ ] README.md + CONTRIBUTING.md + ARCHITECTURE.md
@@ -567,7 +571,7 @@ GET /api/v1/memory/query
 
 ---
 
-**Status:** ✅ Ready for implementation
+**Status:** Ready for implementation
 **Start Date:** 2026-05-01
 **End Date:** 2026-06-25 (8 weeks)
 **Team:** 1 Backend (Go) + 1 Frontend (React) + 1 ML (Python) + 1 DevOps/QA
