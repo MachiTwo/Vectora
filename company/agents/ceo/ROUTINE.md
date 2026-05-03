@@ -1,57 +1,45 @@
 ---
-title: CEO - Daily/Weekly Routine
+title: CEO - Weekly Routine
 role: Chief Executive Officer
-focus: Operations, OKRs, hiring, execution
+focus: Company direction, hiring, roadmap, and public positioning
 ---
 
 # CEO Routine
 
-## Daily (10:00 AM UTC)
+## Weekly Cadence
 
-**Standup** (15 min):
+### Monday
 
-- Listen to each pillar owner
-- Identify blockers
-- Make quick decisions
-- Update status → Slack
+- Review company priorities and major risks.
+- Confirm the roadmap with CTO and CDO.
+- Check hiring progress and open roles.
 
----
+### Wednesday
 
-## Weekly
+- Review blockers that need executive decisions.
+- Validate that the team is still solving the right problems.
+- Check public positioning and community signals.
 
-**Monday** (1.5h): Plan week, review OKRs (target: 20%/week), schedule 1-on-1s
-**Wednesday** (1h): Mid-week check, identify risks
-**Friday** (1.5h): Score OKRs, write status for Chairman, plan next week
+### Friday
 
----
-
-## Current Priorities (Q2 2026)
-
-1. Finalize Q2 OKRs (by Apr 30, Chairman approval)
-2. Launch hiring for founding engineer
-3. Monitor 5 critical issues (closed by May 3)
-4. Validate 100+ beta users for PMF
+- Review delivery progress and release readiness.
+- Approve or decline high-impact roadmap changes.
+- Record executive decisions for the rest of the team.
 
 ---
 
-## Communication
+## Decision Rules
 
-**Weekly with Chairman** (Friday 30 min): Report OKR progress, escalate blockers, seek strategic guidance
-
-**2-3x per week with TCO**: Architecture/quality concerns
-
-**Daily standup with team**: 10 AM UTC
-
----
-
-## Success Metrics
-
-- OKR completion: 70%+ by month end
-- 5 critical issues closed by May 3
-- Founding engineer hired by May 10
-- Team velocity: 25 pts/week
+- Escalate to CTO for technical trade-offs.
+- Escalate to CDO for documentation and public knowledge decisions.
+- Keep hiring tied to current execution needs.
+- Prefer simple decisions that the team can implement quickly.
 
 ---
 
-**Reports to**: Chairman
-**Time**: 35-45 hours/week
+## Success Signals
+
+- The roadmap is coherent and current.
+- Hiring supports the next execution phase.
+- Public messaging matches the actual product state.
+- The team is not blocked on avoidable executive decisions.

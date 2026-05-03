@@ -129,7 +129,7 @@ Dashboard:
 │  ├─ Vector Memory (embeddings, docs indexed)
 │  └─ Execution Logs
 └─ Dataset Manager
-   ├─ Browse PAL registry
+   ├─ Browse VAL registry
    ├─ Install/uninstall datasets
    └─ Version management
 
@@ -188,7 +188,7 @@ Cada integração segue este padrão:
          ┌───────▼────────┐
          │                │
     ┌────▼────┐    ┌─────▼──┐
-    │Vectora   │    │PAL     │
+    │Vectora   │    │VAL     │
     │Backend  │    │Registry│
     │(REST)   │    │(API)   │
     └─────────┘    └────────┘
@@ -434,7 +434,7 @@ pnpm publish --filter=@vectora/gemini-cli
 │  ├─ Login Page                                              │
 │  ├─ Settings (API keys, password, preferências)             │
 │  ├─ Memory Viewer (histórico, embeddings, logs)             │
-│  └─ Dataset Manager (browse PAL, instalar/desinstalar)      │
+│  └─ Dataset Manager (browse VAL, instalar/desinstalar)      │
 └──────────────────────────────────────────────────────────────┘
 
 ┌──────────────────────────────────────────────────────────────┐
@@ -489,13 +489,13 @@ GET    /api/v1/datasets
   List installed datasets
 
 POST   /api/v1/datasets/install
-  Install from PAL registry
+  Install from VAL registry
 
 DELETE /api/v1/datasets/{name}
   Uninstall dataset
 
 GET    /api/v1/datasets/registry/browse
-  Browse PAL (Vectora Asset Library)
+  Browse VAL (Vectora Asset Library)
 
 ╔═══════════════════════════════════════════════════════╗
 ║              AUTH & SETTINGS                         ║
@@ -835,7 +835,7 @@ docker run -d \
 
 ---
 
-## PAL (Vectora Asset Library)
+## VAL (Vectora Asset Library)
 
 **Registry API (hosted by Vectora team):**
 
@@ -869,7 +869,7 @@ vectora dataset create --name godot-4.6-docs
 # Adds docs, configs, etc
 # Publishes
 vectora dataset publish --name godot-4.6-docs
-# Available in PAL registry for others
+# Available in VAL registry for others
 ```
 
 ---
@@ -923,7 +923,7 @@ vectora dataset publish --name godot-4.6-docs
 
 ### `vectora-asset-library/` (1 Frente)
 
-7. **Frente 7: PAL Registry (Dataset Management)**
+7. **Frente 7: VAL Registry (Dataset Management)**
    - Dataset structure validation
    - Auto-index generation (index.json)
    - Community contribution workflow
@@ -1040,7 +1040,7 @@ vectora dataset publish --name godot-4.6-docs
 - ✅ Web search integration (SerpAPI ou Google Search API)
 - ✅ Multi-LLM support (Claude, OpenAI, Google selection)
 - ✅ Advanced memory (vector memory visualization, execution logs)
-- ✅ Dataset management (PAL registry integration)
+- ✅ Dataset management (VAL registry integration)
 
 **Agent Integrations (vectora-integrations turborepo):**
 
@@ -1076,7 +1076,7 @@ vectora dataset publish --name godot-4.6-docs
 
 **Goal: Open-source ecosystem, community datasets, enterprise features**
 
-- ✅ PAL Registry (community uploads, versioning, ratings)
+- ✅ VAL Registry (community uploads, versioning, ratings)
 - ✅ Advanced features (multi-dataset queries, knowledge graphs)
 - ✅ Enterprise features (SSO, SAML, advanced RBAC)
 - ✅ More agent integrations (custom template support)
@@ -1384,10 +1384,10 @@ Later:
 | **Middlewares**      | Basic            | 6+ (auth, logging, recovery, cors, rate_limit, request_id)                |
 | **Error Handling**   | Simples          | Custom error types (VectoraError, ValidationError, AuthError)             |
 | **Memory Isolation** | Simples          | Per-user namespaces em LanceDB + metadata em PostgreSQL                   |
-| **System Tray**      | ❌               | ✅ Fase 2+ (Windows)                                                      |
+| **System Tray**      | ❌                | ✅ Fase 2+ (Windows)                                                       |
 | **Dashboard**        | Básico           | Com analytics (memory usage, query latency, tool success rate)            |
 | **CI/CD**            | Simples          | Multi-stage (lint → test → build → publish)                               |
-| **Pre-commit**       | ❌               | ✅ (gofmt, golangci-lint, go vet)                                         |
+| **Pre-commit**       | ❌                | ✅ (gofmt, golangci-lint, go vet)                                          |
 | **Docs**             | Markdown         | Hugo + Hextra (structured, searchable)                                    |
 | **Roadmap**          | 3 fases          | 5 fases (Foundation → Stabilization → Features → Performance → Ecosystem) |
 | **DB**               | SQLite           | PostgreSQL (default) + SQLite (fallback)                                  |
@@ -1419,7 +1419,7 @@ Later:
 - Multiple agents can use
 - Web search integrated
 - Agent integrations (Claude Code, Gemini)
-- PAL registry live
+- VAL registry live
 - Multi-LLM support
 - Analytics dashboard
 
@@ -1433,7 +1433,7 @@ Later:
 
 ✅ **Phase 5 (Ecosystem) - Ongoing:**
 
-- Community datasets in PAL
+- Community datasets in VAL
 - Multiple agent integrations
 - Enterprise features
 - 1k+ GitHub stars
@@ -1495,7 +1495,7 @@ Later:
 - ✅ Phase 2: Stabilization (3-4w) - Testes, bugfixes, feedback
 - ✅ Phase 3: Features (6-8w) - Agent integrations + Tool Mode completo
 - ✅ Phase 4: Performance (4-6w) - Caching, rate limiting, monitoring
-- ✅ Phase 5: Ecosystem (ongoing) - PAL registry, community
+- ✅ Phase 5: Ecosystem (ongoing) - VAL registry, community
 
 ### 7. System Tray (Windows)
 
@@ -1602,7 +1602,7 @@ Site público + documentação completa:
 vectora-website
   ├─ Documentação do vectora (links, setup guides)
   ├─ Guias de integração (links para vectora-integrations)
-  └─ Links para PAL registry (vectora-asset-library)
+  └─ Links para VAL registry (vectora-asset-library)
 
 vectora-integrations (@vectora/*)
   ├─ Depende de @vectora/shared (types, auth, http client)
@@ -1613,7 +1613,7 @@ vectora (Frontend + Backend + CLI)
   ├─ Backend expõe REST API + MCP protocol
   ├─ Frontend consome Backend API
   ├─ CLI interage com Backend
-  ├─ PAL Registry client (busca datasets)
+  ├─ VAL Registry client (busca datasets)
   └─ Documentado em vectora-website
 
 vectora-asset-library

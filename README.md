@@ -289,7 +289,7 @@ Dashboard NÃO é um "modo", é a **interface de gerenciamento** que funciona **
 │  └────────────────────────────────────────────┘    │
 │                                                      │
 │  ┌────────────────────────────────────────────┐    │
-│  │ Dataset Manager (PAL Registry)             │    │
+│  │ Dataset Manager (VAL Registry)             │    │
 │  │                                            │    │
 │  │  📦 Installed Datasets:                    │    │
 │  │  ├─ godot-4.6-docs (v4.6.1)                │    │
@@ -299,7 +299,7 @@ Dashboard NÃO é um "modo", é a **interface de gerenciamento** que funciona **
 │  │  └─ custom-company-docs (v1.0.0)           │    │
 │  │     └─ [Uninstall] [Update] [Details]      │    │
 │  │                                            │    │
-│  │  🌐 Browse PAL Registry:                   │    │
+│  │  🌐 Browse VAL Registry:                   │    │
 │  │  ├─ [Search available datasets]            │    │
 │  │  ├─ [Featured this month]                  │    │
 │  │  └─ [Community contributions]              │    │
@@ -486,7 +486,7 @@ USUARIO (Claude Code)
 - ✅ Claude Code MCP integration
 - ✅ Gemini CLI adapter
 - ✅ Web search integration (SerpAPI)
-- ✅ PAL Registry (community datasets)
+- ✅ VAL Registry (community datasets)
 - ✅ Monitoring (Prometheus + Sentry)
 
 ### Phase 4 (Enterprise — 6 weeks)
@@ -603,8 +603,8 @@ vectora query "What is React hooks?"
 
 ## Comparison: VECTORA vs Alternatives
 
-| Feature                | VECTORA           | LangChain         | RAGstack    | Llamaindex       |
-| ---------------------- | ----------------- | ----------------- | ----------- | ---------------- |
+| Feature                | VECTORA          | LangChain        | RAGstack   | Llamaindex      |
+| ---------------------- | ---------------- | ---------------- | ---------- | --------------- |
 | **Local-first**        | ✅ Yes            | ❌ Cloud-oriented | ✅ Yes      | ❌ Cloud-focused |
 | **Multi-agent**        | ✅ Native         | ⚠️ Possible       | ⚠️ Possible | ❌ Single agent  |
 | **Zero config**        | ✅ Docker Compose | ❌ Complex setup  | ⚠️ Moderate | ⚠️ Moderate      |
@@ -612,7 +612,7 @@ vectora query "What is React hooks?"
 | **Open-source**        | ✅ Apache 2.0     | ✅ MIT            | ✅ Various  | ✅ MIT           |
 | **Dashboard**          | ✅ Built-in       | ❌ No             | ⚠️ External | ❌ No            |
 | **Package mgrs**       | ✅ (Phase 4)      | ❌ pip/npm        | ❌ No       | ❌ pip only      |
-| **Community datasets** | ✅ PAL Registry   | ❌ No             | ❌ No       | ❌ No            |
+| **Community datasets** | ✅ VAL Registry   | ❌ No             | ❌ No       | ❌ No            |
 | **Cost**               | 🆓 Free           | 🆓 Free           | 🆓 Free     | 🆓 Free          |
 | **Maturity**           | 🚀 Pre-release    | ✅ Mature         | ⚠️ Alpha    | ✅ Mature        |
 
@@ -634,7 +634,7 @@ vectora query "What is React hooks?"
     Sep    Oct         Nov      Dec    Jan
     ├─────────────────────────────┤
     │ Integrations │ Performance
-    │ PAL Registry │ Package mgrs
+    │ VAL Registry │ Package mgrs
     │ Web Search   │ System Tray
 
  2027 [Phase 5: Ecosystem — Ongoing]

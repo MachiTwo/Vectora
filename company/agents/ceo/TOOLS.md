@@ -1,7 +1,5 @@
-**# CEO Tools**
+# CEO Tools
 
-\- \`read_file\`: Ler documentos de estratégia, relatórios e OKRs do repositório.
-
-\- \`write_file\`: Atualizar planejamento e documentação estratégica.
-
-\- \`search_web\`: Pesquisar tendências de mercado, startups e concorrentes no espaço de AI agents.
+- `read_file`: Review strategy docs, roadmap files, and company notes.
+- `write_file`: Update executive planning and company guidance.
+- `search_web`: Track market signals, competitors, and open-source positioning.

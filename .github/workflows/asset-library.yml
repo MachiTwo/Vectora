@@ -1,0 +1,55 @@
+name: Asset Library CI
+
+on:
+  workflow_call:
+    inputs:
+      version:
+        required: true
+        type: string
+      release_kind:
+        required: true
+        type: string
+      run_all:
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate Asset Library
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Report build context
+        run: |
+          echo "module=asset-library"
+          echo "version=${{ inputs.version }}"
+          echo "release_kind=${{ inputs.release_kind }}"
+          echo "run_all=${{ inputs.run_all }}"
+
+      - name: Install pre-commit
+        run: python -m pip install --upgrade pre-commit
+
+      - name: Run pre-commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -t files < <(git ls-files -- vectora-asset-library)
+          if [[ "${#files[@]}" -eq 0 ]]; then
+            echo "No tracked files in vectora-asset-library/"
+            exit 0
+          fi
+
+          pre-commit run --files "${files[@]}" --show-diff-on-failure --color always
+
+      - name: Validate VAL document
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s vectora-asset-library/REDME-VAL.md

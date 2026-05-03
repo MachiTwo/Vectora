@@ -45,8 +45,8 @@ Database:  embedded-postgres (local file) + LanceDB + Redis
 
 **Frente 1.1: Backend Setup (Go Tier-Based)**
 
-| Task                                                                   | Owner   | Duration | Dependencies | Success Criteria                          |
-| ---------------------------------------------------------------------- | ------- | -------- | ------------ | ----------------------------------------- |
+| Task                                                                   | Owner   | Duration | Dependencies | Success Criteria                         |
+| ---------------------------------------------------------------------- | ------- | -------- | ------------ | ---------------------------------------- |
 | **1.1.1** Init `vectora/backend` go.mod, setup Echo + config + logging | Backend | 0.5d     | -            | ✅ Backend starts, slog JSON output works |
 | **1.1.2** Platform tier (bcrypt, crypto, JWT skeleton)                 | Backend | 1d       | 1.1.1        | ✅ Auth functions callable                |
 | **1.1.3** Storage tier (embedded-postgres + GORM models)               | Backend | 1.5d     | 1.1.2        | ✅ DB starts, User/Dataset models compile |
@@ -58,8 +58,8 @@ Database:  embedded-postgres (local file) + LanceDB + Redis
 
 **Frente 1.2: Frontend Setup (React + Vite)**
 
-| Task                                             | Owner    | Duration | Dependencies | Success Criteria                                 |
-| ------------------------------------------------ | -------- | -------- | ------------ | ------------------------------------------------ |
+| Task                                             | Owner    | Duration | Dependencies | Success Criteria                                |
+| ------------------------------------------------ | -------- | -------- | ------------ | ----------------------------------------------- |
 | **1.2.1** Init Vite + React + Zustand + Tailwind | Frontend | 0.5d     | -            | ✅ Dev server starts, styling works              |
 | **1.2.2** Login page + API client (SWR)          | Frontend | 1d       | 1.2.1        | ✅ Login form renders + can POST /api/auth/login |
 
@@ -70,8 +70,8 @@ Database:  embedded-postgres (local file) + LanceDB + Redis
 
 **Frente 1.3: CLI Skeleton (Go + Cobra)**
 
-| Task                                                          | Owner | Duration | Dependencies | Success Criteria                  |
-| ------------------------------------------------------------- | ----- | -------- | ------------ | --------------------------------- |
+| Task                                                          | Owner | Duration | Dependencies | Success Criteria                 |
+| ------------------------------------------------------------- | ----- | -------- | ------------ | -------------------------------- |
 | **1.3.1** Init CLI + `vectora init`, `vectora start` commands | CLI   | 1d       | -            | ✅ CLI can init and start backend |
 
 **Output:** Minimal CLI (init + start), config via .env
@@ -83,8 +83,8 @@ Database:  embedded-postgres (local file) + LanceDB + Redis
 
 **Frente 2.1: Auth & API Endpoints**
 
-| Task                                                          | Owner    | Duration | Dependencies | Success Criteria                     |
-| ------------------------------------------------------------- | -------- | -------- | ------------ | ------------------------------------ |
+| Task                                                          | Owner    | Duration | Dependencies | Success Criteria                    |
+| ------------------------------------------------------------- | -------- | -------- | ------------ | ----------------------------------- |
 | **2.1.1** JWT + login endpoint (POST /api/v1/auth/login)      | Backend  | 1d       | 1.1.3        | ✅ Can login, JWT issued             |
 | **2.1.2** Auth middleware + protected endpoints               | Backend  | 0.5d     | 2.1.1        | ✅ 401 without token                 |
 | **2.1.3** Database migrations (users, datasets, chat_history) | Backend  | 1d       | 1.1.3        | ✅ Tables created, user_id isolation |
@@ -99,8 +99,8 @@ Database:  embedded-postgres (local file) + LanceDB + Redis
 
 **Frente 2.2: Storage Layers (Vector + Cache)**
 
-| Task                                        | Owner   | Duration | Dependencies | Success Criteria                     |
-| ------------------------------------------- | ------- | -------- | ------------ | ------------------------------------ |
+| Task                                        | Owner   | Duration | Dependencies | Success Criteria                    |
+| ------------------------------------------- | ------- | -------- | ------------ | ----------------------------------- |
 | **2.2.1** LanceDB init + vector schema      | Backend | 0.5d     | 1.1.3        | ✅ LanceDB starts, can create tables |
 | **2.2.2** Redis connection + cache TTL 5min | Backend | 0.5d     | 2.2.1        | ✅ Redis SET/GET works               |
 
@@ -113,8 +113,8 @@ Database:  embedded-postgres (local file) + LanceDB + Redis
 
 **Frente 3.1: RAG + LLM Integration**
 
-| Task                                                          | Owner   | Duration | Dependencies | Success Criteria                            |
-| ------------------------------------------------------------- | ------- | -------- | ------------ | ------------------------------------------- |
+| Task                                                          | Owner   | Duration | Dependencies | Success Criteria                           |
+| ------------------------------------------------------------- | ------- | -------- | ------------ | ------------------------------------------ |
 | **3.1.1** Vector search + reranking (LanceDB + Voyage stub)   | Backend | 1.5d     | 2.2.1        | ✅ Search returns top-K, reranking callable |
 | **3.1.2** RAG orchestrator (search→rerank→LLM)                | Backend | 1d       | 3.1.1        | ✅ Full pipeline works end-to-end           |
 | **3.1.3** Claude API integration                              | Backend | 0.5d     | 3.1.2        | ✅ Can call Claude with context             |
@@ -131,8 +131,8 @@ Database:  embedded-postgres (local file) + LanceDB + Redis
 
 **Frente 4.1: Vectora Cognitive Runtime Decision Engine (Python)**
 
-| Task                                                                                          | Owner                     | Duration | Dependencies | Success Criteria                                             |
-| --------------------------------------------------------------------------------------------- | ------------------------- | -------- | ------------ | ------------------------------------------------------------ |
+| Task                                                                                          | Owner                     | Duration | Dependencies | Success Criteria                                            |
+| --------------------------------------------------------------------------------------------- | ------------------------- | -------- | ------------ | ----------------------------------------------------------- |
 | **4.1.1** SmolLM2-135M setup + fine-tuning (PyTorch)                                          | Vectora Cognitive Runtime | 2d       | -            | ✅ Model trains, inference works                             |
 | **4.1.2** ONNX export (INT4, < 35MB)                                                          | Vectora Cognitive Runtime | 1d       | 4.1.1        | ✅ ONNX model exports, size verified                         |
 | **4.1.3** ONNX Runtime wrapper (Python)                                                       | Vectora Cognitive Runtime | 0.5d     | 4.1.2        | ✅ 4-8ms inference latency confirmed                         |
@@ -145,8 +145,8 @@ Database:  embedded-postgres (local file) + LanceDB + Redis
 
 **Frente 4.2: Frontend Dashboard**
 
-| Task                                                      | Owner    | Duration | Dependencies | Success Criteria                           |
-| --------------------------------------------------------- | -------- | -------- | ------------ | ------------------------------------------ |
+| Task                                                      | Owner    | Duration | Dependencies | Success Criteria                          |
+| --------------------------------------------------------- | -------- | -------- | ------------ | ----------------------------------------- |
 | **4.2.1** Dashboard + Settings + Memory Viewer (combined) | Frontend | 1d       | 1.2.2        | ✅ All pages render, settings update works |
 | **4.2.2** Dataset Manager (list/install stubs)            | Frontend | 0.5d     | 4.2.1        | ✅ UI renders, API calls ready             |
 
@@ -159,8 +159,8 @@ Database:  embedded-postgres (local file) + LanceDB + Redis
 
 **Frente 5.1: Docker & Basic Testing**
 
-| Task                                                                           | Owner  | Duration | Dependencies | Success Criteria                            |
-| ------------------------------------------------------------------------------ | ------ | -------- | ------------ | ------------------------------------------- |
+| Task                                                                           | Owner  | Duration | Dependencies | Success Criteria                           |
+| ------------------------------------------------------------------------------ | ------ | -------- | ------------ | ------------------------------------------ |
 | **5.1.1** Dockerfile + docker-compose.yml (backend, frontend, postgres, redis) | DevOps | 1.5d     | All prior    | ✅ `docker-compose up` starts all services  |
 | **5.1.2** GitHub Actions (lint, test, build)                                   | DevOps | 1d       | 5.1.1        | ✅ CI runs on push, builds pass             |
 | **5.1.3** Unit tests (backend core only)                                       | QA     | 0.5d     | 2.1.5        | ✅ Auth + storage tests pass                |
@@ -174,8 +174,8 @@ Database:  embedded-postgres (local file) + LanceDB + Redis
 
 **Frente 5.2: Documentation**
 
-| Task                                                           | Owner | Duration | Dependencies | Success Criteria                |
-| -------------------------------------------------------------- | ----- | -------- | ------------ | ------------------------------- |
+| Task                                                           | Owner | Duration | Dependencies | Success Criteria               |
+| -------------------------------------------------------------- | ----- | -------- | ------------ | ------------------------------ |
 | **5.2.1** Setup guide (local, Docker) + API reference skeleton | Docs  | 1d       | 5.1.1        | ✅ Users can follow setup steps |
 | **5.2.2** Architecture overview + README updates               | Docs  | 0.5d     | -            | ✅ Tier-based design documented |
 
@@ -317,7 +317,7 @@ Week 9: Final Testing & Docs
 - Agent integrations (Claude Code MCP, Gemini CLI, etc)
 - Advanced Tool Mode
 - Web search + fetch
-- PAL Registry beta
+- VAL Registry beta
 
 ### Phase 4 (Weeks 27-40): Performance & Polish
 
@@ -328,7 +328,7 @@ Week 9: Final Testing & Docs
 
 ### Phase 5 (Ongoing): Ecosystem
 
-- PAL Registry live (community datasets)
+- VAL Registry live (community datasets)
 - Advanced memory (knowledge graphs)
 - Enterprise features (SSO, RBAC)
 

@@ -2,7 +2,7 @@
 
 ![Org Chart](images/org-chart.png)
 
-## What's Inside
+## What is inside
 
 > This is an [Agent Company](https://agentcompanies.io) package from [Paperclip](https://paperclip.ing)
 
@@ -15,24 +15,24 @@
 
 ### Agents
 
-| Agent             | Role  | Reports To |
-| ----------------- | ----- | ---------- |
-| ai-backend        | Agent | cto        |
-| ai-ml             | Agent | cto        |
-| backend           | Agent | cto        |
-| cdo               | Agent | ceo        |
-| ceo               | CEO   | —          |
-| cmo               | CMO   | ceo        |
-| cto               | CTO   | ceo        |
-| devops            | Agent | cto        |
-| frontend-engineer | Agent | cto        |
-| integrations      | Agent | cto        |
-| qa-engineer       | Agent | cto        |
-| security          | Agent | cto        |
+| Agent          | Role  | Reports To |
+| -------------- | ----- | ---------- |
+| ai-backend     | Agent | cto        |
+| ai-ml          | Agent | cto        |
+| backend        | Agent | cto        |
+| cdo            | Agent | ceo        |
+| ceo            | CEO   | -          |
+| cmo            | CMO   | ceo        |
+| cto            | CTO   | ceo        |
+| devops         | Agent | cto        |
+| frontend       | Agent | cto        |
+| integrations   | Agent | cto        |
+| qa-engineer    | Agent | cto        |
+| security       | Agent | cto        |
 
 ### Projects
 
-- **Vectora**
+- Vectora
 
 ### Skills
 

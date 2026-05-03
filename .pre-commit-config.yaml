@@ -6,9 +6,6 @@ minimum_pre_commit_version: 3.0.0
 
 exclude: |
   (?x)^(
-    docs/(public|resources|static|temp)/.*|
-    cloud/pkg/proto/.*\.pb\.go|
-    integrations/.*|
     \.git/.*|
     .*\.pdf$|
     .*\.lock$|
@@ -17,8 +14,7 @@ exclude: |
     go\.sum|
     coverage\..*|
     \.env.*|
-    .*\.json$|
-    .*\.html$
+    vectora-website/(public|resources|static|temp)/.*
   )$
 
 repos:
@@ -38,7 +34,6 @@ repos:
       - id: check-yaml
         name: Validate YAML
         args: ["--allow-multiple-documents", "--unsafe"]
-        exclude: ^(charts/|integrations/).*\.yaml$
         stages: [pre-commit]
       - id: check-json
         name: Validate JSON
@@ -58,17 +53,25 @@ repos:
         stages: [pre-commit]
 
   # ==========================================
-  # Go Validation (Lint)
+  # Go Validation (vectora only)
   # ==========================================
+  - repo: local
+    hooks:
+      - id: gofmt-vectora
+        name: gofmt (vectora)
+        entry: gofmt -w
+        language: system
+        files: ^vectora/.*\.go$
 
   - repo: https://github.com/golangci/golangci-lint
     rev: v1.62.2
     hooks:
       - id: golangci-lint
-        name: GolangCI-Lint
+        name: GolangCI-Lint (vectora)
+        files: ^vectora/.*\.go$
 
   # ==========================================
-  # Python Validation (Lint + Format)
+  # Python Validation (scripts and cognitive runtime)
   # ==========================================
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.4.4
@@ -76,12 +79,10 @@ repos:
       - id: ruff
         name: Ruff Lint (Python)
         args: [--fix, --line-length=100]
-        types: [python]
-        exclude: ^(Integrations|\.git)/.*
+        files: ^(scripts|vectora-cognitive-runtime)/.*\.py$
       - id: ruff-format
         name: Ruff Format (Python)
-        types: [python]
-        exclude: ^(Integrations|\.git)/.*
+        files: ^(scripts|vectora-cognitive-runtime)/.*\.py$
 
   - repo: https://github.com/PyCQA/isort
     rev: 5.13.2
@@ -89,86 +90,60 @@ repos:
       - id: isort
         name: Sort Python Imports
         args: ["--profile=black", "--line-length=100"]
-        types: [python]
-        exclude: ^(Integrations|docs)/.*
+        files: ^(scripts|vectora-cognitive-runtime)/.*\.py$
 
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v1.14.1
     hooks:
       - id: mypy
         name: Mypy (Python Static Analysis)
-        files: \.py$
+        files: ^(scripts|vectora-cognitive-runtime)/.*\.py$
         types_or: [text]
         additional_dependencies: [types-PyYAML]
 
   # ==========================================
-  # Markdown & Documentation (Local Scripts)
+  # TypeScript / JavaScript Validation (vectora and integrations)
+  # ==========================================
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v3.1.0
+    hooks:
+      - id: prettier
+        name: Prettier (vectora + integrations)
+        args: ["--write"]
+        files: ^(vectora|vectora-integrations)/.*\.(ts|tsx|js|jsx|mjs|cjs|json)$
+        types_or: [text]
+
+  # ==========================================
+  # Hugo / Website Validation
   # ==========================================
   - repo: local
     hooks:
-      - id: generate-frontmatter
-        name: Generate Frontmatter
-        entry: python scripts/generate_frontmatter.py
+      - id: generate-search-index
+        name: Generate Search Index
+        entry: python vectora-website/scripts/generate_index.py
         language: system
-        files: ^docs/.*\.md$
-        pass_filenames: true
-      - id: generate-external-links
-        name: Generate External Links
-        entry: python scripts/generate_links.py
-        language: system
-        files: ^docs/.*\.md$
-        pass_filenames: true
-      - id: generate-footer
-        name: Generate Footer
-        entry: python scripts/generate_footer.py
-        language: system
-        files: ^docs/.*\.md$
-        pass_filenames: true
-      - id: generate-index
-        name: Generate Index
-        entry: python scripts/generate_index.py
-        language: system
+        files: ^vectora-website/content/.*\.md$
         pass_filenames: false
       - id: generate-sitemap
         name: Generate Sitemap
-        entry: python scripts/generate_sitemap.py
+        entry: python vectora-website/scripts/generate_sitemap.py
         language: system
-        files: \.md$
-        pass_filenames: false
-      - id: fix-code-blocks
-        name: Fix Markdown Code Blocks
-        entry: python scripts/fix_code_blocks.py
-        language: system
-        files: \.md$
-        pass_filenames: true
-      - id: remove-emojis
-        name: Remove Decorative Emojis
-        entry: python scripts/remove_emojis.py
-        language: system
-        files: \.md$
-        pass_filenames: true
-      - id: check-translations
-        name: Check Language Parity
-        entry: python scripts/check_translations.py
-        language: system
+        files: ^vectora-website/content/.*\.md$
         pass_filenames: false
 
-  # ==========================================
-  # Markdown Lint & Prettier
-  # ==========================================
   - repo: https://github.com/igorshubovych/markdownlint-cli
     rev: v0.44.0
     hooks:
       - id: markdownlint
-        name: MarkdownLint
-        args: ["--config", "docs/.markdownlint.json", "--fix"]
-        files: ^docs/.*\.md$
+        name: MarkdownLint (website)
+        args: ["--config", "vectora-website/.markdownlint.json", "--fix"]
+        files: ^vectora-website/content/.*\.md$
 
   - repo: https://github.com/pre-commit/mirrors-prettier
     rev: v3.1.0
     hooks:
       - id: prettier
-        name: Prettier
+        name: Prettier (markdown + yaml)
         args: ["--write"]
         files: \.(md|yaml|yml|css)$
         types_or: [text]

@@ -1,10 +1,10 @@
-# PAL: Vectora Asset Library (Registry de Datasets)
+# VAL -Vectora Asset Library (Registry de Datasets)
 
-PAL é um registry público de datasets vetorizados para Vectora, semelhante a npm registry para packages. Comunidade contribui datasets (documentação, code samples, etc), que são validados, indexados, e disponibilizados para instalação via `vectora dataset install`. Cada dataset é um package com vectors.lance (LanceDB format), metadata.json, documentação, e exemplos. Hosted em GitHub com releases para distribution.
+VAL é um registry público de datasets vetorizados para Vectora, semelhante a npm registry para packages. Comunidade contribui datasets (documentação, code samples, etc), que são validados, indexados, e disponibilizados para instalação via `vectora dataset install`. Cada dataset é um package com vectors.lance (LanceDB format), metadata.json, documentação, e exemplos. Hosted em GitHub com releases para distribution.
 
 ## Stack
 
-PAL é puramente GitHub nativo: repositories como storage, releases como artifact distribution, GitHub Actions para validation. Nenhuma infra extra. Validação é Go script (checksum, structure validation). Index é um simples JSON file (index.json) que cataloga todos os datasets. REST API é served via GitHub raw content. Community contribui via pull requests + GitHub Discussions.
+VAL é puramente GitHub nativo: repositories como storage, releases como artifact distribution, GitHub Actions para validation. Nenhuma infra extra. Validação é Go script (checksum, structure validation). Index é um simples JSON file (index.json) que cataloga todos os datasets. REST API é served via GitHub raw content. Community contribui via pull requests + GitHub Discussions.
 
 - Repository: GitHub (public)
 - Storage: GitHub Releases (artifacts)
@@ -150,7 +150,7 @@ vectora-asset-library/
 10. On merge, GitHub Actions creates release + updates index
 11. Dataset available on registry
 
-## Installing from PAL
+## Installing from VAL
 
 ```bash
 # List available datasets

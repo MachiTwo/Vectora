@@ -6,7 +6,7 @@
 
 ## Executive Summary
 
-**Objetivo:** Expandir Vectora com integrações de agentes, Tool Mode completo, PAL Registry, Web Search
+**Objetivo:** Expandir Vectora com integrações de agentes, Tool Mode completo, VAL Registry, Web Search
 
 **Período:** 8 semanas após Phase 2 (Week 14-21)
 **Timeline:** 2026-07-24 → 2026-09-18
@@ -18,7 +18,7 @@
 2. ✅ Gemini CLI adapter (REST)
 3. ✅ Web Search + Fetch (SerpAPI integration)
 4. ✅ Tool Mode 100% (websearch, rerank tools)
-5. ✅ PAL Registry (community datasets)
+5. ✅ VAL Registry (community datasets)
 6. ✅ Turborepo structure (vectora-integrations)
 7. ✅ Advanced memory (knowledge graph visualization)
 8. ✅ Monitoring (Prometheus + Sentry)
@@ -103,9 +103,9 @@
 
 ---
 
-## Week 8: PAL Registry & Ecosystem (Week 21)
+## Week 8: VAL Registry & Ecosystem (Week 21)
 
-### Frente 6: PAL Registry Go Live
+### Frente 6: VAL Registry Go Live
 
 | Task                                                        | Owner    | Duration | Success Criteria           |
 | ----------------------------------------------------------- | -------- | -------- | -------------------------- |
@@ -115,7 +115,7 @@
 | **6.4** Publish 3 seed datasets (godot, react, python docs) | Content  | 1.5d     | Datasets available         |
 | **6.5** Dataset browser in dashboard (fetch from registry)  | Frontend | 1d       | Users can browse + install |
 
-**Output:** PAL Registry live, first datasets available
+**Output:** VAL Registry live, first datasets available
 **Person-weeks:** 0.9
 
 ---
@@ -143,7 +143,7 @@
 | **8.1** vectora-website Hugo setup (Hextra theme)           | Docs  | 1d       | Site renders                |
 | **8.2** Integration guides (Claude Code, Gemini, Paperclip) | Docs  | 2d       | All integrations documented |
 | **8.3** API reference (auto-gen from OpenAPI)               | Docs  | 1d       | Complete API docs           |
-| **8.4** PAL Registry guide (how to contribute datasets)     | Docs  | 1d       | Community can add datasets  |
+| **8.4** VAL Registry guide (how to contribute datasets)     | Docs  | 1d       | Community can add datasets  |
 | **8.5** Examples & recipes (common use cases)               | Docs  | 1.5d     | Users have working examples |
 
 **Output:** Website live, integrations documented
@@ -164,7 +164,7 @@
 
 - [ ] Web search integrated (SerpAPI)
 - [ ] Tool Mode 100% (all tools callable)
-- [ ] PAL Registry live
+- [ ] VAL Registry live
 - [ ] Advanced memory visualization
 - [ ] Monitoring (Prometheus + Sentry)
 
@@ -172,7 +172,7 @@
 
 - [ ] vectora-integrations Turborepo published to npm
 - [ ] @vectora/shared used across all SDKs
-- [ ] 3 seed datasets in PAL Registry
+- [ ] 3 seed datasets in VAL Registry
 - [ ] Community docs for contribution
 
 ### Quality
@@ -189,7 +189,7 @@
 - 1x Backend Engineer (Go) — Web search, Tool Mode, monitoring
 - 1x Integration Engineer (TypeScript) — MCP protocol, adapters
 - 1x Frontend Engineer (React) — Dataset browser, analytics
-- 1x DevOps/Documentation — Website, CI/CD, PAL Registry
+- 1x DevOps/Documentation — Website, CI/CD, VAL Registry
 - 1x Product/Ecosystem — Community outreach, dataset curation
 
 **Or:** 2-3 Full-Stack + 1 DevOps
@@ -202,7 +202,7 @@
 | ---------------------------- | ----------- | ------------------------------------ |
 | MCP protocol complexity      | Medium      | Use existing libraries, examples     |
 | Web search costs (SerpAPI)   | Low         | Check pricing, set rate limits       |
-| PAL Registry moderation      | Medium      | Set clear dataset standards          |
+| VAL Registry moderation      | Medium      | Set clear dataset standards          |
 | Integration breaking changes | Medium      | Semantic versioning, backward compat |
 
 ---
@@ -213,7 +213,7 @@ Phase 4 starts when:
 
 - [ ] All integrations working end-to-end
 - [ ] Web search tested and optimized
-- [ ] PAL Registry live with 3+ datasets
+- [ ] VAL Registry live with 3+ datasets
 - [ ] Turborepo structure stable
 - [ ] Monitoring dashboard live
 - [ ] Community interest validated

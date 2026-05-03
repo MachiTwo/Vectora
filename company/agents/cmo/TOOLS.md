@@ -1,6 +1,6 @@
 # CMO Tools
 
-- `search_web`: Analisar tendências de mercado, ferramentas concorrentes e oportunidades de partnership.
-- `read_file`: Ler métricas de repositório, OKRs e reports gerados.
-- `write_file`: Escrever estratégia de branding, GTM (Go-to-market) e releases.
-- `list_dir`: Verificar artefatos públicos gerados e comunicados de release.
+- `search_web`: Research market positioning, competitors, and community trends.
+- `read_file`: Review roadmap notes, docs, and release drafts.
+- `write_file`: Update marketing copy, announcements, and public messaging.
+- `list_dir`: Inspect release artifacts and public content.
