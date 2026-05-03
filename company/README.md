@@ -8,7 +8,7 @@
 
 | Content  | Count |
 | -------- | ----- |
-| Agents   | 16    |
+| Agents   | 12    |
 | Projects | 1     |
 | Skills   | 5     |
 | Tasks    | 1     |
@@ -19,18 +19,14 @@
 | ----------------- | ----- | ---------- |
 | ai-backend        | Agent | cto        |
 | ai-ml             | Agent | cto        |
+| backend           | Agent | cto        |
 | cdo               | Agent | ceo        |
 | ceo               | CEO   | —          |
-| cloud             | Agent | cto        |
 | cmo               | CMO   | ceo        |
 | cto               | CTO   | ceo        |
-| desktop           | Agent | ceo        |
 | devops            | Agent | cto        |
-| devrel            | Agent | cto        |
 | frontend-engineer | Agent | cto        |
 | integrations      | Agent | cto        |
-| librarian         | Agent | cmo        |
-| pmm               | Agent | cmo        |
 | qa-engineer       | Agent | cto        |
 | security          | Agent | cto        |
 

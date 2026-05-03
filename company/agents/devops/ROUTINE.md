@@ -90,8 +90,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: go build -o bin/vectora-cloud ./cloud/cmd/vectora-cloud
-      - run: go build -o bin/vectora ./desktop/cmd/vectora
+      - run: go build -o bin/vectora ./backend/cmd/vectora
 ```
 
 **Improvements needed**:
@@ -160,7 +159,7 @@ steps:
       cache: true # Cache Go modules
 
   - run: go test -parallel 4 ./... # Parallel tests
-  - run: go build -o bin/vectora-cloud ./cloud/cmd/vectora-cloud
+  - run: go build -o bin/vectora ./backend/cmd/vectora
 ```
 
 ---

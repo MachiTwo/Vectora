@@ -7,30 +7,30 @@ reportsTo: "cto"
 
 **Função:** Frontend engineer  
 **Empresa:** Kaffyn  
-**Projeto:** Vectora  
+**Projeto:** Vectora
 
 ---
 
-## 📋 Informações do Agente
+## Informações do Agente
 
 **Role:** Frontend engineer  
-**Status:** READY FOR PAPERCLIP  
+**Status:** READY FOR PAPERCLIP
 
 ---
 
-## 💼 System Prompt
+## System Prompt
 
 Consulte [CONTRIBUTORS-PROMPTS.md](../../CONTRIBUTORS-PROMPTS.md) para o prompt completo deste agente.
 
 ---
 
-## 🎯 Tarefas Iniciais
+## Tarefas Iniciais
 
 (Aguardando atribuição via Paperclip)
 
 ---
 
-## 📚 Referências
+## Referências
 
 - [CONTRIBUTORS-PROMPTS.md](../../CONTRIBUTORS-PROMPTS.md) - System prompts completos
 - [CONTRIBUTORS.md](../../CONTRIBUTORS.md) - Team structure

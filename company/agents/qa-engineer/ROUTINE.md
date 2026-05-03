@@ -88,7 +88,7 @@ focus: Testing, quality gates, coverage
 - [ ] Verify existing storage tests still pass
 - [ ] Update tests for v2 API changes
 - [ ] Add regression tests for SessionContext → context.Context
-- [ ] Test on both Desktop and Cloud
+- [ ] Test on the backend path only
 
 **For Issues #003-#005 (Config/Logging/GoMock)**:
 
@@ -144,18 +144,15 @@ func TestJWTValidation(t *testing.T) {
 Quality Metrics (Week of Apr 28)
 
 Test Coverage:
-- Cloud: 70% (target: 80%)
+- Backend: 70% (target: 80%)
   - auth: 90%
   - storage: 65%
   - api: 60%
-- Desktop: 60% (target: 80%)
-  - storage: 70%
 
 Build Success Rate: 100% (all CI/CD runs pass)
 
 Test Execution Time:
-- Cloud: 12s (target: < 20s)
-- Desktop: 8s (target: < 15s)
+- Backend: 12s (target: < 20s)
 
 Regression Tests: 0 failures (target: 0)
 
@@ -276,7 +273,7 @@ func BenchmarkJWTValidation(b *testing.B) {
     }
 }
 
-// Run: go test -bench=. ./cloud/internal/auth/
+// Run: go test -bench=. ./backend/internal/auth/
 // Target: < 1ms per validation
 ```
 

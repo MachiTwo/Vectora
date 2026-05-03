@@ -336,7 +336,7 @@ Week 9: Final Testing & Docs
 
 ## Critical Files to Create (Phase 1)
 
-### Backend (vectora/)
+### Backend (`vectora/backend/`)
 
 ```
 backend/
@@ -375,7 +375,7 @@ backend/
 └── .env.example
 ```
 
-### Frontend (vectora/)
+### Frontend (`vectora/frontend/`)
 
 ```
 frontend/
@@ -401,7 +401,7 @@ frontend/
 └── Dockerfile
 ```
 
-### CLI (vectora/)
+### CLI (`vectora/cli/`)
 
 ```
 cmd/vectora/
@@ -414,7 +414,7 @@ cmd/vectora/
     └── dataset.go
 ```
 
-### Vectora Cognitive Runtime (vectora-cognitive-runtime/ OR vectora/vectora-cognitive-runtime/)
+### Vectora Cognitive Runtime (`vectora-cognitive-runtime/`)
 
 ```
 vectora-cognitive-runtime/
@@ -432,7 +432,7 @@ vectora-cognitive-runtime/
 └── README.md
 ```
 
-### DevOps
+### DevOps (`vectora/.github/`)
 
 ```
 vectora/
@@ -573,8 +573,8 @@ GET /api/v1/memory/query
 **Team:** 1 Backend (Go) + 1 Frontend (React) + 1 ML (Python) + 1 DevOps/QA
 **Repository Structure:**
 
-- vectora/ (backend Go + frontend React + CLI)
-- vectora-cognitive-runtime/ (separate repo for Vectora Cognitive Runtime Python model)
-- vectora-integrations/ (Turborepo for SDKs - Phase 3+)
-- vectora-asset-library/ (GitHub registry - Phase 3+)
-- vectora-website/ (Hugo docs - Phase 3+)
+- `vectora/` (backend Go + frontend React + CLI)
+- `vectora-asset-library/` (registry de assets e datasets)
+- `vectora-cognitive-runtime/` (VCR Python model)
+- `vectora-integrations/` (Turborepo for SDKs - Phase 3+)
+- `vectora-website/` (Hugo/Hextra docs - source of truth for documentation)

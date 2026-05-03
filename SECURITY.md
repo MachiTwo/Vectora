@@ -2,20 +2,46 @@
 
 ## Supported Versions
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
-
-| Version | Supported          |
-| ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
+Security fixes are applied to the actively maintained branches and releases of Vectora.
+When a vulnerability is confirmed, the fix should be backported to all supported branches if applicable.
 
 ## Reporting a Vulnerability
 
-Use this section to tell people how to report a vulnerability.
+If you discover a security issue, do not open a public issue.
 
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+Please report it through the repository's private security channel or the maintainer contact path used by the project.
+If no private channel is available, create a minimal public report that avoids technical exploit details and request a private follow-up.
+
+Include as much of the following as possible:
+
+- Affected component or path
+- Severity estimate
+- Reproduction steps
+- Expected versus actual behavior
+- Any relevant logs, screenshots, or proof of concept
+
+## What to Avoid
+
+- Public disclosure before a fix is ready
+- Sharing secrets, tokens, or live credentials
+- Running destructive tests against production data
+
+## Disclosure Process
+
+Once a report is received, the maintainers should:
+
+1. Acknowledge receipt.
+2. Validate the issue.
+3. Prepare a fix.
+4. Coordinate disclosure timing with the reporter.
+5. Publish the fix and advisory after remediation.
+
+## Security Expectations
+
+All contributions should follow secure coding practices:
+
+- Validate and sanitize input.
+- Keep secrets out of logs and source control.
+- Prefer least-privilege access.
+- Use reviewed dependencies.
+- Review changes that affect authentication, authorization, persistence, or external integrations with extra care.

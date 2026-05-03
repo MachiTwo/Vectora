@@ -123,12 +123,12 @@ Este arquivo define o padrão de qualidade para criação, documentação e dele
 - **CEO** - Hiring, strategy, OKRs, go-to-market
 - **TCO** - Architecture reviews, code quality, standards
 - **CMO** - Marketing, growth, branding
+- **CDO** - Documentation ownership, AI/ML strategy, data governance
 - **Product Manager** - Feature prioritization, roadmap
 
 ### Engineering
 - **Lead Engineer** - Implementation, delivery, architecture decisions
-- **Backend Engineer** - Cloud APIs, databases, scaling
-- **Desktop Engineer** - CLI, tray, cross-platform
+- **Backend Engineer** - APIs, databases, scaling
 - **Data Engineer** - MongoDB, schemas, indexing
 - **AI/ML Engineer** - Models, quantization, optimization
 - **AI Backend Engineer** - Vectora Cognitive Runtime server, inference
@@ -139,7 +139,6 @@ Este arquivo define o padrão de qualidade para criação, documentação e dele
 - **Interactions Engineer** - Plugins, extensions, MCP
 
 ### Other
-- **Librarian** - Documentation, Hugo, SEO
 - **Developer Advocate** - Community, tutorials, evangelism
 - **Product Marketing** - Release notes, campaigns, copy
 
@@ -213,7 +212,7 @@ OPEN → IN_PROGRESS → REVIEW → DONE
 **Deadline:** 30 de abril  
 
 ## Objetivo
-API Cloud não valida JWT/API Key. QUALQUER cliente consegue chamar /api/* endpoints.
+API Backend não valida JWT/API Key. QUALQUER cliente consegue chamar /api/* endpoints.
 
 ## Critério de Aceitação
 - [ ] GET /api/anything sem auth → 401 Unauthorized

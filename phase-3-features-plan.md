@@ -10,6 +10,7 @@
 
 **Período:** 8 semanas após Phase 2 (Week 14-21)
 **Timeline:** 2026-07-24 → 2026-09-18
+**Estrutura do monorepo:** `vectora/`, `vectora-asset-library/`, `vectora-cognitive-runtime/`, `vectora-integrations/`, `vectora-website/`
 
 **Entregáveis:**
 

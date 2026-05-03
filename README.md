@@ -383,46 +383,22 @@ Dashboard NÃO é um "modo", é a **interface de gerenciamento** que funciona **
 
 ---
 
-## Repositórios (4 Repos Independentes)
+## Estrutura do Monorepo
 
-```
-GitHub Organization: vectora/
+O workspace do Vectora está organizado nestas pastas:
 
-1. vectora (Principal)
-   ├─ Backend Go (REST API + MCP)
-   ├─ Frontend React (Dashboard web)
-   ├─ CLI (vectora init, start, query)
-   ├─ Docker Compose (local dev)\
-   └─ CI/CD (GitHub Actions)
+- `vectora/`: produto principal com backend Go, frontend React e CLI
+- `vectora-asset-library/`: registry público de assets e datasets
+- `vectora-cognitive-runtime/`: VCR, o engine de decisão em Python
+- `vectora-integrations/`: Turborepo com SDKs e adaptadores
+- `vectora-website/`: site oficial e documentação Hugo/Hextra
 
-2. vectora-cognitive-runtime (Decisão Engine — Separado)
-   ├─ Python (PyTorch training)
-   ├─ SmolLM2-135M (micro SLM)
-   ├─ ONNX export (35MB)
-   └─ REST endpoint para inferência
+**Por que esse formato?**
 
-3. vectora-integrations (Turborepo — Integrations)
-   ├─ @vectora/shared (tipos, auth, HTTP client)
-   ├─ @vectora/sdk-claude-code (MCP)
-   ├─ @vectora/sdk-gemini-cli (REST adapter)
-   ├─ @vectora/sdk-paperclip (MCP + REST)
-   ├─ @vectora/sdk-hermes (REST)
-   ├─ @vectora/sdk-vscode (extension)
-   └─ Mais: chatgpt-plugin, codex, openclaw, custom-template
-
-4. vectora-asset-library (PAL Registry)
-   ├─ GitHub-native dataset registry
-   ├─ Community dataset uploads
-   ├─ Validation CI/CD
-   └─ Registry API (https://registry.vectora.ai)
-```
-
-**Por que 4 repos?**
-
-- 🎯 **Separação clara:** Backend, Vectora Cognitive Runtime, Integrations, Assets
-- 📦 **Publicação independente:** Cada repo versiona-se
-- 🔄 **Desenvolvimento paralelo:** Times podem trabalhar isolados
-- 🤝 **Contribuições:** Fácil para comunidade contribuir um SDK
+- **Separação clara:** cada domínio evolui no seu próprio diretório
+- **Publicação independente:** cada área pode ter release/versionamento próprio
+- **Desenvolvimento paralelo:** times trabalham sem acoplamento desnecessário
+- **Documentação centralizada:** o conteúdo oficial vive em `vectora-website/content/`
 
 ---
 

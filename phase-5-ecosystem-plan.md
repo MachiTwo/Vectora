@@ -10,6 +10,7 @@
 
 **Período:** Ongoing após Phase 4 (Week 28+)
 **Timeline:** 2026-11-01 → Indefinido
+**Estrutura do monorepo:** `vectora/`, `vectora-asset-library/`, `vectora-cognitive-runtime/`, `vectora-integrations/`, `vectora-website/`
 
 **Pilares:**
 

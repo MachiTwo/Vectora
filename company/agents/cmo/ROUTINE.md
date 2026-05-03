@@ -29,7 +29,7 @@ focus: Go-to-market strategy, positioning, hiring support
 
 **Morning** (1-2 hours):
 - [ ] Support CEO on hiring pipeline (Issue #008)
-- [ ] Coordinate with DevRel on candidate outreach
+- [ ] Coordinate candidate outreach
 - [ ] Update job description if needed
 - [ ] Track recruiting metrics
 
@@ -139,4 +139,4 @@ focus: Go-to-market strategy, positioning, hiring support
 
 **Availability**: 10-15 hours/week
 **Priority**: MEDIUM (hiring critical, marketing can scale later)
-**Owner**: CMO + DevRel (team effort)
+**Owner**: CMO

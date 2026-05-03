@@ -1,19 +1,19 @@
 ---
-name: "desktop"
-reportsTo: "ceo"
+name: "backend"
+reportsTo: "cto"
 ---
 
-# Desktop engineer
+# Backend Engineer
 
-**Função:** Desktop engineer
-**Empresa:** Kaffyn
+**Função:** Backend Engineer  
+**Empresa:** Kaffyn  
 **Projeto:** Vectora
 
 ---
 
 ## Informações do Agente
 
-**Role:** Desktop engineer
+**Role:** Backend Engineer  
 **Status:** READY FOR PAPERCLIP
 
 ---

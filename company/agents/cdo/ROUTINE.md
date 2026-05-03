@@ -1,7 +1,7 @@
 ---
 title: CDO - Weekly/Monthly Routine
 role: Chief Data Officer (CDO)
-focus: AI/ML strategy, data infrastructure, vector search optimization
+focus: AI/ML strategy, data infrastructure, vector search optimization, documentation ownership
 ---
 
 # CDO Routine
@@ -39,6 +39,14 @@ focus: AI/ML strategy, data infrastructure, vector search optimization
 - [ ] Summarize key metrics for CEO
 - [ ] Identify strategic risks/opportunities
 - [ ] Prepare for next week's priorities
+
+### Documentation Review
+
+**Weekly block** (30-45 min):
+
+- [ ] Review README and public docs for changed architecture
+- [ ] Confirm docs backlog after backend or roadmap changes
+- [ ] Coordinate with the website/docs maintainers when needed
 
 ---
 
@@ -88,6 +96,13 @@ focus: AI/ML strategy, data infrastructure, vector search optimization
 - **Update:** As benchmarks run (weekly minimum)
 - **Your Action:** Evaluate trade-offs, approve optimizations
 
+### Docs Backlog
+
+- **File:** README.md + public docs backlog
+- **Track:** Architecture changes, release notes, contributor-facing gaps
+- **Update:** Weekly and after major changes
+- **Your Action:** Keep the public documentation aligned with the implementation
+
 ### OKR Progress
 
 - **File:** Q2-2026-OKRS.md (shared doc)
@@ -134,21 +149,21 @@ DELEGATE (Backend Engineer (IA) Executes):
 - Sync: Daily standup (10 AM UTC) + ad-hoc technical discussions
 - Your role: Guide, approve, challenge
 - Their role: Execute, optimize, benchmark
-- Decision flow: Strategy needs → IA engineer optimizes → you approve
+- Decision flow: Strategy needs -> IA engineer optimizes -> you approve
 
 **CTO (Technical Supervisor)**
 
 - Sync: Weekly (via CEO sync)
 - Your role: Report progress, escalate blockers
 - Their role: Validate technical direction, resource allocation
-- Decision flow: CDO strategy → CTO validates → CEO approves
+- Decision flow: CDO strategy -> CTO validates -> CEO approves
 
 **CEO (Strategic Alignment)**
 
 - Sync: Friday 2 PM UTC (1-on-1 with CEO, 30 min)
 - Your role: Report OKRs progress, strategic recommendations
 - Their role: Approve strategic decisions, allocate resources
-- Decision flow: You recommend → CEO decides → you execute
+- Decision flow: You recommend -> CEO decides -> you execute
 
 ---
 
@@ -159,6 +174,7 @@ DELEGATE (Backend Engineer (IA) Executes):
 1. Finalize Q2 OKRs with CEO (Issue #009)
 2. Establish weekly metrics tracking
 3. Review Backend Engineer (IA) capacity/timeline
+4. Keep docs backlog current
 
 **This Month** (May 1-31):
 
@@ -167,6 +183,7 @@ DELEGATE (Backend Engineer (IA) Executes):
 3. Review vector search architecture
 4. Monitor 100+ beta user performance
 5. Prepare Q2 performance report
+6. Update README and public docs after architecture changes
 
 **This Quarter** (Q2 2026):
 
@@ -175,6 +192,7 @@ DELEGATE (Backend Engineer (IA) Executes):
 3. MongoDB Vector Search optimized (June 15)
 4. RAG pipeline with retrieval context
 5. Validate product-market fit metrics
+6. Keep public documentation aligned with implementation
 
 ---
 
@@ -188,6 +206,7 @@ You're succeeding if:
 - No surprises (early escalation of blockers)
 - Team scaling (hiring new engineer) on track
 - Vectora on track for v1.0 by end of Q2
+- Public docs stay current after major changes
 
 ---
 

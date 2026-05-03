@@ -874,9 +874,9 @@ vectora dataset publish --name godot-4.6-docs
 
 ---
 
-## Frentes de Trabalho (10 Frentes por 4 Repositórios)
+## Frentes de Trabalho (10 Frentes no Monorepo)
 
-### Repo 1: `vectora` (6 Frentes)
+### `vectora/` (6 Frentes)
 
 1. **Frente 1: Backend Core (Go Tier-Based)**
    - Tier-based architecture (8 camadas)
@@ -921,7 +921,7 @@ vectora dataset publish --name godot-4.6-docs
 
 ---
 
-### Repo 2: `vectora-asset-library` (1 Frente)
+### `vectora-asset-library/` (1 Frente)
 
 7. **Frente 7: PAL Registry (Dataset Management)**
    - Dataset structure validation
@@ -932,7 +932,7 @@ vectora dataset publish --name godot-4.6-docs
 
 ---
 
-### Repo 3: `vectora-integrations` (2 Frentes - Turborepo)
+### `vectora-integrations/` (2 Frentes - Turborepo)
 
 8. **Frente 8: Shared SDK**
    - @vectora/shared (types, auth, HTTP client, errors)
@@ -954,7 +954,7 @@ vectora dataset publish --name godot-4.6-docs
 
 ---
 
-### Repo 4: `vectora-website` (1 Frente)
+### `vectora-website/` (1 Frente)
 
 10. **Frente 10: Website & Documentation**
     - Home page (vectora.ai)
@@ -1179,7 +1179,7 @@ vectora/backend/internal/
 
 ## Repo Structure (2 Repositórios)
 
-### Repo 1: vectora (Principal)
+### `vectora/` (Principal)
 
 ```
 vectora/
@@ -1265,7 +1265,7 @@ vectora/
 └── LICENSE (Apache 2.0)
 ```
 
-### Repo 2: vectora-integrations (Turborepo)
+### `vectora-integrations/` (Turborepo)
 
 ```
 vectora-integrations/
@@ -1535,24 +1535,24 @@ Later:
 
 ---
 
-## Estrutura Final de Repositórios (4 Repositórios)
+## Estrutura do Monorepo
 
-### Repo 1: `vectora` (Frontend React + Backend Go)
+### `vectora/`
 
 **URL:** `github.com/vectora/vectora`
 
-Contém tudo necessário para rodar o Vectora localmente:
+Produto principal para uso local:
 
 - Backend Go (tier-based)
 - Frontend React + Vite
 - CLI (Cobra)
 - Docker Compose
 
-### Repo 2: `vectora-asset-library` (PAL Registry)
+### `vectora-asset-library/`
 
 **URL:** `github.com/vectora/vectora-asset-library`
 
-Registro público de datasets da comunidade:
+Registry público de datasets e assets da comunidade:
 
 - Datasets estruturados (vectors.lance + metadata.json)
 - Contributing guide
@@ -1560,15 +1560,15 @@ Registro público de datasets da comunidade:
 
 **API:** `https://registry.vectora.ai/api/v1/datasets`
 
-### Repo 3: `vectora-integrations` (Turborepo - Todas as integrações)
+### `vectora-integrations/`
 
 **URL:** `github.com/vectora/vectora-integrations`
 
-Monorepo Turborepo com todos os SDKs/integrations:
+Monorepo Turborepo com todos os SDKs e adaptadores:
 
 **Packages (NPM):**
 
-- `@vectora/shared` - Shared types, auth, HTTP client
+- `@vectora/shared` - shared types, auth, HTTP client
 - `@vectora/sdk-claude-code` - Claude Code integration (MCP)
 - `@vectora/sdk-openai` - OpenAI integration (REST)
 - `@vectora/sdk-chatgpt` - ChatGPT plugin
@@ -1577,13 +1577,13 @@ Monorepo Turborepo com todos os SDKs/integrations:
 - `@vectora/sdk-hermes` - Hermes agent (REST)
 - `@vectora/sdk-codex` - Codex integration (REST)
 - `@vectora/sdk-openclaw` - OpenClaw integration (REST)
-- `@vectora/template` - Custom agent template
+- `@vectora/template` - custom agent template
 
-### Repo 4: `vectora-website` (Website + Documentação)
+### `vectora-website/`
 
 **URL:** `github.com/vectora/vectora-website`
 
-Website público + documentação completa:
+Site público + documentação completa:
 
 - Home page (vectora.ai)
 - Getting started guides (local, Docker, VPS)
@@ -1594,7 +1594,6 @@ Website público + documentação completa:
 - Blog (future)
 
 **Tech:** Hugo + Hextra theme (multilingual)
-
 ---
 
 ## Matriz de Dependências
