@@ -78,6 +78,35 @@ class AgentState(TypedDict):
 ✅ **Streaming** - Respostas em tempo real  
 ✅ **LangSmith integration** - Debugging nativo
 
+## Comparação com Deep Agents
+
+| Aspecto            | LangGraph                           | Deep Agents                          |
+| ------------------ | ----------------------------------- | ------------------------------------ |
+| **Modelo**         | Graph-based (nós + edges)           | Planning-based (intents + execution) |
+| **Controle**       | Explicito (você constrói o grafo)   | Implícito (agente planeja)           |
+| **Persistência**   | Threads + Checkpoints               | Filesystem backend                   |
+| **Interface**      | Code-first (Python)                 | CLI + TUI interactive                |
+| **Editor**         | Via ACP (integração)                | ACP nativo no TUI                    |
+| **Use case**       | Workflows estruturados, multi-agent | Explorativo, autonomous agents       |
+| **Latência**       | Baixa (direto)                      | Média (planning overhead)            |
+| **Learning curve** | Média (programação)                 | Baixa (TUI intuitivo)                |
+
+**Quando usar LangGraph:**
+
+- ✅ Workflows bem-definidos
+- ✅ Controle fino necessário
+- ✅ Multi-agent coordination
+- ✅ Human-in-the-loop estruturado
+- ✅ Integração com ferramentas específicas
+
+**Quando usar Deep Agents:**
+
+- ✅ Agentes autônomos exploradores
+- ✅ Interatividade TUI importante
+- ✅ Rapid prototyping
+- ✅ Editor integration (ACP)
+- ✅ Aprendizado contínuo do agente
+
 ## External Linking
 
 | Conceito       | Recurso                | Link                                                                                                           |

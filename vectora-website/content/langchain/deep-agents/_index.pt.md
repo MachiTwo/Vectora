@@ -24,15 +24,36 @@ Deep Agents fornece:
 - **Subagents** - Hierarquia de agentes
 - **ACP Protocol** - Protocolo de comunicação entre agentes
 
-## Diferenças de LangGraph
+## Comparação com LangGraph
 
-| Aspecto      | LangGraph               | Deep Agents         |
-| ------------ | ----------------------- | ------------------- |
-| Grafo        | Explícito (nodes/edges) | Implícito (harness) |
-| Planning     | Manual                  | Automático          |
-| Persistência | Memória                 | Filesystem          |
-| CLI          | Não                     | Sim (rich TUI)      |
-| Subagents    | Sim                     | Nativo              |
+| Aspecto            | Deep Agents                          | LangGraph                         |
+| ------------------ | ------------------------------------ | --------------------------------- |
+| **Modelo**         | Planning-based (intents + execution) | Graph-based (nós + edges)         |
+| **Controle**       | Implícito (agente planeja)           | Explicito (você constrói o grafo) |
+| **Persistência**   | Filesystem backend                   | Threads + Checkpoints             |
+| **Interface**      | CLI + TUI interactive                | Code-first (Python)               |
+| **Editor**         | ACP nativo no TUI                    | Via ACP (integração)              |
+| **Planning**       | Automático (agent-driven)            | Manual (você define steps)        |
+| **Subagents**      | Nativo + supervisor                  | Sim (como ferramenta)             |
+| **Learning curve** | Baixa (TUI intuitivo)                | Média (programação)               |
+
+**Quando usar Deep Agents:**
+
+- ✅ Agentes autônomos exploradores
+- ✅ Interatividade TUI importante
+- ✅ Rapid prototyping
+- ✅ Editor integration (ACP) nativo
+- ✅ Aprendizado contínuo do agente
+- ✅ Planejamento automático desejado
+
+**Quando usar LangGraph:**
+
+- ✅ Workflows bem-definidos
+- ✅ Controle fino necessário
+- ✅ Multi-agent coordination complexa
+- ✅ Human-in-the-loop estruturado
+- ✅ Integração com sistemas existentes
+- ✅ Streaming e performance crítica
 
 ## Arquitetura
 
