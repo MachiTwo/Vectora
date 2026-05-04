@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://vectora.github.io/</loc><lastmod>2026-05-04</lastmod></url>
   <url><loc>https://vectora.github.io/pt/</loc><lastmod>2026-05-04</lastmod></url>
+  <url><loc>https://vectora.github.io/auth/jwt-setup.pt/</loc><lastmod>2026-05-04</lastmod></url>
+  <url><loc>https://vectora.github.io/auth/rbac.pt/</loc><lastmod>2026-05-04</lastmod></url>
+  <url><loc>https://vectora.github.io/auth/pt/</loc><lastmod>2026-05-04</lastmod></url>
+  <url><loc>https://vectora.github.io/backend/lancedb.pt/</loc><lastmod>2026-05-04</lastmod></url>
+  <url><loc>https://vectora.github.io/backend/postgresql.pt/</loc><lastmod>2026-05-04</lastmod></url>
+  <url><loc>https://vectora.github.io/backend/redis.pt/</loc><lastmod>2026-05-04</lastmod></url>
+  <url><loc>https://vectora.github.io/backend/pt/</loc><lastmod>2026-05-04</lastmod></url>
   <url><loc>https://vectora.github.io/core/agentic-framework.pt/</loc><lastmod>2026-05-04</lastmod></url>
   <url><loc>https://vectora.github.io/core/context-engine.pt/</loc><lastmod>2026-05-04</lastmod></url>
   <url><loc>https://vectora.github.io/core/pt/</loc><lastmod>2026-05-04</lastmod></url>
