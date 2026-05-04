@@ -1,100 +1,105 @@
 ---
 title: Protocols
 slug: protocols
-date: "2026-04-18T22:30:00-03:00"
+date: "2026-05-03T22:30:00-03:00"
 type: docs
 sidebar:
   open: true
 tags:
   - agents
   - ai
-  - caching
-  - chatgpt
-  - claude
   - concepts
-  - config
-  - gemini
-  - go
+  - fastapi
+  - json-rpc
   - mcp
   - protocol
   - protocols
-  - state
+  - rest-api
+  - acp
   - sub-agents
   - system
   - tools
-  - typescript
   - vectora
-  - zod
 ---
 
 {{< lang-toggle >}}
 
-> [!IMPORTANT] > **MCP é APENAS para Vectora Desktop**. Se você estiver usando Vectora Cloud (SaaS/HTTP API), use REST API ou integração específica (ChatGPT, Gemini). Este documento descreve protocolos de **Desktop**: MCP (to IDEs) e ACP (to agents).
+{{< section-toggle >}}
 
-O Vectora Desktop implementa dois protocolos de comunicação: MCP (Model Context Protocol) para integração com IDEs, e ACP (Agent Communication Protocol) para comunicação entre sub-agents. O Vectora Cloud usa HTTP API com OpenAPI schema.
-
-O **[Vectora Cognitive Runtime (Decision Engine)](/models/vectora-decision-engine/)** atua como a camada de conformidade para todos os protocolos. Ele intercepta e valida se as chamadas de ferramentas e as trocas de mensagens entre agentes aderem às políticas estruturadas, garantindo que a comunicação seja segura e precisa.
+Vectora implementa três protocolos de comunicação: REST API (FastAPI endpoints HTTP padrão), MCP (Model Context Protocol para editores de AI) e JSON-RPC 2.0 (para integrações programáticas e editor plugins). Cada protocolo serve um caso de uso diferente.
 
 ## Protocolos Suportados
 
-| Protocolo | Caso de Uso                          | Status | Docs              |
-| --------- | ------------------------------------ | ------ | ----------------- |
-| **MCP**   | Conexão com Claude Code, Cursor, Zed | Stable | [→ MCP](./mcp.md) |
-| **ACP**   | Comunicação entre Vectora e agents   | Beta   | [→ ACP](./acp.md) |
+| Protocolo        | Caso de Uso                       | Status | Docs                          |
+| ---------------- | --------------------------------- | ------ | ----------------------------- |
+| **REST API**     | HTTP clients, scripts, CI/CD      | Stable | [Ver REST API](./rest-api.md) |
+| **MCP**          | Claude Code, JetBrains, Zed       | Stable | [Ver MCP](./mcp.md)           |
+| **JSON-RPC 2.0** | Editor plugins, integrações batch | Stable | [Ver JSON-RPC](./json-rpc.md) |
+| **ACP**          | Agent-to-agent communication      | Beta   | [Ver ACP](./acp.md)           |
+
+## REST API (FastAPI)
+
+A REST API é o protocolo principal do Vectora. Exposta via FastAPI em `http://localhost:8000`, com documentação automática em `/docs` (Swagger UI) e `/redoc`.
+
+Casos de uso:
+
+- Scripts Python ou Shell
+- CI/CD pipelines
+- Integrações HTTP diretas
+- Frontend React (via fetch ou axios)
+
+**[Ver REST API](./rest-api.md)**
 
 ## MCP (Model Context Protocol)
 
-**O protocolo padrão para IDEs modernas.**
+MCP permite que editores de AI (Claude Code, JetBrains com plugin Vectora, Zed) chamem ferramentas do Vectora diretamente via stdin/stdout. Vectora expõe 8 ferramentas via MCP.
 
-O MCP é um protocolo aberto desenvolvido pela Anthropic que permite que LLMs chamem ferramentas de um computador de forma estruturada. Vectora oferece 12 tools via MCP.
+Casos de uso:
 
-**Vantagens:**
+- VS Code + Claude Code
+- JetBrains + plugin Vectora
+- Zed + extensão Vectora
+- Qualquer cliente MCP compatível
 
-- Nativo em Claude Code e Cursor (zero config a mais)
-- Descoberta dinâmica de tools
-- Schema validation (ZOD)
-- Caching automático de resultados
-- Latência <10ms (IPC local)
+**[Ver MCP](./mcp.md)**
+
+## JSON-RPC 2.0
+
+JSON-RPC 2.0 é o protocolo para integrações programáticas com suporte a batch requests. Exposto em `/rpc`.
+
+Casos de uso:
+
+- Editor plugins (TypeScript, Kotlin)
+- Batch queries em uma requisição
+- Chamadas síncronas com controle explícito de ID
+
+**[Ver JSON-RPC](./json-rpc.md)**
 
 ## ACP (Agent Communication Protocol)
 
-**Para comunicação entre Vectora e agents customizados.**
+ACP é usado para comunicação entre o agente principal e sub-agentes via stdin/stdout. Ideal para arquiteturas de multi-agent onde Vectora age como sub-agente especializado.
 
-ACP permite que múltiplos agents trabalhem juntos, compartilhando contexto e estado. Ideal para arquiteturas distribuídas onde Vectora é sub-agent de um sistema maior.
+**Status:** Beta — disponível para integrações avançadas
 
-**Status:** Beta - Disponível para early adopters
+**[Ver ACP](./acp.md)**
 
 ## Qual Protocolo Usar?
 
-- **Usando Claude Code / Cursor / Zed?** → **MCP**
-- **Integrando com agent custom em Python/Node/Go?** → **MCP** ou REST API (beta)
-- **Agent-to-agent communication?** → **ACP** (beta)
-
-Veja [MCP](./mcp.md) para detalhes completos de implementação.
-
----
-
-> Próximo: [MCP Specification](./mcp.md)
+| Cenário                 | Protocolo Recomendado |
+| ----------------------- | --------------------- |
+| Claude Code / VS Code   | MCP                   |
+| JetBrains / Zed         | MCP ou JSON-RPC       |
+| Script Python/Shell     | REST API              |
+| Frontend React          | REST API              |
+| Multi-agent (sub-agent) | ACP                   |
+| Batch queries           | JSON-RPC 2.0          |
 
 ## External Linking
 
-| Concept              | Resource                             | Link                                                                                   |
-| -------------------- | ------------------------------------ | -------------------------------------------------------------------------------------- |
-| **MCP**              | Model Context Protocol Specification | [modelcontextprotocol.io/specification](https://modelcontextprotocol.io/specification) |
-| **MCP Go SDK**       | Go SDK for MCP (mark3labs)           | [github.com/mark3labs/mcp-go](https://github.com/mark3labs/mcp-go)                     |
-| **Anthropic Claude** | Claude Documentation                 | [docs.anthropic.com/](https://docs.anthropic.com/)                                     |
-| **Gemini AI**        | Google DeepMind Gemini Models        | [deepmind.google/technologies/gemini/](https://deepmind.google/technologies/gemini/)   |
-| **Gemini API**       | Google AI Studio Documentation       | [ai.google.dev/docs](https://ai.google.dev/docs)                                       |
-| **Zod**              | TypeScript-first schema validation   | [zod.dev/](https://zod.dev/)                                                           |
-
----
-
-**Vectora v0.1.0** · [GitHub](https://github.com/Kaffyn/Vectora) · [Licença (MIT)](https://github.com/Kaffyn/Vectora/blob/master/LICENSE) · [Contribuidores](https://github.com/Kaffyn/Vectora/graphs/contributors)
-
-_Parte do ecossistema Vectora AI Agent. Construído com [ADK](https://adk.dev/), [Claude](https://claude.ai/) e [Go](https://golang.org/)._
-
-© 2026 Contribuidores do Vectora. Todos os direitos reservados.
-
----
-
-_Parte do ecossistema Vectora_ · [Open Source (MIT)](https://github.com/Kaffyn/Vectora) · [Contribuidores](https://github.com/Kaffyn/Vectora/graphs/contributors)
+| Conceito         | Recurso                              | Link                                                                                          |
+| ---------------- | ------------------------------------ | --------------------------------------------------------------------------------------------- |
+| **MCP**          | Model Context Protocol specification | [modelcontextprotocol.io/specification](https://modelcontextprotocol.io/specification)        |
+| **JSON-RPC 2.0** | JSON-RPC 2.0 specification           | [jsonrpc.org/specification](https://www.jsonrpc.org/specification)                            |
+| **FastAPI**      | Modern Python web framework          | [fastapi.tiangolo.com](https://fastapi.tiangolo.com/)                                         |
+| **OpenAPI**      | API specification format             | [swagger.io/specification](https://swagger.io/specification/)                                 |
+| **ACP**          | Agent Communication Protocol         | [docs.langchain.com/oss/python/deepagents](https://docs.langchain.com/oss/python/deepagents/) |

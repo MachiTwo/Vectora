@@ -58,7 +58,9 @@
   <url><loc>https://vectora.github.io/patterns/trace.pt/</loc><lastmod>2026-05-04</lastmod></url>
   <url><loc>https://vectora.github.io/patterns/pt/</loc><lastmod>2026-05-04</lastmod></url>
   <url><loc>https://vectora.github.io/protocols/acp.pt/</loc><lastmod>2026-05-04</lastmod></url>
+  <url><loc>https://vectora.github.io/protocols/json-rpc.pt/</loc><lastmod>2026-05-04</lastmod></url>
   <url><loc>https://vectora.github.io/protocols/mcp.pt/</loc><lastmod>2026-05-04</lastmod></url>
+  <url><loc>https://vectora.github.io/protocols/rest-api.pt/</loc><lastmod>2026-05-04</lastmod></url>
   <url><loc>https://vectora.github.io/protocols/pt/</loc><lastmod>2026-05-04</lastmod></url>
   <url><loc>https://vectora.github.io/search/embeddings.pt/</loc><lastmod>2026-05-04</lastmod></url>
   <url><loc>https://vectora.github.io/search/reranker-local.pt/</loc><lastmod>2026-05-04</lastmod></url>

@@ -1,7 +1,7 @@
 ---
 title: "Search: Pipeline de Busca Semântica"
 slug: search
-date: 2026-04-25T23:00:00-03:00
+date: 2026-05-03T23:00:00-03:00
 type: docs
 sidebar:
   open: true
@@ -10,7 +10,7 @@ tags:
   - architecture
   - concepts
   - embeddings
-  - mongodb-atlas
+  - lancedb
   - rag
   - reranker
   - search
@@ -18,74 +18,75 @@ tags:
   - vector-search
   - vectora
   - voyage
+  - xlm-roberta
 draft: false
 ---
 
 {{< lang-toggle >}}
 
-O Search é como o Vectora entende "o que você está procurando" e encontra o código mais relevante no repositório do usuário. Ele implementa um pipeline de 4 estágios: Embedding → Busca Vetorial → Reranking → Composição.
+{{< section-toggle >}}
 
-Ao processar consultas em linguagem natural em representações matemáticas, o Vectora consegue unir a intenção humana com a realidade do código-fonte.
+Search é como o Vectora entende o que você está procurando e encontra o código mais relevante no repositório. O pipeline tem 4 etapas: Embedding (VoyageAI) → Busca Vetorial (LanceDB HNSW) → Reranking (XLM-RoBERTa local) → Compactação. Tudo roda localmente — sem servidores externos durante a recuperação.
 
 ## Componentes Principais
 
-O motor de busca do Vectora é composto por camadas especializadas que filtram e refinam as informações em cada etapa do processo de recuperação.
+O motor de busca é composto por camadas especializadas que filtram e refinam informações em cada etapa de recuperação.
 
-### Embeddings
+### Embeddings (VoyageAI)
 
-Representação vetorial de código usando o Voyage 4, treinado especificamente em código-fonte real. Diferente de modelos genéricos, o Voyage captura a semântica intrínseca de programas.
+Representação vetorial 1024D de código usando VoyageAI API (voyage-3-large). Resultados são cacheados em Redis por 24h para reduzir latência e custos.
 
-**Saiba como**: [→ Embeddings](./embeddings.md)
+**[Ver Embeddings](./embeddings.md)**
 
-### Vector Search
+### Vector Search (LanceDB)
 
-Busca de alta dimensionalidade usando HNSW (Hierarchical Navigable Small World) no MongoDB Atlas. Retorna os 100 candidatos mais similares em milissegundos.
+Busca de alta dimensionalidade usando HNSW (Hierarchical Navigable Small World) no LanceDB local. Índices armazenados em disco — sem servidor externo. Retorna top-100 candidatos em < 50ms.
 
-**Saiba como**: [→ Vector Search](./vector-search.md)
+**[Ver Vector Search](./vector-search.md)**
 
-### Reranker
+### Reranker Local (XLM-RoBERTa)
 
-O Voyage Rerank 2.5 refina os 100 candidatos para os 10 mais relevantes, aumentando significativamente a precisão. Utiliza um modelo cross-encoder para comparação semântica profunda.
+XLM-RoBERTa-small (parte do VCR) refina top-100 para top-10 com score de relevância. Roda em CPU, latência < 10ms. Substitui Voyage Rerank com modelo 100% local.
 
-**Saiba como**: [→ Reranker](./reranker.md)
+**[Ver Reranker Local](./reranker-local.md)**
 
-### Reranker Local
+## Fluxo do Pipeline
 
-Alternativa sem dependência de banco de dados vetorial: busca determinística combinada com reranking semântico local. Ideal para dados mutáveis ou dinâmicos.
-
-**Saiba como**: [→ Reranker Local](./reranker-local.md)
-
-## Fluxo do Pipeline Orquestrado pelo Vectora Cognitive Runtime
-
-O **[Vectora Cognitive Runtime (Decision Engine)](/models/vectora-decision-engine/)** orquestra o pipeline de busca, decidindo se deve usar busca semântica profunda, busca estrutural ou uma combinação de ambas baseada na intenção do usuário.
+VCR orquestra o pipeline decidindo quando usar busca semântica, estrutural ou híbrida.
 
 ```text
 Query
-  ↓
-Vectora Cognitive Runtime: Tactical Routing Decision
-  ↓
-Embeddings (Voyage 4) → 1536D vector
-  ↓
-Vector Search (HNSW) → 100 candidatos
-  ↓
-Reranking (Voyage Rerank) → 10 resultados relevantes
-  ↓
-Vectora Cognitive Runtime: Faithfulness Validation
-  ↓
-Context Composition
+  |
+  +-> VCR: Roteamento de estratégia (auto/semantic/structural/hybrid)
+  |
+  +-> Embeddings (VoyageAI, cached Redis) → vetor 1024D
+  |
+  +-> Vector Search (LanceDB HNSW) → top-100 candidatos
+  |
+  +-> Reranking (XLM-RoBERTa local) → top-10 relevantes
+  |
+  +-> Compactação (head/tail) → contexto reduzido
+  |
+  +-> VCR: Validação de faithfulness
+  |
+  +-> Resultado final
 ```
+
+## Métricas de Performance
+
+| Etapa                       | Latência Target                  | Custo           |
+| --------------------------- | -------------------------------- | --------------- |
+| **Embeddings (VoyageAI)**   | <200ms (uncached), <1ms (cached) | $0.10/2M tokens |
+| **Vector Search (LanceDB)** | <50ms                            | Grátis (local)  |
+| **Reranking (XLM-RoBERTa)** | <10ms                            | Grátis (local)  |
+| **Total (sem LLM)**         | <500ms p95                       | ~$0.001/query   |
 
 ## External Linking
 
-| Concept               | Resource                                                   | Link                                                                                                       |
-| --------------------- | ---------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| **MongoDB Atlas**     | Atlas Vector Search Documentation                          | [www.mongodb.com/docs/atlas/atlas-vector-search/](https://www.mongodb.com/docs/atlas/atlas-vector-search/) |
-| **Voyage AI**         | High-performance embeddings for RAG                        | [www.voyageai.com/](https://www.voyageai.com/)                                                             |
-| **Voyage Embeddings** | Voyage Embeddings Documentation                            | [docs.voyageai.com/docs/embeddings](https://docs.voyageai.com/docs/embeddings)                             |
-| **Voyage Reranker**   | Voyage Reranker API                                        | [docs.voyageai.com/docs/reranker](https://docs.voyageai.com/docs/reranker)                                 |
-| **RAG**               | Retrieval-Augmented Generation for Knowledge-Intensive NLP | [arxiv.org/abs/2005.11401](https://arxiv.org/abs/2005.11401)                                               |
-| **HNSW**              | Efficient and robust approximate nearest neighbor search   | [arxiv.org/abs/1603.09320](https://arxiv.org/abs/1603.09320)                                               |
-
----
-
-_Parte do ecossistema Vectora_ · [Open Source (MIT)](https://github.com/Kaffyn/Vectora) · [Contribuidores](https://github.com/Kaffyn/Vectora/graphs/contributors)
+| Conceito        | Recurso                                | Link                                                                         |
+| --------------- | -------------------------------------- | ---------------------------------------------------------------------------- |
+| **LanceDB**     | Vector database local para RAG         | [lancedb.com/docs](https://lancedb.com/docs)                                 |
+| **VoyageAI**    | High-performance embeddings para RAG   | [voyageai.com](https://www.voyageai.com/)                                    |
+| **XLM-RoBERTa** | Modelo multilíngue de reranking        | [huggingface.co/xlm-roberta-small](https://huggingface.co/xlm-roberta-small) |
+| **RAG**         | Retrieval-Augmented Generation         | [arxiv.org/abs/2005.11401](https://arxiv.org/abs/2005.11401)                 |
+| **HNSW**        | Efficient approximate nearest neighbor | [arxiv.org/abs/1603.09320](https://arxiv.org/abs/1603.09320)                 |
