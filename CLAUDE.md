@@ -1,4 +1,4 @@
-# AGENTS.md - Diretrizes do Vectora
+# CLAUDE.md - Diretrizes do Vectora
 
 Este arquivo fornece orientacoes para agentes de IA que trabalham neste monorepo.
 
