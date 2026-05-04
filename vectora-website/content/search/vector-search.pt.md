@@ -1,32 +1,21 @@
 ---
-title: "Busca Vetorial: A Ciência do Significado"
+title: "Busca Vetorial com LanceDB"
 slug: vector-search
-date: "2026-04-19T09:30:00-03:00"
+date: "2026-05-03T09:30:00-03:00"
 type: docs
 sidebar:
   open: true
 tags:
   - ai
   - architecture
-  - auth
   - concepts
   - embeddings
-  - errors
   - hnsw
-  - json
-  - jwt
-  - mongodb
-  - mongodb-atlas
-  - persistence
-  - plugins
+  - lancedb
   - rag
   - reranker
-  - security
   - semantic-search
-  - state
-  - system
   - vector-database
-  - vector-db
   - vector-search
   - vectora
   - voyage
@@ -34,112 +23,141 @@ tags:
 
 {{< lang-toggle >}}
 
+{{< section-toggle >}}
+
+Busca Vetorial permite encontrar informações não por palavras-chave exatas, mas por significado semântico. O Vectora usa LanceDB com HNSW para armazenar e buscar embeddings 1024D gerados por VoyageAI. Tudo roda localmente em disco — sem servidor externo.
+
 ## O Que é Busca Vetorial?
 
-A **Busca Vetorial** (ou Vector Search) é a tecnologia que permite encontrar informações não por palavras-chave exatas (como no SQL `LIKE %termino%`), mas pelo **significado semântico**.
+Imagine que você quer encontrar no seu código onde o sistema lida com "cancelamento de assinatura":
 
-Imagine que você quer encontrar no seu código onde o sistema lida com "cancelamento de assinatura".
-
-- **Busca Tradicional**: Procura por `cancel`, `subscription`, `unsub`. Se o programador usou `deactivateAccount`, a busca tradicional falha.
-- **Busca Vetorial**: Entende que "deactivate account" e "cancel subscription" estão no mesmo universo semântico de finalização de serviço e encontra o resultado.
+- **Busca Tradicional**: Procura por `cancel`, `subscription`, `unsub`. Se o programador usou `deactivateAccount`, a busca falha.
+- **Busca Vetorial**: Entende que "deactivate account" e "cancel subscription" têm o mesmo significado semântico e encontra o resultado.
 
 ## Como Funciona: Do Código ao Vetor
 
-A busca vetorial transforma texto ou código em uma lista de números (um **vetor**) que representa sua posição em um "espaço de pensamento" de alta dimensionalidade.
+### 1. Embedding (VoyageAI)
 
-## 1. Embedding (A Coordenada)
+VoyageAI (voyage-3-large) processa um trecho de código e gera um vetor de 1024 números que representam o significado semântico:
 
-O [Voyage 4](/concepts/embeddings/) processa um trecho de código e gera um vetor de 1.536 números.
+- Código sobre "Auth" terá padrões altos nas dimensões de segurança.
+- Código sobre "Database" terá padrões altos nas dimensões de persistência.
 
-- Código sobre "Auth" terá números altos na dimensão de segurança.
-- Código sobre "Database" terá números altos na dimensão de persistência.
+### 2. Espaço Vetorial (LanceDB)
 
-## 2. Espaço Vetorial
+LanceDB armazena esses vetores localmente em disco e usa HNSW para buscas eficientes. Código similar fica fisicamente próximo no espaço vetorial de 1024 dimensões.
 
-Pense em um mapa 3D (embora no Vectora sejam 1.536 dimensões). Código similar fica **fisicamente próximo** no mapa.
+### 3. Busca HNSW
 
-```mermaid
-graph TD
-    subgraph "Espaço Semântico"
-        A[Login Controller] --- B[Auth Plugin]
-        C[User Model] --- D[Profile Sync]
-        E[Query Builder] --- F[Atlas Vector]
-    end
+HNSW (Hierarchical Navigable Small World) navega o espaço vetorial em múltiplas camadas:
 
-    Q((Sua Pergunta)) -.-> Qv[Vetor da Query]
-    Qv -- "Cálculo de Distância" --> A
-    Qv -- "Cálculo de Distância" --> B
+1. A camada superior tem poucos pontos (pontos âncora distantes)
+2. O algoritmo pula rapidamente entre pontos distantes
+3. Conforme aproxima, desce para camadas mais densas
+
+Resultado: encontra top-100 candidatos em < 50ms para bases com 1M+ vetores.
+
+## LanceDB: Setup e Configuração
+
+### Conectar ao banco
+
+```python
+import lancedb
+
+db = lancedb.connect("./data/lancedb")
+```
+
+### Criar tabela com índice
+
+```python
+table = db.create_table(
+    "code_chunks",
+    schema={
+        "id": "string",
+        "file": "string",
+        "content": "string",
+        "embedding": "vector[1024]",
+    },
+    mode="overwrite",
+)
+
+# Criar índice HNSW
+table.create_index(
+    metric="cosine",
+    num_partitions=256,
+    num_sub_vectors=96,
+)
+```
+
+### Busca Semântica
+
+```python
+query_embedding = voyageai.embed(["Como validar JWT?"], model="voyage-3-large").embeddings[0]
+
+results = (
+    table.search(query_embedding)
+    .limit(100)
+    .metric("cosine")
+    .to_pandas()
+)
+
+# results columns: id, file, content, embedding, _distance
+# _distance: 0.0 = idêntico, 1.0 = completamente diferente
+```
+
+### Busca com Filtros
+
+```python
+# Filtrar por linguagem ou namespace
+results = (
+    table.search(query_embedding)
+    .where("file LIKE 'src/auth/%'")
+    .limit(50)
+    .to_pandas()
+)
 ```
 
 ## Métricas de Similaridade
 
-Para saber o quão "perto" uma query está de um pedaço de código no Vectora, usamos o **Cosine Similarity** (Similaridade de Cosseno).
+| Métrica                | Como Funciona                      | Quando Usar                           |
+| ---------------------- | ---------------------------------- | ------------------------------------- |
+| **Cosine Similarity**  | Ângulo entre vetores (normalizado) | Texto e código — padrão do Vectora    |
+| **Euclidean Distance** | Distância em linha reta            | Dados numéricos puros                 |
+| **Dot Product**        | Multiplicação direta               | Vetores já normalizados — mais rápido |
 
-| Métrica                | Como Funciona                                   | Por que importa                                                                              |
-| ---------------------- | ----------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| **Cosine Similarity**  | Mede o ângulo entre dois vetores.               | É ideal para comparar trechos de tamanhos diferentes (uma frase curta vs. uma função longa). |
-| **Euclidean Distance** | Mede a distância em linha reta entre os pontos. | Útil em dados numéricos puros, mas menos precisa para linguagem natural/código.              |
-| **Dot Product**        | Multiplicação direta dos vetores.               | Extremamente rápida em hardware moderno, usada internamente pelo MongoDB Atlas.              |
+O Vectora usa **cosine similarity** por padrão.
 
-## O Algoritmo HNSW
+## Comparativo: LanceDB vs MongoDB Atlas
 
-O Vectora usa o **HNSW (Hierarchical Navigable Small World)** no MongoDB Atlas. É o "Estado da Arte" em busca de vizinhos mais próximos (ANN - Approximate Nearest Neighbors).
+| Característica  | LanceDB (Vectora)         | MongoDB Atlas              |
+| --------------- | ------------------------- | -------------------------- |
+| **Hosting**     | Local (arquivo)           | Nuvem (SaaS)               |
+| **Privacidade** | Dados não saem da máquina | Dados na nuvem             |
+| **Custo**       | Grátis                    | Pago (por storage/queries) |
+| **Latência**    | < 50ms local              | 100-500ms (rede)           |
+| **Setup**       | Zero config               | Conta + configuração       |
+| **Escala**      | Até ~50M vetores em disco | Escala ilimitada           |
 
-- **O Problema**: Comparar sua query com 1 milhão de vetores um por um é lento (O(N)).
-- **A Solução (HNSW)**: Cria uma estrutura de "camadas" como um sistema de rodovias.
-  1. A camada superior tem poucos pontos (rodovias principais).
-  2. O algoritmo pula rapidamente entre pontos distantes.
-  3. Conforme chega perto, ele desce para camadas inferiores (ruas locais) com mais detalhes.
-- **Performance no Vectora**: Encontra os 20 melhores resultados em <50ms em base de dados massivas.
+## FAQ
 
-## Busca Vetorial vs. Full-Text Search no Atlas
+### Por que a busca traz resultados sem o texto que digitei?
 
-O MongoDB Atlas oferece ambos. Aqui está a diferença:
+Porque busca pelo significado, não pela palavra. "Segurança" traz `Bcrypt`, `JWT` e `validate_token` mesmo sem essas palavras na query.
 
-| Característica    | Full-Text (Lucene)                    | Vector (HNSW)                         |
-| ----------------- | ------------------------------------- | ------------------------------------- |
-| **Base**          | Palavras/Tokens                       | Embeddings                            |
-| **Precisão**      | Alta para nomes exatos (ex: `UserID`) | Alta para conceitos (ex: `validação`) |
-| **Flexibilidade** | Rígida a erros de digitação           | Resistente a sinônimos e erros        |
-| **Contexto**      | Ignora a intenção                     | Prioriza a semântica                  |
+### O Vectora entende código de qualquer linguagem?
 
-**A Estratégia do Vectora**: Nós usamos **Hybrid Search** onde aplicável, mas a força motriz é a busca vetorial refinada pelo [Reranker](/concepts/reranker/).
+Sim. VoyageAI (voyage-3-large) foi treinado em múltiplas linguagens. Python, TypeScript, Java, Go, Rust — todos produzem embeddings comparáveis.
 
-## FAQ de Busca Vetorial
+### Qual é o limite de vetores?
 
-**P: Por que a busca vetorial às vezes traz resultados que não contêm o texto que eu digitei?**
-R: Porque ela entendeu a **intenção**. Se você busca "segurança", ela trará resultados sobre `Bcrypt`, `JWT` e `Salting`, mesmo que a palavra "segurança" não apareça no código.
-
-**P: O Vectora entende código de qualquer linguagem?**
-R: Sim, graças ao Voyage 4, as estruturas semânticas de loops, condicionais e declarações de tipos são similares em quase todas as linguagens modernas.
-
-**P: Como os namespaces afetam a busca?**
-R: O Vectora aplica um **filtro de metadados** ("Pre-filtering") antes da busca vetorial. Isso garante que o algoritmo HNSW só percorra os vetores que pertencem ao seu projeto autorizado.
+LanceDB suporta eficientemente até ~50M vetores em disco. Para codebases típicos (< 1M chunks), performance é < 50ms por query.
 
 ## External Linking
 
-| Concept               | Resource                                                 | Link                                                                                                       |
-| --------------------- | -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| **MongoDB Atlas**     | Atlas Vector Search Documentation                        | [www.mongodb.com/docs/atlas/atlas-vector-search/](https://www.mongodb.com/docs/atlas/atlas-vector-search/) |
-| **Voyage AI**         | High-performance embeddings for RAG                      | [www.voyageai.com/](https://www.voyageai.com/)                                                             |
-| **Voyage Embeddings** | Voyage Embeddings Documentation                          | [docs.voyageai.com/docs/embeddings](https://docs.voyageai.com/docs/embeddings)                             |
-| **Voyage Reranker**   | Voyage Reranker API                                      | [docs.voyageai.com/docs/reranker](https://docs.voyageai.com/docs/reranker)                                 |
-| **HNSW**              | Efficient and robust approximate nearest neighbor search | [arxiv.org/abs/1603.09320](https://arxiv.org/abs/1603.09320)                                               |
-| **Anthropic Claude**  | Claude Documentation                                     | [docs.anthropic.com/](https://docs.anthropic.com/)                                                         |
-
----
-
-> **Frase para lembrar**:
-> _"Na busca tradicional você digita palavras. Na busca vetorial do Vectora, você expressa intenções."_
-
----
-
-**Vectora v0.1.0** · [GitHub](https://github.com/Kaffyn/Vectora) · [Licença (MIT)](https://github.com/Kaffyn/Vectora/blob/master/LICENSE) · [Contribuidores](https://github.com/Kaffyn/Vectora/graphs/contributors)
-
-_Parte do ecossistema Vectora AI Agent. Construído com [ADK](https://adk.dev/), [Claude](https://claude.ai/) e [Go](https://golang.org/)._
-
-© 2026 Contribuidores do Vectora. Todos os direitos reservados.
-
----
-
-_Parte do ecossistema Vectora_ · [Open Source (MIT)](https://github.com/Kaffyn/Vectora) · [Contribuidores](https://github.com/Kaffyn/Vectora/graphs/contributors)
+| Conceito              | Recurso                                | Link                                                                                       |
+| --------------------- | -------------------------------------- | ------------------------------------------------------------------------------------------ |
+| **LanceDB**           | Vector database local com HNSW         | [lancedb.com/docs](https://lancedb.com/docs)                                               |
+| **VoyageAI**          | Embeddings de alta performance         | [voyageai.com](https://www.voyageai.com/)                                                  |
+| **HNSW**              | Efficient approximate nearest neighbor | [arxiv.org/abs/1603.09320](https://arxiv.org/abs/1603.09320)                               |
+| **Cosine Similarity** | Métricas de similaridade vetorial      | [en.wikipedia.org/wiki/Cosine_similarity](https://en.wikipedia.org/wiki/Cosine_similarity) |
+| **ANN Benchmark**     | Benchmark de algoritmos ANN            | [ann-benchmarks.com](https://ann-benchmarks.com)                                           |

@@ -1,23 +1,18 @@
 ---
-title: "Voyage 4: Embeddings de Código de Próxima Geração"
+title: "Embeddings: VoyageAI no Vectora"
 slug: embeddings
-date: "2026-04-18T22:30:00-03:00"
+date: "2026-05-03T22:30:00-03:00"
 type: docs
 sidebar:
   open: true
 tags:
   - ai
   - architecture
-  - ast-parsing
-  - auth
   - concepts
   - embeddings
-  - errors
-  - gemini
-  - mongodb-atlas
-  - openai
   - rag
   - reranker
+  - redis
   - vector-search
   - vectora
   - voyage
@@ -25,90 +20,122 @@ tags:
 
 {{< lang-toggle >}}
 
-Embeddings genéricas, treinadas em textos aleatórios da internet, frequentemente falham ao lidar com código-fonte. Elas não compreendem a diferença semântica entre uma assinatura de função e seu corpo, ou como a posição de um `null check` altera a lógica do programa.
+{{< section-toggle >}}
 
-O **Voyage 4** é um modelo de embedding de última geração, especificamente otimizado para código estruturado e documentação técnica, permitindo que o Vectora entenda o significado real do seu software.
+O Vectora usa VoyageAI (modelo voyage-3-large) para converter código e texto em vetores 1024D. Resultados são cacheados em Redis por 24h para reduzir custos e latência. Embeddings genéricas falham com código — VoyageAI foi otimizado especificamente para código estruturado e documentação técnica.
 
 ## O Problema das Embeddings Genéricas
 
-A busca textual simples por termos como "auth" pode retornar dezenas de resultados irrelevantes, enquanto ignora funções semanticamente idênticas como `verifyToken` ou `validateJWT`.
+Embeddings treinadas apenas em texto não capturam conceitos fundamentais de programação:
 
-Modelos genéricos não capturam conceitos fundamentais de programação:
+- Não distinguem entre uma assinatura de função e seu corpo.
+- Não relacionam `verifyToken` e `validateJWT` como equivalentes semânticos.
+- Não entendem padrões de concorrência (`async/await` vs callbacks).
 
-- Diferença entre tipos de dados e estruturas complexas.
-- Padrões de concorrência e tratamento de erros.
-- Relações entre código assíncrono (`async/await` vs. `Promises`).
+VoyageAI foi treinado em um corpus massivo de código real, capturando a semântica intrínseca de estruturas de programação.
 
-## Especificações Técnicas do Voyage 4
+## Especificações: voyage-3-large
 
-O Voyage 4 atinge um equilíbrio ideal entre precisão, dimensionalidade e custo para aplicações de IA em larga escala.
-
-| Aspecto                | Detalhe                        |
-| :--------------------- | :----------------------------- |
-| **Dimensionalidade**   | 1.536 dimensões                |
-| **Precisão (NDCG@10)** | 98.5% em benchmarks de código  |
-| **Latência**           | ~50-100ms por requisição       |
-| **Custo**              | $0.02 por 1M tokens de entrada |
+| Aspecto               | Detalhe                        |
+| --------------------- | ------------------------------ |
+| **Modelo**            | voyage-3-large                 |
+| **Dimensionalidade**  | 1024 dimensões                 |
+| **Custo**             | ~$0.10 por 2M tokens           |
+| **Latência (API)**    | ~200ms por request             |
+| **Latência (cached)** | <1ms (Redis)                   |
+| **Suporte**           | 100+ linguagens de programação |
 
 ## Arquitetura Interna
 
-O funcionamento do Voyage 4 baseia-se em uma compreensão profunda da estrutura do código, não apenas na frequência das palavras.
+### 1. Tokenização Semântica
 
-### 1. Tokenização e AST
+VoyageAI compreende a estrutura semântica do código: reconhece parâmetros, tipos de retorno, blocos de controle de fluxo e mapeia esses elementos para o espaço vetorial.
 
-Ao processar um trecho de código, o modelo compreende a Árvore de Sintaxe Abstrata (AST). Ele reconhece parâmetros, tipos de retorno e blocos de controle de fluxo, mapeando essa estrutura para o espaço vetorial.
+### 2. Encoding Vetorial 1024D
 
-### 2. Encoding Vetorial
-
-Cada dimensão do vetor captura um aspecto semântico específico, como tratamento de erros, padrões de banco de dados ou lógica de autenticação. Isso permite que códigos escritos em linguagens diferentes (ex: Python e JavaScript) com a mesma função lógica sejam mapeados para posições próximas no espaço vetorial.
+Cada uma das 1024 dimensões captura um aspecto semântico específico: autenticação, persistência, concorrência, tratamento de erros, etc. Código com a mesma função lógica em linguagens diferentes (Python e TypeScript) são mapeados para posições próximas.
 
 ### 3. Normalização L2
 
-Todos os vetores são normalizados, garantindo que a similaridade seja medida de forma estável através do produto escalar (dot product), essencial para buscas rápidas e precisas.
+Todos os vetores são normalizados (L2), garantindo que cosine similarity funcione via produto escalar (dot product) — 4x mais rápido que distância euclidiana.
+
+## Integração: VoyageAI + Redis Cache
+
+```python
+import voyageai
+import redis
+import json
+import hashlib
+
+voyage = voyageai.Client(api_key="sk-voyage-xxx")
+r = redis.Redis()
+
+def embed(texts: list[str]) -> list[list[float]]:
+    results = []
+    to_fetch = []
+    indices = []
+
+    for i, text in enumerate(texts):
+        cache_key = f"embed:{hashlib.sha256(text.encode()).hexdigest()}"
+        cached = r.get(cache_key)
+        if cached:
+            results.append(json.loads(cached))
+        else:
+            to_fetch.append(text)
+            indices.append(i)
+            results.append(None)
+
+    if to_fetch:
+        embeddings = voyage.embed(to_fetch, model="voyage-3-large").embeddings
+        for idx, embedding in zip(indices, embeddings):
+            cache_key = f"embed:{hashlib.sha256(to_fetch[indices.index(idx)].encode()).hexdigest()}"
+            r.setex(cache_key, 86400, json.dumps(embedding))
+            results[idx] = embedding
+
+    return results
+```
 
 ## Capacidades Multimodais
 
-O Voyage 4 brilha ao integrar código e texto natural no mesmo espaço semântico.
-
-- **Busca em Código Puro**: Encontra validadores mesmo que a palavra exata da consulta não esteja no nome da função.
-- **Documentação + Código**: Relaciona artigos explicativos com as implementações reais de padrões de design.
-- **Busca Semântica Avançada**: Identifica conceitos complexos como "race conditions" ou "deadlocks" analisando padrões de concorrência.
-
-## Integração com MongoDB Atlas
-
-Para gerenciar milhões de embeddings com baixa latência, o Vectora utiliza o MongoDB Atlas Vector Search.
-
-- **HNSW (Hierarchical Navigable Small World)**: Organiza os vetores em uma estrutura hierárquica para buscas em milissegundos.
-- **TurboQuant**: Comprime vetores de 32 bits para 8 bits, reduzindo o custo de armazenamento em 75% com perda mínima de precisão.
-- **Payload Filtering**: Permite filtrar resultados por metadados como linguagem, namespace ou data de criação em tempo real.
+- **Código Puro**: Encontra validadores mesmo que a query use palavras diferentes das usadas no código.
+- **Documentação + Código**: Relaciona comentários e docstrings com implementações reais.
+- **Cross-Language**: Python e TypeScript com a mesma lógica têm embeddings similares.
+- **Semântica Avançada**: Identifica padrões como "race conditions", "deadlocks", "null safety".
 
 ## Performance e Otimização
 
-O Vectora implementa técnicas avançadas para maximizar a eficiência do uso do Voyage 4.
+### Cache Redis (TTL 24h)
 
-- **Batching**: Agrupamos requisições de embedding para reduzir a latência total durante a indexação inicial.
-- **Caching**: Resultados de embedding são cacheados no MongoDB Atlas baseados no hash SHA-256 do conteúdo, evitando processamento redundante.
+Queries repetidas usam embedding cacheado:
 
-## Comparação de Precisão (NDCG@10)
+```text
+Primeira query "Como validar JWT?": 200ms (VoyageAI API)
+Segunda query "Como validar JWT?": <1ms (Redis cache)
+Economia de custo: 99.9% nas queries repetidas
+```
 
-| Modelo                        | Precisão em Código |
-| :---------------------------- | :----------------- |
-| **Voyage 4**                  | **98.5%**          |
-| OpenAI text-embedding-3-large | 95.3%              |
-| Gemini Embedding 2.0          | 92.0%              |
-| Voyage 3-large                | 92.1%              |
+### Batching para Indexação
+
+Ao indexar um codebase completo, agrupe chunks em batches de 128:
+
+```python
+BATCH_SIZE = 128
+
+for i in range(0, len(chunks), BATCH_SIZE):
+    batch = chunks[i:i + BATCH_SIZE]
+    embeddings = voyage.embed(
+        [c["content"] for c in batch],
+        model="voyage-3-large"
+    ).embeddings
+    # Inserir no LanceDB
+```
 
 ## External Linking
 
-| Concept               | Resource                            | Link                                                                                                       |
-| --------------------- | ----------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| **MongoDB Atlas**     | Atlas Vector Search Documentation   | [www.mongodb.com/docs/atlas/atlas-vector-search/](https://www.mongodb.com/docs/atlas/atlas-vector-search/) |
-| **Voyage AI**         | High-performance embeddings for RAG | [www.voyageai.com/](https://www.voyageai.com/)                                                             |
-| **Voyage Embeddings** | Voyage Embeddings Documentation     | [docs.voyageai.com/docs/embeddings](https://docs.voyageai.com/docs/embeddings)                             |
-| **Voyage Reranker**   | Voyage Reranker API                 | [docs.voyageai.com/docs/reranker](https://docs.voyageai.com/docs/reranker)                                 |
-| **AST Parsing**       | Tree-sitter Official Documentation  | [tree-sitter.github.io/tree-sitter/](https://tree-sitter.github.io/tree-sitter/)                           |
-| **Gemini AI**         | Google DeepMind Gemini Models       | [deepmind.google/technologies/gemini/](https://deepmind.google/technologies/gemini/)                       |
-
----
-
-_Parte do ecossistema Vectora_ · [Open Source (MIT)](https://github.com/Kaffyn/Vectora) · [Contribuidores](https://github.com/Kaffyn/Vectora/graphs/contributors)
+| Conceito          | Recurso                              | Link                                                                                     |
+| ----------------- | ------------------------------------ | ---------------------------------------------------------------------------------------- |
+| **VoyageAI**      | High-performance embeddings para RAG | [voyageai.com](https://www.voyageai.com/)                                                |
+| **VoyageAI Docs** | Documentação de embeddings           | [docs.voyageai.com/docs/embeddings](https://docs.voyageai.com/docs/embeddings)           |
+| **Redis**         | In-memory cache para embeddings      | [redis.io/docs](https://redis.io/docs/)                                                  |
+| **LanceDB**       | Vector database local                | [lancedb.com/docs](https://lancedb.com/docs)                                             |
+| **MTEB**          | Benchmark de modelos de embedding    | [huggingface.co/spaces/mteb/leaderboard](https://huggingface.co/spaces/mteb/leaderboard) |
