@@ -25,7 +25,7 @@ from deepagents import Agent
 
 agent = Agent(
     name="research",
-    model="claude-3-opus",  # ou claude-3-sonnet, claude-3-haiku
+    model="claude-sonnet-4-6",  # ou claude-opus-4-7, claude-haiku-4-5-20251001
     api_key=os.getenv("ANTHROPIC_API_KEY")
 )
 ```
@@ -39,23 +39,12 @@ export DEEPAGENTS_MODEL=claude-3-opus
 
 ### OpenAI
 
-GPT-4 e GPT-3.5:
+GPT-4o como alternativa:
 
 ```python
 agent = Agent(
-    model="gpt-4",
+    model="gpt-4o",
     api_key=os.getenv("OPENAI_API_KEY")
-)
-```
-
-### Google Gemini
-
-Gemini Pro:
-
-```python
-agent = Agent(
-    model="gemini-pro",
-    api_key=os.getenv("GOOGLE_API_KEY")
 )
 ```
 
@@ -67,9 +56,9 @@ Rota para o melhor provedor por tarefa:
 from deepagents import routing
 
 router = routing.MultiProviderRouter({
-    "complex_analysis": "claude-3-opus",
-    "simple_chat": "claude-3-haiku",
-    "code_gen": "gpt-4",
+    "complex_analysis": "claude-opus-4-7",
+    "simple_chat": "claude-haiku-4-5-20251001",
+    "code_gen": "gpt-4o",
 })
 
 result = agent.execute(
@@ -84,18 +73,17 @@ Automaticamente tenta próximo provedor em caso de erro:
 
 ```python
 agent = Agent(
-    model="claude-3-opus",
-    fallback=["gpt-4", "gemini-pro"],
+    model="claude-opus-4-7",
+    fallback=["gpt-4o"],
     max_retries=3
 )
 ```
 
 ## External Linking
 
-| Conceito         | Recurso              | Link                                                                                                                   |
-| ---------------- | -------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| Deep Agents Docs | Provider Setup       | [https://docs.langchain.com/oss/python/deepagents/](https://docs.langchain.com/oss/python/deepagents/)                 |
-| Claude API       | Anthropic Claude     | [https://docs.anthropic.com/](https://docs.anthropic.com/)                                                             |
-| Gemini API       | Google AI Studio     | [https://ai.google.dev/docs](https://ai.google.dev/docs)                                                               |
-| OpenAI API       | OpenAI Documentation | [https://platform.openai.com/docs/](https://platform.openai.com/docs/)                                                 |
-| Environment Vars | Configuration Guide  | [https://docs.langchain.com/oss/python/deepagents/overview](https://docs.langchain.com/oss/python/deepagents/overview) |
+| Conceito             | Recurso                      | Link                                                                                            |
+| -------------------- | ---------------------------- | ----------------------------------------------------------------------------------------------- |
+| **LangChain Agents** | LangChain agent docs         | [python.langchain.com/docs/concepts/agents](https://python.langchain.com/docs/concepts/agents/) |
+| **Claude API**       | Anthropic documentation      | [docs.anthropic.com](https://docs.anthropic.com/)                                               |
+| **OpenAI API**       | OpenAI documentation         | [platform.openai.com/docs](https://platform.openai.com/docs/)                                   |
+| **LangGraph**        | Stateful agent orchestration | [langchain-ai.github.io/langgraph](https://langchain-ai.github.io/langgraph/)                   |

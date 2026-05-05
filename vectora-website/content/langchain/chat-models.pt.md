@@ -7,7 +7,7 @@ type: docs
 sidebar:
   open: true
 breadcrumbs: true
-tags: ["langchain", "chat-models", "llm", "claude", "gpt", "gemini"]
+tags: ["langchain", "chat-models", "llm", "claude", "openai", "vectora"]
 ---
 
 {{< lang-toggle >}}
@@ -24,7 +24,7 @@ Recomendado para máxima performance:
 from langchain.chat_models import ChatAnthropic
 
 llm = ChatAnthropic(
-    model="claude-3-opus",
+    model="claude-sonnet-4-6",
     api_key="your_key",
     temperature=0.7,
     max_tokens=2048
@@ -45,16 +45,6 @@ from langchain.chat_models import ChatOpenAI
 llm = ChatOpenAI(
     model="gpt-4",
     temperature=0.5
-)
-```
-
-### Google Gemini
-
-```python
-from langchain.chat_models import ChatGoogleGenerativeAI
-
-llm = ChatGoogleGenerativeAI(
-    model="gemini-pro"
 )
 ```
 
@@ -125,10 +115,9 @@ responses = llm.batch(queries)
 
 ## External Linking
 
-| Conceito | Recurso | Link |
-|----------|---------|------|
-| Chat Models | Chat Model Reference | [https://docs.langchain.com/oss/python/langchain/chat_models](https://docs.langchain.com/oss/python/langchain/chat_models) |
-| Claude API | Anthropic Documentation | [https://docs.anthropic.com/](https://docs.anthropic.com/) |
-| OpenAI API | OpenAI Chat Completions | [https://platform.openai.com/docs/guides/gpt](https://platform.openai.com/docs/guides/gpt) |
-| Gemini API | Google AI Studio | [https://ai.google.dev/docs](https://ai.google.dev/docs) |
-| Streaming | Real-time Responses | [https://docs.langchain.com/oss/python/langchain/](https://docs.langchain.com/oss/python/langchain/) |
+| Conceito                | Recurso                  | Link                                                                                                |
+| ----------------------- | ------------------------ | --------------------------------------------------------------------------------------------------- |
+| **Chat Models**         | LangChain Chat Models    | [python.langchain.com/docs/integrations/chat](https://python.langchain.com/docs/integrations/chat/) |
+| **Claude API**          | Anthropic Documentation  | [docs.anthropic.com](https://docs.anthropic.com/)                                                   |
+| **OpenAI API**          | OpenAI Chat Completions  | [platform.openai.com/docs](https://platform.openai.com/docs/guides/gpt)                             |
+| **LangChain Streaming** | Streaming with LangChain | [python.langchain.com/docs/how_to/streaming](https://python.langchain.com/docs/how_to/streaming/)   |
