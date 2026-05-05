@@ -9,14 +9,12 @@ tags:
   - agentic-framework
   - ai
   - architecture
-  - ast-parsing
   - concepts
   - context-engine
   - embeddings
-  - gemini
   - governance
-  - guardian
-  - harness-runtime
+  - langchain
+  - langgraph
   - mcp
   - protocol
   - rag
@@ -26,6 +24,7 @@ tags:
   - tools
   - vectora
   - voyage
+  - vcr
 ---
 
 {{< lang-toggle >}}
@@ -62,7 +61,7 @@ A escolha de construir o Vectora como um Sub-Agent deliberado permite que ele as
 
 ### Camada de Orquestração Agentic
 
-O Vectora utiliza o Gemini como motor de raciocínio e o Voyage 4 para embeddings, tudo orquestrado por um framework agentic que intercepta chamadas, valida permissões e sanitiza saídas.
+O Vectora utiliza LangChain + LangGraph como motor de orquestração e VoyageAI (voyage-3-large) para embeddings, com reranking local via XLM-RoBERTa. O VCR intercepta chamadas, valida permissões e sanitiza saídas antes de retornar contexto.
 
 ### Vantagens do Modelo Sub-Agent
 
@@ -90,14 +89,14 @@ Documentos de instrução (como `AGENTS.md`) são úteis para sugerir comportame
 
 ## External Linking
 
-| Concept        | Resource                                                   | Link                                                                                   |
-| -------------- | ---------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| **MCP**        | Model Context Protocol Specification                       | [modelcontextprotocol.io/specification](https://modelcontextprotocol.io/specification) |
-| **MCP Go SDK** | Go SDK for MCP (mark3labs)                                 | [github.com/mark3labs/mcp-go](https://github.com/mark3labs/mcp-go)                     |
-| **Gemini AI**  | Google DeepMind Gemini Models                              | [deepmind.google/technologies/gemini/](https://deepmind.google/technologies/gemini/)   |
-| **Gemini API** | Google AI Studio Documentation                             | [ai.google.dev/docs](https://ai.google.dev/docs)                                       |
-| **RBAC**       | NIST Role-Based Access Control Standard                    | [csrc.nist.gov/projects/rbac](https://csrc.nist.gov/projects/rbac)                     |
-| **RAG**        | Retrieval-Augmented Generation for Knowledge-Intensive NLP | [arxiv.org/abs/2005.11401](https://arxiv.org/abs/2005.11401)                           |
+| Conceito      | Recurso                                                    | Link                                                                                   |
+| ------------- | ---------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| **MCP**       | Model Context Protocol Specification                       | [modelcontextprotocol.io/specification](https://modelcontextprotocol.io/specification) |
+| **LangGraph** | Stateful agent orchestration                               | [langchain-ai.github.io/langgraph](https://langchain-ai.github.io/langgraph/)          |
+| **VoyageAI**  | High-performance embeddings                                | [voyageai.com](https://www.voyageai.com/)                                              |
+| **RBAC**      | NIST Role-Based Access Control Standard                    | [csrc.nist.gov/projects/rbac](https://csrc.nist.gov/projects/rbac)                     |
+| **RAG**       | Retrieval-Augmented Generation                             | [arxiv.org/abs/2005.11401](https://arxiv.org/abs/2005.11401)                           |
+| **RAG**       | Retrieval-Augmented Generation for Knowledge-Intensive NLP | [arxiv.org/abs/2005.11401](https://arxiv.org/abs/2005.11401)                           |
 
 ---
 

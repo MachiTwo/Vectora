@@ -6,43 +6,30 @@ type: docs
 sidebar:
   open: true
 tags:
-  - agentic-framework
   - ai
   - architecture
   - auth
-  - caching
   - claude
   - concepts
-  - config
   - context-engine
   - embeddings
-  - errors
-  - git
-  - go
-  - guardian
-  - json
+  - fastapi
   - jwt
-  - logging
   - mcp
   - mcp-protocol
-  - mongodb-atlas
   - protocol
   - rag
-  - reference
   - reranker
   - security
-  - state
-  - system
   - tools
   - vector-search
   - vectora
   - voyage
-  - yaml
 ---
 
 {{< lang-toggle >}}
 
-**Vectora funciona exclusivamente via MCP (Model Context Protocol).** Este documento descreve como Vectora implementa MCP, sua arquitetura, e como IDEs (Claude Code, Cursor, Zed) se integram.
+O Vectora expõe ferramentas via MCP (Model Context Protocol) para integração com editores de IA (Claude Code, JetBrains, Zed). MCP é um dos três protocolos suportados — junto com REST API e JSON-RPC 2.0. Este documento descreve como o Vectora implementa MCP e como IDEs se integram.
 
 ## O que é MCP?
 
