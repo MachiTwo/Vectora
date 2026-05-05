@@ -16,7 +16,7 @@ Deep Agents pode operar em **modo ACP server**, permitindo que editores (VS Code
 
 ## Modo ACP: Arquitetura
 
-```
+```text
 Editor (VS Code, JetBrains, Zed)
     ↓ stdin/stdout
 Deep Agent (ACP Server)
@@ -44,7 +44,7 @@ from deepagents.acp import ACPServer
 # Criar agente com VCR integration
 agent = Agent(
     name="vectora-agent",
-    model="claude-3-opus",
+    model="claude-sonnet-4-6",
     tools=["search_vectora", "rerank", "execute_code"],
     enable_vcr=True
 )
@@ -64,17 +64,17 @@ if __name__ == "__main__":
 {
   "deepagents.enable": true,
   "deepagents.agentPath": "/path/to/agent.py",
-  "deepagents.model": "claude-3-opus",
+  "deepagents.model": "claude-sonnet-4-6",
   "deepagents.tools": ["search", "edit", "execute"]
 }
 ```
 
 **JetBrains (Settings → Languages → Python → Deep Agents):**
 
-```
+```text
 ✓ Enable Deep Agents
   Agent: vectora-agent
-  Model: claude-3-opus
+  Model: claude-sonnet-4-6
   Tools: search, edit, execute
 ```
 
@@ -256,7 +256,7 @@ from deepagents.acp import ACPServer
 
 agent = Agent(
     name="vectora-acp",
-    model="claude-3-opus",
+    model="claude-sonnet-4-6",
     enable_vcr=True,
     vcr_config={
         "api_key": "vectora-key",

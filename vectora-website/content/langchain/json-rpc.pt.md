@@ -16,11 +16,11 @@ JSON-RPC é um **protocolo leve de chamada de funções remotas** baseado em JSO
 
 ## JSON-RPC vs MCP vs ACP
 
-| Protocolo | Escopo | Caso de Uso |
-|-----------|--------|-----------|
-| **JSON-RPC** | Interno | Componente A ↔ Componente B |
-| **MCP** | Integração | Agente → Ferramentas externas |
-| **ACP** | Interface | Agente ↔ Editor |
+| Protocolo    | Escopo     | Caso de Uso                   |
+| ------------ | ---------- | ----------------------------- |
+| **JSON-RPC** | Interno    | Componente A ↔ Componente B  |
+| **MCP**      | Integração | Agente → Ferramentas externas |
+| **ACP**      | Interface  | Agente ↔ Editor              |
 
 **JSON-RPC:** "Chame minha função"  
 **MCP:** "Use minha ferramenta"  
@@ -32,13 +32,13 @@ JSON-RPC é um **protocolo leve de chamada de funções remotas** baseado em JSO
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "method": "analyze_code",
-    "params": {
-        "code": "def hello(): print('world')",
-        "language": "python"
-    },
-    "id": 1
+  "jsonrpc": "2.0",
+  "method": "analyze_code",
+  "params": {
+    "code": "def hello(): print('world')",
+    "language": "python"
+  },
+  "id": 1
 }
 ```
 
@@ -46,12 +46,12 @@ JSON-RPC é um **protocolo leve de chamada de funções remotas** baseado em JSO
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "result": {
-        "complexity": "low",
-        "issues": []
-    },
-    "id": 1
+  "jsonrpc": "2.0",
+  "result": {
+    "complexity": "low",
+    "issues": []
+  },
+  "id": 1
 }
 ```
 
@@ -59,13 +59,13 @@ JSON-RPC é um **protocolo leve de chamada de funções remotas** baseado em JSO
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "error": {
-        "code": -32602,
-        "message": "Invalid params",
-        "data": "Missing required parameter: code"
-    },
-    "id": 1
+  "jsonrpc": "2.0",
+  "error": {
+    "code": -32602,
+    "message": "Invalid params",
+    "data": "Missing required parameter: code"
+  },
+  "id": 1
 }
 ```
 
@@ -113,24 +113,24 @@ class JSONRPCClient:
     def __init__(self, url: str):
         self.url = url
         self.id = 0
-    
+
     async def call(self, method: str, params: dict):
         self.id += 1
-        
+
         request = {
             "jsonrpc": "2.0",
             "method": method,
             "params": params,
             "id": self.id
         }
-        
+
         async with aiohttp.ClientSession() as session:
             async with session.post(self.url, json=request) as resp:
                 response = await resp.json()
-        
+
         if "error" in response:
             raise Exception(response["error"]["message"])
-        
+
         return response["result"]
 
 # Uso
@@ -185,19 +185,19 @@ from langchain.tools import tool
 @tool
 async def search_vectora(query: str, bucket: str = "knowledge"):
     """Busca na base de conhecimento Vectora"""
-    
+
     client = JSONRPCClient("http://vectora-server:8000/jsonrpc")
     results = await client.call("vectora_search", {
         "query": query,
         "bucket": bucket,
         "top_k": 5
     })
-    
+
     return "\n".join([r["content"] for r in results])
 
 # Usar em agente
 agent = create_agent(
-    model="claude-3-opus",
+    model="claude-sonnet-4-6",
     tools=[search_vectora]
 )
 ```
@@ -257,12 +257,12 @@ Sem esperar resposta:
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "method": "log_event",
-    "params": {
-        "event": "user_action",
-        "timestamp": "2026-05-03T10:00:00Z"
-    }
+  "jsonrpc": "2.0",
+  "method": "log_event",
+  "params": {
+    "event": "user_action",
+    "timestamp": "2026-05-03T10:00:00Z"
+  }
 }
 ```
 
@@ -270,10 +270,10 @@ Note: **sem `id`** - não há resposta
 
 ## External Linking
 
-| Conceito | Recurso | Link |
-|----------|---------|------|
-| JSON-RPC Spec | Official Spec | [https://www.jsonrpc.org/](https://www.jsonrpc.org/) |
-| JSON-RPC 2.0 | Version 2.0 Spec | [https://www.jsonrpc.org/specification](https://www.jsonrpc.org/specification) |
-| Python Library | python-jsonrpc | [https://github.com/pavlov99/json-rpc](https://github.com/pavlov99/json-rpc) |
-| FastAPI Integration | Starlette JSON-RPC | [https://fastapi.tiangolo.com/](https://fastapi.tiangolo.com/) |
-| WebSocket Support | Async JSON-RPC | [https://websockets.readthedocs.io/](https://websockets.readthedocs.io/) |
+| Conceito            | Recurso            | Link                                                                           |
+| ------------------- | ------------------ | ------------------------------------------------------------------------------ |
+| JSON-RPC Spec       | Official Spec      | [https://www.jsonrpc.org/](https://www.jsonrpc.org/)                           |
+| JSON-RPC 2.0        | Version 2.0 Spec   | [https://www.jsonrpc.org/specification](https://www.jsonrpc.org/specification) |
+| Python Library      | python-jsonrpc     | [https://github.com/pavlov99/json-rpc](https://github.com/pavlov99/json-rpc)   |
+| FastAPI Integration | Starlette JSON-RPC | [https://fastapi.tiangolo.com/](https://fastapi.tiangolo.com/)                 |
+| WebSocket Support   | Async JSON-RPC     | [https://websockets.readthedocs.io/](https://websockets.readthedocs.io/)       |

@@ -34,7 +34,7 @@ Variáveis de ambiente:
 
 ```bash
 export ANTHROPIC_API_KEY=sk-ant-...
-export DEEPAGENTS_MODEL=claude-3-opus
+export DEEPAGENTS_MODEL=claude-sonnet-4-6
 ```
 
 ### OpenAI

@@ -20,7 +20,7 @@ Usar **VCR (Vectora Cognitive Runtime)** para análise de contexto antes do agen
 
 **Fluxo:**
 
-```
+```text
 User Query
     ↓
 [VCR Pre-thinking]  ← Análise de intenção, contexto, entidades
@@ -127,9 +127,9 @@ def classify_complexity(user_query: str) -> str:
 
 # Models com diferentes custo/performance
 models = {
-    "simple": ChatAnthropic(model="claude-3-haiku"),    # Fast, cheap
-    "medium": ChatAnthropic(model="claude-3-sonnet"),   # Balanced
-    "complex": ChatAnthropic(model="claude-3-opus")     # Powerful
+    "simple": ChatAnthropic(model="claude-haiku-4-5-20251001"),  # Fast, cheap
+    "medium": ChatAnthropic(model="claude-sonnet-4-6"),          # Balanced
+    "complex": ChatAnthropic(model="claude-opus-4-7")            # Powerful
 }
 
 # Router dinâmico

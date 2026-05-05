@@ -16,7 +16,7 @@ Exemplo completo de um agente Vectora que usa LangGraph para orquestração, Voy
 
 ## Arquitetura
 
-```
+```text
 User Query
     ↓
 [VCR Pre-thinking]  ← Análise contextual
@@ -56,7 +56,7 @@ def vcr_prethink(state: AgentState) -> AgentState:
 
     # Análise de intenção
     analysis = vectora_client.messages.create(
-        model="claude-3-haiku",
+        model="claude-haiku-4-5-20251001",
         messages=[{
             "role": "user",
             "content": f"Analise a intenção desta query: {query}"
@@ -71,7 +71,7 @@ def vcr_prethink(state: AgentState) -> AgentState:
 
 # 2. LLM Node
 def agent_node(state: AgentState) -> AgentState:
-    llm = ChatAnthropic(model="claude-3-opus")
+    llm = ChatAnthropic(model="claude-sonnet-4-6")
 
     response = llm.invoke(
         state["messages"],

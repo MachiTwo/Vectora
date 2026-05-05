@@ -19,7 +19,7 @@ Deep Agents suporta streaming nativo para respostas em tempo real, ideal para UI
 ```python
 from deepagents import Agent
 
-agent = Agent(name="writer", model="claude-3-opus")
+agent = Agent(name="writer", model="claude-sonnet-4-6")
 
 # Streaming via generator
 for chunk in agent.stream("Escreva um artigo sobre IA"):

@@ -57,7 +57,7 @@ Deep Agents fornece:
 
 ## Arquitetura
 
-```
+```text
 ┌─────────────────────────┐
 │   User / Client (ACP)   │
 └────────────┬────────────┘
@@ -87,7 +87,7 @@ from deepagents import Agent
 agent = Agent(
     name="research_agent",
     tools=[search, summarize],
-    model="claude-3-opus"
+    model="claude-sonnet-4-6"
 )
 ```
 
@@ -105,7 +105,7 @@ result = agent.execute("Pesquise e resuma as últimas notícias sobre IA")
 
 Communication protocol entre agentes:
 
-```
+```text
 Agent A                    Agent B
    │                          │
    └──── ACP Request ────────►│

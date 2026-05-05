@@ -66,7 +66,7 @@ agent = Agent(
 
 Automaticamente salva:
 
-```
+```text
 ~/.deep-agents/
 ├── research_agent/
 │   ├── conversations/
@@ -84,7 +84,7 @@ Quando contexto fica grande, resume automaticamente:
 agent = Agent(
     auto_summarize=True,
     summarize_threshold=0.8,  # 80% do context
-    summarization_model="claude-3-haiku"
+    summarization_model="claude-haiku-4-5-20251001"
 )
 
 # Internamente: [antigo] → [resumo] → [novo]

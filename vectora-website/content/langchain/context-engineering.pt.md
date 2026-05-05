@@ -36,12 +36,13 @@ messages = [
 tools = [search_tool, code_executor]
 
 # Model - qual LLM usar
-model = ChatAnthropic(model="claude-3-opus")
+model = ChatAnthropic(model="claude-sonnet-4-6")
 
 response = model.invoke(messages, tools=tools)
 ```
 
 **Estratégias:**
+
 - **Few-shot**: Incluir exemplos de entrada/saída
 - **Chain-of-thought**: Pedir raciocínio passo-a-passo
 - **Prompt templates**: Reutilizar prompts estruturados
@@ -68,6 +69,7 @@ def search_documents(query: str) -> str:
 ```
 
 **O que controla:**
+
 - Qual contexto cada ferramenta pode acessar
 - Quais dados persistem entre turnos
 - Isolamento por usuário/organização
@@ -100,6 +102,7 @@ def tool_middleware(tool_result):
 ```
 
 **Casos de uso:**
+
 - Sumarização automática de histórico longo
 - Guardrails de segurança
 - Logging e monitoramento
@@ -148,10 +151,10 @@ Enrichir contexto com documentos relevantes:
 def add_rag_context(query: str, state: dict) -> dict:
     # Buscar documentos relevantes
     docs = vectorstore.similarity_search(query, k=5)
-    
+
     # Adicionar ao contexto
     context = "\n".join([doc.page_content for doc in docs])
-    
+
     state["system_context"] = f"Documentos relevantes:\n{context}"
     return state
 ```
@@ -164,13 +167,13 @@ Customizar contexto por usuário:
 def load_user_context(user_id: str, state: dict) -> dict:
     # Permissões
     state["permissions"] = get_user_permissions(user_id)
-    
+
     # Preferências
     state["preferences"] = get_user_preferences(user_id)
-    
+
     # Histórico pessoal
     state["history"] = get_user_history(user_id, limit=10)
-    
+
     return state
 ```
 
@@ -182,21 +185,21 @@ Integrar base de conhecimento:
 def add_knowledge_context(topic: str, state: dict) -> dict:
     # Buscar documentação, FAQs, exemplos
     kb_results = knowledge_base.search(topic, limit=3)
-    
+
     system = state.get("system", "")
     system += f"\n\nRelevant documentation:\n"
     system += "\n".join(kb_results)
-    
+
     state["system"] = system
     return state
 ```
 
 ## External Linking
 
-| Conceito | Recurso | Link |
-|----------|---------|------|
-| Context Engineering | Overview | [https://docs.langchain.com/oss/python/langchain/context-engineering](https://docs.langchain.com/oss/python/langchain/context-engineering) |
-| Prompting Strategy | Prompt Engineering | [https://docs.langchain.com/oss/python/langchain/guides/prompt_engineering](https://docs.langchain.com/oss/python/langchain/guides/prompt_engineering) |
-| Few-shot Learning | Few-shot Patterns | [https://docs.langchain.com/oss/python/langchain/prompts/few_shot_examples](https://docs.langchain.com/oss/python/langchain/prompts/few_shot_examples) |
-| RAG Patterns | Retrieval Augmented | [https://docs.langchain.com/oss/python/langchain/retrieval](https://docs.langchain.com/oss/python/langchain/retrieval) |
-| Middleware | Runtime Context | [https://docs.langchain.com/oss/python/langchain/runnables](https://docs.langchain.com/oss/python/langchain/runnables) |
+| Conceito            | Recurso             | Link                                                                                                                                                   |
+| ------------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Context Engineering | Overview            | [https://docs.langchain.com/oss/python/langchain/context-engineering](https://docs.langchain.com/oss/python/langchain/context-engineering)             |
+| Prompting Strategy  | Prompt Engineering  | [https://docs.langchain.com/oss/python/langchain/guides/prompt_engineering](https://docs.langchain.com/oss/python/langchain/guides/prompt_engineering) |
+| Few-shot Learning   | Few-shot Patterns   | [https://docs.langchain.com/oss/python/langchain/prompts/few_shot_examples](https://docs.langchain.com/oss/python/langchain/prompts/few_shot_examples) |
+| RAG Patterns        | Retrieval Augmented | [https://docs.langchain.com/oss/python/langchain/retrieval](https://docs.langchain.com/oss/python/langchain/retrieval)                                 |
+| Middleware          | Runtime Context     | [https://docs.langchain.com/oss/python/langchain/runnables](https://docs.langchain.com/oss/python/langchain/runnables)                                 |

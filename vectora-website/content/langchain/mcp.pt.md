@@ -17,19 +17,22 @@ MCP (Model Context Protocol) é um **protocolo aberto** que padroniza como aplic
 ## O Que é MCP?
 
 Um padrão universal para:
+
 - **Tools** - Funções que LLMs podem chamar
 - **Resources** - Dados expostos (arquivos, registros, respostas de APIs)
 - **Prompts** - Templates reutilizáveis que se convertem em mensagens
 
 **Sem MCP:** Cada integração é única
-```
+
+```text
 LangChain ←→ Tool A
 LangChain ←→ Tool B
 LangChain ←→ Tool C
 ```
 
 **Com MCP:** Protocolo universal
-```
+
+```text
 LangChain ←→ MCP Client ←→ [MCP Server 1] → Tools/Resources
                              [MCP Server 2] → Tools/Resources
                              [MCP Server 3] → Tools/Resources
@@ -49,7 +52,7 @@ import sys
 while True:
     line = sys.stdin.readline()
     request = json.loads(line)
-    
+
     if request["method"] == "tools/list":
         response = {
             "tools": [
@@ -63,12 +66,13 @@ while True:
     elif request["method"] == "tools/call":
         result = execute_tool(request["params"])
         response = {"result": result}
-    
+
     sys.stdout.write(json.dumps(response) + "\n")
     sys.stdout.flush()
 ```
 
 **Quando usar:**
+
 - Ferramentas locais
 - Baixa latência importante
 - Segurança (sem rede)
@@ -96,6 +100,7 @@ result = await client.call_tool(
 ```
 
 **Quando usar:**
+
 - Servidores remotos
 - Múltiplas aplicações
 - Escalabilidade importante
@@ -203,14 +208,14 @@ class MyMCPServer:
                 }
             }
         }]
-    
+
     async def tools_call(self, name, args):
         if name == "search_vectora":
             return search_vectora_kb(args["query"])
 
 # LangChain Agent
 agent = create_agent(
-    model="claude-3-opus",
+    model="claude-sonnet-4-6",
     mcp_servers=[MyMCPServer()],
     tools_from="mcp"
 )
@@ -229,7 +234,7 @@ class LoggingInterceptor:
     async def before_request(self, request):
         logger.info(f"Calling: {request['method']}")
         return request
-    
+
     async def after_response(self, response):
         logger.info(f"Result: {response['result']}")
         return response
@@ -276,7 +281,7 @@ class VectoraMCPServer:
                 "description": "Get context for code understanding"
             }
         ]
-    
+
     async def resources_list(self):
         return [
             {
@@ -291,17 +296,17 @@ class VectoraMCPServer:
 
 # Agentes Claude Code usam Vectora via MCP
 agent = create_agent(
-    model="claude-3-opus",
+    model="claude-sonnet-4-6",
     mcp_servers=[VectoraMCPServer()]
 )
 ```
 
 ## External Linking
 
-| Conceito | Recurso | Link |
-|----------|---------|------|
-| MCP Official | Model Context Protocol | [https://modelcontextprotocol.io/](https://modelcontextprotocol.io/) |
-| MCP Spec | Protocol Specification | [https://modelcontextprotocol.io/introduction](https://modelcontextprotocol.io/introduction) |
-| LangChain MCP | Integration Guide | [https://docs.langchain.com/oss/python/langchain/mcp](https://docs.langchain.com/oss/python/langchain/mcp) |
-| MCP Servers | Community Servers | [https://modelcontextprotocol.io/servers](https://modelcontextprotocol.io/servers) |
-| Creating Servers | Server Development | [https://modelcontextprotocol.io/server-guides](https://modelcontextprotocol.io/server-guides) |
+| Conceito         | Recurso                | Link                                                                                                       |
+| ---------------- | ---------------------- | ---------------------------------------------------------------------------------------------------------- |
+| MCP Official     | Model Context Protocol | [https://modelcontextprotocol.io/](https://modelcontextprotocol.io/)                                       |
+| MCP Spec         | Protocol Specification | [https://modelcontextprotocol.io/introduction](https://modelcontextprotocol.io/introduction)               |
+| LangChain MCP    | Integration Guide      | [https://docs.langchain.com/oss/python/langchain/mcp](https://docs.langchain.com/oss/python/langchain/mcp) |
+| MCP Servers      | Community Servers      | [https://modelcontextprotocol.io/servers](https://modelcontextprotocol.io/servers)                         |
+| Creating Servers | Server Development     | [https://modelcontextprotocol.io/server-guides](https://modelcontextprotocol.io/server-guides)             |
